@@ -22,7 +22,7 @@ public class ReadFromOpenXCFileReader implements IDataReader
             reader = new BufferedReader(new FileReader(filePath));
         } catch (FileNotFoundException e)
         {
-            System.out.println("Could not locate the file.");
+            System.err.println("Could not locate the file");
         }
     }
 
@@ -38,11 +38,11 @@ public class ReadFromOpenXCFileReader implements IDataReader
         }
         catch (IOException e)
         {
-            System.out.println("Could not read from the file");
+            System.err.println("Could not read from the file.");
         }
         catch (ParseException e)
         {
-            e.printStackTrace();
+            System.err.println("Something was wrong in the format of the file.");
         }
     }
 
@@ -54,25 +54,29 @@ public class ReadFromOpenXCFileReader implements IDataReader
         Object value = jsonObject.get("value");
         Double timestamp = (Double) jsonObject.get("timestamp");
 
-        for (IDataListener datalistener : listeners)
+        for (IDataListener listener : listeners)
         {
-            datalistener.getNewData(name, value, timestamp);
+            listener.getNewData(name, value, timestamp);
         }
     }
 
-    public void addNewDataListener(IDataListener newDataListener)
+    public void addNewDataListener(IDataListener listener)
     {
-        listeners.add(newDataListener);
+        listeners.add(listener);
     }
 
 
     public static void main(String[] args)
     {
-        ReadFromOpenXCFileReader reader = new ReadFromOpenXCFileReader("./files/downtown-crosstown.json");
+        ReadFromOpenXCFileReader reader = new ReadFromOpenXCFileReader("src/data2.json");
+        reader.addNewDataListener((s, o, d) -> System.out.println(s + "=" + o));
         reader.startReading();
     }
 
-    // Not used
+    /**
+     * Do not use this method.
+     * Use createData(String) instead.
+     */
     private void createDataAlternative(String line)
     {
         int startIndex = line.indexOf(':');
@@ -85,9 +89,7 @@ public class ReadFromOpenXCFileReader implements IDataReader
 
         startIndex = line.indexOf(':', endIndex);
         endIndex = line.length() - 2;
-        long timestamp = (long) (Double.parseDouble(line.substring(startIndex + 1, endIndex)) * 1000); // milliseconds
-
-        System.out.println("name=" + name + ", value=" + value + ", timestamp=" + timestamp);
+        double timestamp = Double.parseDouble(line.substring(startIndex + 1, endIndex));
     }
 
 }

@@ -1,8 +1,4 @@
-{
-  "name": "accelerator_pedal_position",
-  "value": 0,
-  "timestamp": 1364323939.012000
-}
+{"name": "accelerator_pedal_position","value": 0,"timestamp": 1364323939.012000}
 {"name":"engine_speed","value":772,"timestamp":1364323939.027000}
 {"name":"vehicle_speed","value":0,"timestamp":1364323939.029000}
 {"name":"accelerator_pedal_position","value":0,"timestamp":1364323939.035000}
@@ -55585,4 +55581,3 @@
 {"name":"torque_at_transmission","value":48,"timestamp":1364324068.098000}
 {"name":"vehicle_speed","value":1.32,"timestamp":1364324068.098000}
 {"name":"accelerator_pedal_position","value":10.6,"timestamp":1364324068.098000}
-{"name":"engine_speed","va
