@@ -1,11 +1,18 @@
-public class ProcessCarData implements NewDataListener
+public class ProcessCarData implements IDataListener
 {
-    private ReadCarData reader;
-    private SaveCarData logger;
+    private IDataReader reader;
+    private IDataSaver logger;
+
+    public ProcessCarData(IDataReader reader)
+    {
+        this.reader = reader;
+        reader.addNewDataListener(this);
+        reader.startReading();
+    }
 
     public void getNewData(String name, Object value, Double timestamp)
     {
-        logger.addEntry(name, value, timestamp);
+        //logger.addEntry(name, value, timestamp);
 
         CarActionsFilter type = CarEventFilterTranslator.translateStringToFilter(name);
 
