@@ -16,7 +16,7 @@ class CarEventFilterTranslator
     private static Map<String, CarActionsFilter> translationDict;
     static
     {
-        translationDict = new HashMap<>();
+        translationDict = new HashMap<String, CarActionsFilter>();
         translationDict.put("", CarActionsFilter.acceleratorPedalPosition);
         // TODO
     }
