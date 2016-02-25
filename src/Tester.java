@@ -1,21 +1,29 @@
 import metrics.*;
 
-public class Tester implements IActionListener
+public class Tester
 {
     public static void main(String[] args)
     {
         Tester test = new Tester();
-        test.start();
+        test.startWithDelay();
     }
 
-    public void start()
+    public void startWithDelay()
     {
-        CarAction.addCreatedListener(this, CarActionsFilter.all);
-        ProcessCarData proc = new ProcessCarData(new ReadFromOpenXCFileReader("src/metrics/data1.json"));
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.all);
+        streamer.addStreamListener(this::newAction);
+        streamer.startStreaming();
     }
 
-    public void newCarAction(CarAction action)
+    public void startWithoutDelay()
     {
-        System.out.println(action);
+        CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
+        ReadFromOpenXCFileReader reader = new ReadFromOpenXCFileReader("src/metrics/data1.json");
+        reader.startReading();
+    }
+
+    public void newAction(CarAction action)
+    {
+        System.out.println(action.getName() + ": " + action.getValue());
     }
 }

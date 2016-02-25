@@ -29,19 +29,19 @@ public class CarAction
         triggerCreatedEvent(this);
     }
 
-    private static HashMap<CarActionsFilter, Set<IActionListener>> listeners = new HashMap<CarActionsFilter, Set<IActionListener>>();
+    private static HashMap<CarActionsFilter, Set<IActionListener>> listeners = new HashMap<>();
 
     public static void addCreatedListener(IActionListener newListener, CarActionsFilter filter)
     {
-        Set<IActionListener> hset = listeners.getOrDefault(filter, new HashSet<IActionListener>());
+        Set<IActionListener> hset = listeners.getOrDefault(filter, new HashSet<>());
         hset.add(newListener);
         listeners.put(filter, hset);
     }
 
     void triggerCreatedEvent(CarAction action)
     {
-        Set<IActionListener> allSubscribers = listeners.getOrDefault(action.type, new HashSet<IActionListener>());
-        allSubscribers.addAll(listeners.getOrDefault(CarActionsFilter.all, new HashSet<IActionListener>()));
+        Set<IActionListener> allSubscribers = listeners.getOrDefault(action.type, new HashSet<>());
+        allSubscribers.addAll(listeners.getOrDefault(CarActionsFilter.all, new HashSet<>()));
 
         for (IActionListener actionListener : allSubscribers)
         {
