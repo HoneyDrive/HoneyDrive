@@ -1,2 +1,0 @@
-# HoneyDrive
-The ultimate repo!

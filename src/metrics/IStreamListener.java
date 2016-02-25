@@ -1,6 +1,5 @@
-/**
- * Created by Henrik on 25/02/2016.
- */
+package metrics;
+
 public interface IStreamListener
 {
     void onNewAction(CarAction action);

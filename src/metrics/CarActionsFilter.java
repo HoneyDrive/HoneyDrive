@@ -1,3 +1,5 @@
+package metrics;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +57,15 @@ class CarEventFilterTranslator
 
     public static CarActionsFilter translateStringToFilter(String eventString)
     {
-        return translationDict.get(eventString);
+        CarActionsFilter filter = translationDict.get(eventString);
+
+        if (filter == null)
+        {
+            return CarActionsFilter.other;
+        }
+        else
+        {
+            return filter;
+        }
     }
 }

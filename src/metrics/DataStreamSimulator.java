@@ -1,3 +1,5 @@
+package metrics;
+
 import java.util.*;
 
 public class DataStreamSimulator implements IActionListener, IDataStreamer

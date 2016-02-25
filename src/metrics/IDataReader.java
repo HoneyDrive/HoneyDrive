@@ -1,3 +1,5 @@
+package metrics;
+
 public interface IDataReader
 {
     void addNewDataListener(IDataListener newDataListener);
