@@ -18,7 +18,7 @@ public class Example
     public void startWithoutDelay()
     {
         CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
-        IDataReader reader = new ReadFromOpenXCFileReader("src/metrics/data1.json");
+        IDataReader reader = new ReadFromOpenXCFile("src/metrics/data1.json");
         reader.startReading();
     }
 

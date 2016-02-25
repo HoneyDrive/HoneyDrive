@@ -10,7 +10,7 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
 
     public DataStreamSimulator(String filePath, CarActionsFilter carActionsFilter)
     {
-        reader = new ReadFromOpenXCFileReader(filePath);
+        reader = new ReadFromOpenXCFile(filePath);
         CarAction.addCreatedListener(this, carActionsFilter);
     }
 
@@ -66,12 +66,4 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
     {
         streamListeners.add(streamListener);
     }
-
-    public static void main(String[] args)
-    {
-        IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.vehicle_speed);
-        streamer.addStreamListener(a -> System.out.println(a.getName() + "=" + a.getValue()));
-        streamer.startStreaming();
-    }
-
 }

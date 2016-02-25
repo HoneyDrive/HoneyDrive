@@ -8,12 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ReadFromOpenXCFileReader implements IDataReader
+public class ReadFromOpenXCFile implements IDataReader
 {
     private BufferedReader reader;
     private JSONParser parser = new JSONParser();
 
-    public ReadFromOpenXCFileReader(String filePath)
+    public ReadFromOpenXCFile(String filePath)
     {
         try
         {
@@ -24,6 +24,7 @@ public class ReadFromOpenXCFileReader implements IDataReader
         }
     }
 
+    @Override
     public void startReading()
     {
         try
