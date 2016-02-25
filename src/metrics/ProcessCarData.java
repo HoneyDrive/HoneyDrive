@@ -7,6 +7,15 @@ public class ProcessCarData implements IDataListener
 
     public ProcessCarData(IDataReader reader)
     {
+        this.logger = new NoLogging();
+        this.reader = reader;
+        reader.addNewDataListener(this);
+        reader.startReading();
+    }
+
+    public ProcessCarData(IDataReader reader, IDataSaver logger)
+    {
+        this.logger = logger;
         this.reader = reader;
         reader.addNewDataListener(this);
         reader.startReading();
@@ -14,7 +23,7 @@ public class ProcessCarData implements IDataListener
 
     public void getNewData(String name, Object value, Double timestamp)
     {
-        //logger.addEntry(name, value, timestamp);
+        logger.addEntry(name, value, timestamp);
 
         CarActionsFilter type = CarEventFilterTranslator.translateStringToFilter(name);
 
