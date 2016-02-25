@@ -27,7 +27,7 @@ inside the `<project></project>` tag.
 ## Usage
 There are currently two ways to read the car data.
 
-1. You can choose to read a `json` file direcly from disk without a simulated delay between the received data.
+1. You can choose to read a `json` file direcly from disk without a smimulated delay between the received data.
 2. Or you can choose to read a `json` file directly from disk with an added delay between the received data, corresponding to the delay between the `timestamp` attribute in the `json` file.
 
 Always remember to add `import metrics.*;` to the top of your file.
@@ -63,7 +63,7 @@ The supplied `CarAction` class will expose four properties through `getType()`, 
 To get `CarAction` objects, you have to listen/subscribe to the types of data you want. Add yourself as a listener by
 adding
 ```CarAction.addCreatedListener(this, CarActionsFilter.all);```
-somewhere in your code. The second parameter decides what data you will get. You can choose between 21 different filters.
+somewhere in your code. The second parameter decides which data you will get. You can choose between 21 different filters.
 
 `CarActionsFilter.all` will give you all data that is recorded.
 
