@@ -4,11 +4,19 @@ import java.util.*;
 
 public class DataStreamSimulator implements IActionListener, IDataStreamer
 {
-    List<IStreamListener> streamListeners = new ArrayList<>();
+    private IDataReader reader;
+    private List<IStreamListener> streamListeners = new ArrayList<>();
     private Queue<CarAction> actions = new ArrayDeque<>();
 
-    public DataStreamSimulator(CarActionsFilter carActionsFilter)
+    public DataStreamSimulator(String filePath, CarActionsFilter carActionsFilter)
     {
+        reader = new ReadFromOpenXCFileReader(filePath);
+        CarAction.addCreatedListener((IActionListener) this, carActionsFilter);
+    }
+
+    public DataStreamSimulator(IDataReader reader, CarActionsFilter carActionsFilter)
+    {
+        this.reader = reader;
         CarAction.addCreatedListener((IActionListener) this, carActionsFilter);
     }
 
@@ -21,11 +29,13 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
     @Override
     public void startStreaming()
     {
+        reader.startReading();
+
         long startTime = System.currentTimeMillis();
         CarAction action = actions.poll();
         if (action == null)
         {
-            throw new IllegalArgumentException("No actions to stream");
+            throw new IllegalStateException("No actions to stream");
         }
         long drivingStartTime = (long) (action.getTimestamp() * 1000);
         notifyListeners(action);
@@ -59,12 +69,8 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
 
     public static void main(String[] args)
     {
-        IDataReader reader = new ReadFromOpenXCFileReader("src/data2.json");
-        IDataStreamer streamer = new DataStreamSimulator(CarActionsFilter.vehicle_speed);
-
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.vehicle_speed);
         streamer.addStreamListener(a -> System.out.println(a.getName() + "=" + a.getValue()));
-
-        reader.startReading();
         streamer.startStreaming();
     }
 
