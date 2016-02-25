@@ -17,6 +17,16 @@ public class CarAction
         triggerCreatedEvent(this);
     }
 
+    public CarAction(String name, Object value, Double timestamp)
+    {
+        setType(CarEventFilterTranslator.translateStringToFilter(name));
+        setName(name);
+        setValue(value);
+        setTimestamp(timestamp);
+
+        triggerCreatedEvent(this);
+    }
+
     private static HashMap<CarActionsFilter, Set<IActionListener>> listeners = new HashMap<CarActionsFilter, Set<IActionListener>>();
 
     public static void addCreatedListener(IActionListener newListener, CarActionsFilter filter)

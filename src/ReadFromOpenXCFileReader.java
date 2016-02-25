@@ -54,6 +54,8 @@ public class ReadFromOpenXCFileReader implements IDataReader
         Object value = jsonObject.get("value");
         Double timestamp = (Double) jsonObject.get("timestamp");
 
+        new CarAction(name, value, timestamp);
+        
         for (IDataListener listener : listeners)
         {
             listener.getNewData(name, value, timestamp);
