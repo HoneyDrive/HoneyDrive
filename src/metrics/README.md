@@ -2,13 +2,13 @@
 The *metrics* package will provide a way to get sensor data from the car.
 
 ## Prerequisites
-You're going to need Maven with the Google GSON dependency.
+You're going to need Maven with the `JSON.simple` dependency.
 
 ### Using IntelliJ
 Press *File* and then *Project Structure*.
 Click on *Libraries*, and then *New Project Library* (the small green plus symbol).
 Choose *From Maven* and type
-`com.google.code.gson:gson:2.6.1`
+`com.googlecode.json-simple:json-simple:1.1`
 into the textbox and click *OK*.
 
 ### General / Other IDEs
@@ -16,13 +16,14 @@ Download Maven. In the `pom.xml` file, add the `json-simple` dependency by addin
 ```
 <dependencies>
 	<dependency>
-    	<groupId>com.google.code.gson</groupId>
-    	<artifactId>gson</artifactId>
-    	<version>2.6.1</version>
-    </dependency>
+		<groupId>com.googlecode.json-simple</groupId>
+		<artifactId>json-simple</artifactId>
+		<version>1.1</version>
+	</dependency>
 </dependencies>
 ```
 inside the `<project></project>` tag.
+
 
 ## Usage
 There are currently two ways to read the car data.
