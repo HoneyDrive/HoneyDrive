@@ -45,7 +45,7 @@ public class Example
     public void start()
     {
         CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
-        IDataReader reader = new ReadFromOpenXCFileReader("src/metrics/data1.json");
+        IDataReader reader = new ReadFromOpenXCFileReader("src/metrics/TestData/data1.json");
         reader.startReading();
     }
 
@@ -139,7 +139,7 @@ public class Example
 {
     public void start()
     {
-        IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.all);
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", CarActionsFilter.all);
         streamer.addStreamListener(this::newAction);
         streamer.startStreaming();
     }
@@ -161,7 +161,7 @@ The supplied `CarAction` class will expose four properties through `getType()`, 
 To get `CarAction` objects, you have to listen/subscribe to the types of data you want. Add yourself as a listener by
 adding
 ```java
-IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.all);
+IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", CarActionsFilter.all);
 streamer.addStreamListener(this::newAction);
 ```
 somewhere in your code. The second parameter of `DataStreamSimulator` decides what data you will get. You can choose between 21 different filters.
@@ -177,7 +177,7 @@ That's it! You will get all the information in the supplied `.json` file, with d
 
 ## Code maintainance
 
-![Class diagram](https://raw.githubusercontent.com/HoneyDrive/HoneyDrive/testing/DataReading/src/metrics/classdiagram.png)
+![Class diagram](https://raw.githubusercontent.com/HoneyDrive/HoneyDrive/testing/DataReading/src/metrics/Images/classdiagram.png)
 
 ### CarAction
 

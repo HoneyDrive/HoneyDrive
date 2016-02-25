@@ -10,7 +10,7 @@ public class Example
 
     public void startWithDelay()
     {
-        IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.all);
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", CarActionsFilter.all);
         streamer.addStreamListener(this::newAction);
         streamer.startStreaming();
     }
@@ -18,7 +18,7 @@ public class Example
     public void startWithoutDelay()
     {
         CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
-        IDataReader reader = new ReadFromOpenXCFile("src/metrics/data1.json");
+        IDataReader reader = new ReadFromOpenXCFile("src/metrics/TestData/data1.json");
         reader.startReading();
     }
 
