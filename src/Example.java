@@ -1,10 +1,10 @@
 import metrics.*;
 
-public class Tester
+public class Example
 {
     public static void main(String[] args)
     {
-        Tester test = new Tester();
+        Example test = new Example();
         test.startWithDelay();
     }
 
