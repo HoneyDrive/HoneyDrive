@@ -177,7 +177,7 @@ That's it! You will get all the information in the supplied `.json` file, with d
 
 ## Code maintainance
 
-![Class diagram](https://raw.githubusercontent.com/HoneyDrive/HoneyDrive/new/DataReading/src/metrics/classdiagram.png)
+![Class diagram](https://raw.githubusercontent.com/HoneyDrive/HoneyDrive/testing/DataReading/src/metrics/classdiagram.png)
 
 ### CarAction
 
