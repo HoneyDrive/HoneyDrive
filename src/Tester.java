@@ -18,7 +18,7 @@ public class Tester
     public void startWithoutDelay()
     {
         CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
-        ReadFromOpenXCFileReader reader = new ReadFromOpenXCFileReader("src/metrics/data1.json");
+        IDataReader reader = new ReadFromOpenXCFileReader("src/metrics/data1.json");
         reader.startReading();
     }
 

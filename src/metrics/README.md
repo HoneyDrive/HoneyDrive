@@ -12,7 +12,7 @@ Choose *From Maven* and type
 into the textbox and click *OK*.
 
 ### General / Other IDEs
-Download Maven. In the `pom.xml` file, add the `json-simple` dependency by adding
+Download Maven. In the `pom.xml` file, add the `JSON.simple` dependency by adding
 ```
 <dependencies>
 	<dependency>
@@ -36,35 +36,40 @@ Always remember to add `import metrics.*;` to the top of your file.
 ### 1. No Delay
 
 #### Full example code
+
 ```java
 import metrics.*;
 
-public class Example implements IActionListener
+public class Example
 {
     public void start()
     {
-        CarAction.addCreatedListener(this, CarActionsFilter.all);
-        ProcessCarData proc = new ProcessCarData(new ReadFromOpenXCFileReader("src/metrics/data1.json"));
+        CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
+        IDataReader reader = new ReadFromOpenXCFileReader("src/metrics/data1.json");
+        reader.startReading();
     }
 
-    public void newCarAction(CarAction action)
+    public void newAction(CarAction action)
     {
-        System.out.println(action);
+        System.out.println(action.getName() + ": " + action.getValue());
     }
 }
 ```
 
 #### Explanation
 
-Add `implements IActionListener` to your class. Add the required `public void newCarAction(CarAction action)` method. This is the method that will receive the car data.
+Add a method to handle the data, for example `public void newAction(CarAction action)`. This is the method that will receive the car data.
 
 The supplied `CarAction` class will expose four properties through `getType()`, `getName()`, `getValue()` and `getTimestamp()`.
 `getName()` is a String equivalent to enum `getType()`.
 
 To get `CarAction` objects, you have to listen/subscribe to the types of data you want. Add yourself as a listener by
 adding
-```CarAction.addCreatedListener(this, CarActionsFilter.all);```
-somewhere in your code. The second parameter decides what data you will get. You can choose between 21 different filters.
+```java
+CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
+```
+somewhere in your code. The first parameter decides what method that will process the data. The second parameter decides what data you will get. You can choose between 21 different filters.
+
 
 `CarActionsFilter.all` will give you all data that is recorded.
 
@@ -110,22 +115,65 @@ The 19 remaining categories are
 	</tbody>
 </table>
 
-Finally, to start reading in the data, create a new instance of `ProcessCarData` by adding
+Finally, to start reading the data, create a new instance of `ReadFromOpenXCFileReader` by adding
 ```java
-ProcessCarData proc = new ProcessCarData(new ReadFromOpenXCFileReader("src/metrics/data1.json"));
+IDataReader reader = new ReadFromOpenXCFileReader("src/metrics/data1.json");
 ```
 to your code.
 
+Start to read the data by running
+```java
+reader.startReading();
+```
+
+That's it! You will get all the information in the supplied `.json` file.
 
 ### 2. With Simulated Delay
 
 #### Full example code
 
-TODO
+```java
+import metrics.*;
+
+public class Example
+{
+    public void start()
+    {
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.all);
+        streamer.addStreamListener(this::newAction);
+        streamer.startStreaming();
+    }
+
+    public void newAction(CarAction action)
+    {
+        System.out.println(action.getName() + ": " + action.getValue());
+    }
+}
+```
 
 #### Explanation
 
-TODO
+Add a method to handle the data, for example `public void newAction(CarAction action)`. This is the method that will receive the car data.
+
+The supplied `CarAction` class will expose four properties through `getType()`, `getName()`, `getValue()` and `getTimestamp()`.
+`getName()` is a String equivalent to enum `getType()`.
+
+To get `CarAction` objects, you have to listen/subscribe to the types of data you want. Add yourself as a listener by
+adding
+```java
+IDataStreamer streamer = new DataStreamSimulator("src/metrics/data2.json", CarActionsFilter.all);
+streamer.addStreamListener(this::newAction);
+```
+somewhere in your code. The second parameter of `DataStreamSimulator` decides what data you will get. You can choose between 21 different filters.
+
+See the explanation for "*1. No Delay*" above to read about the different filters available.
+
+Start to read the data by running
+```java
+streamer.startStreaming();
+```
+
+That's it! You will get all the information in the supplied `.json` file, with delays corresponding to the time difference given by `timestamp` in the `json` file.
 
 ## Code maintainance
 
