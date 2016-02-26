@@ -5,6 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+/*
+-------------------------------
+REMEMBER TO download all the test data from the OpenXC web page to get the most reliable results.
+-------------------------------
+ */
+
+
 public class Tester
 {
     public static void main(String[] args)
@@ -27,7 +34,7 @@ public class Tester
 
         Map<String, Set<String>> typeOfData = new HashMap<>();
 
-        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/parked.json", CarActionsFilter.engine_speed);
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", CarActionsFilter.engine_speed);
         streamer.addStreamListener(action ->
         {
             Set<String> types = typeOfData.getOrDefault(action.getType().name(), new HashSet<>());
@@ -50,7 +57,7 @@ public class Tester
 
         Map<String, Set<String>> typeOfData = new HashMap<>();
 
-        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/parked.json", EnumSet.of(CarActionsFilter.latitude, CarActionsFilter.longitude));
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", EnumSet.of(CarActionsFilter.latitude, CarActionsFilter.longitude));
         streamer.addStreamListener(action ->
         {
             Set<String> types = typeOfData.getOrDefault(action.getType().name(), new HashSet<>());
