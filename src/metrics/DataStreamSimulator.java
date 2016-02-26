@@ -20,6 +20,18 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
         CarAction.addCreatedListener(this, carActionsFilter);
     }
 
+    public DataStreamSimulator(String filePath, Set<CarActionsFilter> carActionsFilters)
+    {
+        reader = new ReadFromOpenXCFile(filePath);
+        CarAction.addCreatedListener(this, carActionsFilters);
+    }
+
+    public DataStreamSimulator(IDataReader reader, Set<CarActionsFilter> carActionsFilters)
+    {
+        this.reader = reader;
+        CarAction.addCreatedListener(this, carActionsFilters);
+    }
+
     @Override
     public void newCarAction(CarAction action)
     {

@@ -38,6 +38,16 @@ public class CarAction
         listeners.put(filter, hset);
     }
 
+    public static void addCreatedListener(IActionListener newListener, Set<CarActionsFilter> filters)
+    {
+        for (CarActionsFilter filter : filters)
+        {
+            Set<IActionListener> hset = listeners.getOrDefault(filter, new HashSet<>());
+            hset.add(newListener);
+            listeners.put(filter, hset);
+        }
+    }
+
     private void triggerCreatedEvent(CarAction action)
     {
         Set<IActionListener> allSubscribers = listeners.getOrDefault(action.type, new HashSet<>());

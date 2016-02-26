@@ -37,6 +37,8 @@ Always remember to add `import metrics.*;` to the top of your file.
 
 #### Full example code
 
+##### Using a single filter
+
 ```java
 import metrics.*;
 
@@ -47,6 +49,28 @@ public class Example
         CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
         IDataReader reader = new ReadFromOpenXCFileReader("src/metrics/TestData/data1.json");
         reader.startReading();
+    }
+
+    public void newAction(CarAction action)
+    {
+        System.out.println(action.getName() + ": " + action.getValue());
+    }
+}
+```
+
+##### Using multiple filters
+
+```java
+import metrics.*;
+
+public class Example
+{
+    public void start()
+    {
+        CarAction.addCreatedListener(this::newAction, EnumSet.of(CarActionsFilter.latitude,CarActionsFilter.longitude));
+        IDataReader reader = new ReadFromOpenXCFile("src/metrics/TestData/data3.json");
+        reader.startReading();
+
     }
 
     public void newAction(CarAction action)
@@ -133,6 +157,8 @@ That's it! You will get all the information in the supplied `.json` file.
 
 #### Full example code
 
+##### Using a single filter
+
 ```java
 import metrics.*;
 
@@ -141,6 +167,27 @@ public class Example
     public void start()
     {
         IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", CarActionsFilter.all);
+        streamer.addStreamListener(this::newAction);
+        streamer.startStreaming();
+    }
+
+    public void newAction(CarAction action)
+    {
+        System.out.println(action.getName() + ": " + action.getValue());
+    }
+}
+```
+
+##### Using multiple filters
+
+```java
+import metrics.*;
+
+public class Example
+{
+    public void start()
+    {
+        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data3.json", EnumSet.of(CarActionsFilter.latitude,CarActionsFilter.longitude));
         streamer.addStreamListener(this::newAction);
         streamer.startStreaming();
     }
@@ -376,7 +423,7 @@ required `onNewAction(CarAction action)` method.
 
 The `DataStreamSimulator` class provides a way to stream car data with delays between the data corresponding to the difference give by the `timestamp` property in the `json` files.
 
-Its two constructors first takes the path to the *OpenXC* `json` file it is supposed to read. This path may be *absolute* or *relative*.
+Its four constructors first takes the path to the *OpenXC* `json` file it is supposed to read. This path may be *absolute* or *relative*.
 
 The second argument decides what kind of car data it is supposed to listen to. This is a `CarActionsFilter` enum value.
 
