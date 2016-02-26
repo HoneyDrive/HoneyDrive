@@ -92,7 +92,7 @@ adding
 ```java
 CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
 ```
-somewhere in your code. The first parameter decides what method that will process the data. The second parameter decides what data you will get. You can choose between 21 different filters.
+somewhere in your code. The first parameter decides what method that will process the data. The second parameter decides what data you will get. You can choose between 24 different filters.
 
 Remember to read the [The CarAction **value** property](#CarActionValue) below for an explanation about the different values.
 
@@ -100,44 +100,49 @@ Remember to read the [The CarAction **value** property](#CarActionValue) below f
 
 `CarActionsFilter.other` will give you unrecognized data.
 
-The 19 remaining categories are
+The 22 remaining categories are
 
 <table border="0">
-	<tbody>
-		<tr>
-			<td>steering_wheel_angle</td>
-			<td>torque_at_transmission</td>
-			<td>engine_speed</td>
-		</tr>
-		<tr>
-			<td>vehicle_speed</td>
-			<td>accelerator_pedal_position</td>
-			<td>parking_brake_status</td>
-		</tr>
-		<tr>
-			<td>brake_pedal_status</td>
-			<td>transmission_gear_position</td>
-			<td>gear_lever_position</td>
-		</tr>
-		<tr>
-			<td>odometer</td>
-			<td>ignition_status</td>
-			<td>fuel_level</td>
-		</tr>
-		<tr>
-			<td>fuel_consumed_since_restart</td>
-			<td>door_status</td>
-			<td>headlamp_status</td>
-		</tr>
-		<tr>
-			<td>high_beam_status</td>
-			<td>windshield_wiper_status</td>
-			<td>latitude</td>
-		</tr>
-		<tr>
-			<td>longitude</td>
-		</tr>
-	</tbody>
+   <tbody>
+       <tr>
+           <td>steering_wheel_angle</td>
+           <td>torque_at_transmission</td>
+           <td>engine_speed</td>
+       </tr>
+       <tr>
+           <td>vehicle_speed</td>
+           <td>accelerator_pedal_position</td>
+           <td>parking_brake_status</td>
+       </tr>
+       <tr>
+           <td>brake_pedal_status</td>
+           <td>transmission_gear_position</td>
+           <td>gear_lever_position</td>
+       </tr>
+       <tr>
+           <td>odometer</td>
+           <td>ignition_status</td>
+           <td>fuel_level</td>
+       </tr>
+       <tr>
+           <td>fuel_consumed_since_restart</td>
+           <td>door_status</td>
+           <td>headlamp_status</td>
+       </tr>
+       <tr>
+           <td>high_beam_status</td>
+           <td>windshield_wiper_status</td>
+           <td>latitude</td>
+       </tr>
+       <tr>
+           <td>longitude</td>
+           <td>button_state</td>
+           <td>powertrain_torque</td>
+       </tr>
+       <tr>
+            <td>fine_odometer_since_restart</td>
+        </tr>
+   </tbody>
 </table>
 
 Finally, to start reading the data, create a new instance of `ReadFromOpenXCFileReader` by adding
@@ -212,7 +217,7 @@ adding
 IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", CarActionsFilter.all);
 streamer.addStreamListener(this::newAction);
 ```
-somewhere in your code. The second parameter of `DataStreamSimulator` decides what data you will get. You can choose between 21 different filters.
+somewhere in your code. The second parameter of `DataStreamSimulator` decides what data you will get. You can choose between 24 different filters.
 
 Remember to read the [The CarAction **value** property](#CarActionValue) below for an explanation about the different values.
 
@@ -220,7 +225,7 @@ Remember to read the [The CarAction **value** property](#CarActionValue) below f
 
 `CarActionsFilter.other` will give you unrecognized data.
 
-The 19 remaining categories are
+The 22 remaining categories are
 
 <table border="0">
 	<tbody>
@@ -256,7 +261,12 @@ The 19 remaining categories are
 		</tr>
 		<tr>
 			<td>longitude</td>
+			<td>button_state</td>
+			<td>powertrain_torque</td>
 		</tr>
+		<tr>
+            <td>fine_odometer_since_restart</td>
+        </tr>
 	</tbody>
 </table>
 
@@ -335,6 +345,15 @@ numerical, -89.0 to 89.0 degrees with standard GPS accuracy
 numerical, -179.0 to 179.0 degrees with standard GPS accuracy
 1Hz
 
+### Not presented by the OpenXC GitHub page
+#### button_state
+Seems to only occur when its value is "pressed".
+#### powertrain_torque
+Seems to contain a double value.
+#### fine_odometer_since_restart
+Seems to contain a double value.
+
+
 ## Code maintainance
 
 ![Class diagram](https://raw.githubusercontent.com/HoneyDrive/HoneyDrive/testing/DataReading/src/metrics/Images/classdiagram.png)
@@ -349,6 +368,7 @@ A class implementing `IDataStreamer` will somehow create a delayed `CarAction` o
 
 `DataStreamSimulator` is a class that implements `IDataStreamer`. It listens to
 `CarAction`, and then relays the `CarAction` objects to match the car event timestamp property.
+Be aware that the class spawns a new thread and operates in that thread for CPU intensive tasks.
 
 If a class wants to listen to `CarAction`, the class must implement `IActionListener`, and register itself through `CarAction`s
 `addCreatedListener` method.
@@ -377,7 +397,7 @@ is a category created in case a car should create unknown data.
 
 ### CarActionFilterTranslator
 
-The `CarActionFilterTranslator` class contains code to translate a text string into a `CarActionFilter` enum value. A `Map` is used to translate between the two data types.
+The `CarActionFilterTranslator` class contains code to translate a text string into a `CarActionFilter` enum value.
 
 ### IActionListener
 
@@ -423,6 +443,8 @@ required `onNewAction(CarAction action)` method.
 
 The `DataStreamSimulator` class provides a way to stream car data with delays between the data corresponding to the difference give by the `timestamp` property in the `json` files.
 
+The class spawns a new thread so that it can work in parallel with the rest of the program.
+
 Its four constructors first takes the path to the *OpenXC* `json` file it is supposed to read. This path may be *absolute* or *relative*.
 
 The second argument decides what kind of car data it is supposed to listen to. This is a `CarActionsFilter` enum value.
@@ -432,7 +454,7 @@ Public methods:
 Method | Description
 -------|------------
 newCarAction(CarAction action) | A method that receives `CarAction` data. This is required because the class implements the `IActionListener` interface.
-startStreaming() | Starts to read the *OpenXC* `json` data from disk, and transmit it to its `IStreamListener` listeners.
+startStreaming() | Starts to read the *OpenXC* `json` data from disk, and transmit it to its `IStreamListener` listeners. This method spawns a new thread.
 addStreamListener(IStreamListener streamListener) | Adds a class that inherits `IStreamListener` as a new listener. This class will then receive all car events that match the `filter` supplied in the constructor.
 
 Private methods:
@@ -440,3 +462,4 @@ Private methods:
 Method | Description
 -------|------------
 notifyListeners(CarAction action) | Transmits the new `CarAction` object to its listeners.
+startStreamingLogic() | Contains the functionality to delay the CarAction objects. If not run in its own thread, it will probably lock the application.

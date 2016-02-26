@@ -1,4 +1,4 @@
-import metrics.*;
+package metrics;
 
 import java.util.EnumSet;
 
@@ -8,6 +8,7 @@ public class Example
     {
         Example test = new Example();
         test.startWithDelay();
+
     }
 
     public void startWithDelay()
@@ -20,7 +21,7 @@ public class Example
     public void startWithoutDelay()
     {
         CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
-        IDataReader reader = new ReadFromOpenXCFile("src/metrics/TestData/data1.json");
+        IDataReader reader = new ReadFromOpenXCFile("src/metrics/TestData/data2.json");
         reader.startReading();
     }
 

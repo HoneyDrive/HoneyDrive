@@ -22,5 +22,8 @@ public enum CarActionsFilter
     windshield_wiper_status,
     latitude,
     longitude,
+    button_state,
+    powertrain_torque,
+    fine_odometer_since_restart,
     other
 }
