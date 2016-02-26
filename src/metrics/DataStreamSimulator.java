@@ -41,6 +41,12 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
     @Override
     public void startStreaming()
     {
+        Thread thread = new Thread(this::startStreamingLogic);
+        thread.start();
+    }
+
+    private void startStreamingLogic()
+    {
         reader.startReading();
 
         long startTime = System.currentTimeMillis();
@@ -49,15 +55,25 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
         {
             throw new IllegalStateException("No actions to stream");
         }
-        long drivingStartTime = (long) (action.getTimestamp() * 1000);
+        long drivingStartTime = Math.round(action.getTimestamp() * 1000); // in ms
         notifyListeners(action);
 
         while ((action = actions.poll()) != null)
         {
-            long timeToWait = ((long) (action.getTimestamp() * 1000) - drivingStartTime) - (System.currentTimeMillis() - startTime);
-            while (timeToWait > 0)
+            long systemTimePassedSinceStart = System.currentTimeMillis() - startTime;
+            long carTimePassedSinceStart = Math.round(action.getTimestamp() * 1000) - drivingStartTime;
+            long timeToWait = carTimePassedSinceStart - systemTimePassedSinceStart;
+
+            if (timeToWait > 0)
             {
-                timeToWait = ((long) (action.getTimestamp() * 1000) - drivingStartTime) - (System.currentTimeMillis() - startTime);
+                try
+                {
+                    Thread.sleep(timeToWait);
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
             }
 
             notifyListeners(action);
