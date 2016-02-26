@@ -70,6 +70,7 @@ CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
 ```
 somewhere in your code. The first parameter decides what method that will process the data. The second parameter decides what data you will get. You can choose between 21 different filters.
 
+Remember to read the [*The CarAction **value** property*](#CarActionValue) below for an explanation about the different values.
 
 `CarActionsFilter.all` will give you all data that is recorded.
 
@@ -166,7 +167,51 @@ streamer.addStreamListener(this::newAction);
 ```
 somewhere in your code. The second parameter of `DataStreamSimulator` decides what data you will get. You can choose between 21 different filters.
 
-See the explanation for "*1. No Delay*" above to read about the different filters available.
+Remember to read the [*The CarAction **value** property*](#CarActionValue) below for an explanation about the different values.
+
+`CarActionsFilter.all` will give you all data that is recorded.
+
+`CarActionsFilter.other` will give you unrecognized data.
+
+The 19 remaining categories are
+
+<table border="0">
+	<tbody>
+		<tr>
+			<td>steering_wheel_angle</td>
+			<td>torque_at_transmission</td>
+			<td>engine_speed</td>
+		</tr>
+		<tr>
+			<td>vehicle_speed</td>
+			<td>accelerator_pedal_position</td>
+			<td>parking_brake_status</td>
+		</tr>
+		<tr>
+			<td>brake_pedal_status</td>
+			<td>transmission_gear_position</td>
+			<td>gear_lever_position</td>
+		</tr>
+		<tr>
+			<td>odometer</td>
+			<td>ignition_status</td>
+			<td>fuel_level</td>
+		</tr>
+		<tr>
+			<td>fuel_consumed_since_restart</td>
+			<td>door_status</td>
+			<td>headlamp_status</td>
+		</tr>
+		<tr>
+			<td>high_beam_status</td>
+			<td>windshield_wiper_status</td>
+			<td>latitude</td>
+		</tr>
+		<tr>
+			<td>longitude</td>
+		</tr>
+	</tbody>
+</table>
 
 Start to read the data by running
 ```java
@@ -175,9 +220,94 @@ streamer.startStreaming();
 
 That's it! You will get all the information in the supplied `.json` file, with delays corresponding to the time difference given by `timestamp` in the `json` file.
 
+### The CarAction **value** property<a name="CarActionValue"></a>
+
+The `value` property in `CarAction` contains the value given by the car for the specific event. Since this value can be
+multiple different types of data, it is set to be a Java `Object`.
+
+To use the value, you need to cast it to the type you expect it to be.
+
+Shown below is the information presented by the [OpenXC GitHub page](https://github.com/openxc/openxc-message-format):
+
+#### steering_wheel_angle
+numerical, -600 to +600 degrees
+10Hz
+#### torque_at_transmission
+numerical, -500 to 1500 Nm
+10Hz
+#### engine_speed
+numerical, 0 to 16382 RPM
+10Hz
+#### vehicle_speed
+numerical, 0 to 655 km/h (this will be positive even if going in reverse as it's not a velocity, although you can use the gear status to figure out direction)
+10Hz
+#### accelerator_pedal_position
+percentage
+10Hz
+#### parking_brake_status
+boolean, (true == brake engaged)
+1Hz, but sent immediately on change
+#### brake_pedal_status
+boolean (True == pedal pressed)
+1Hz, but sent immediately on change
+#### transmission_gear_position
+states: first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, reverse, neutral
+1Hz, but sent immediately on change
+#### gear_lever_position
+states: neutral, park, reverse, drive, sport, low, first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth
+1Hz, but sent immediately on change
+#### odometer
+Numerical, km 0 to 16777214.000 km, with about .2m resolution
+10Hz
+#### ignition_status
+states: off, accessory, run, start
+1Hz, but sent immediately on change
+#### fuel_level
+percentage
+2Hz
+#### fuel_consumed_since_restart
+numerical, 0 - 4294967295.0 L (this goes to 0 every time the vehicle restarts, like a trip meter)
+10Hz
+#### door_status
+Value is State: driver, passenger, rear_left, rear_right.
+Event is boolean: true == ajar
+1Hz, but sent immediately on change
+#### headlamp_status
+boolean, true is on
+1Hz, but sent immediately on change
+#### high_beam_status
+boolean, true is on
+1Hz, but sent immediately on change
+#### windshield_wiper_status
+boolean, true is on
+1Hz, but sent immediately on change
+#### latitude
+numerical, -89.0 to 89.0 degrees with standard GPS accuracy
+1Hz
+#### longitude
+numerical, -179.0 to 179.0 degrees with standard GPS accuracy
+1Hz
+
 ## Code maintainance
 
 ![Class diagram](https://raw.githubusercontent.com/HoneyDrive/HoneyDrive/testing/DataReading/src/metrics/Images/classdiagram.png)
+
+A class implementing `IDataReader` will read car data events from somewhere, and for each event it will create a `CarAction` object.
+`ReadFromOpenXCFile` is an example of a class implementing `IDataReader`. It will read a `json` file from the disk.
+
+Other classes can subscribe/listen to new `CarAction` objects being created. If you want to immediately read in all the
+car data, you can listen to `CarAction`.
+
+A class implementing `IDataStreamer` will somehow create a delayed `CarAction` object to match the car event timestamp property.
+
+`DataStreamSimulator` is a class that implements `IDataStreamer`. It listens to
+`CarAction`, and then relays the `CarAction` objects to match the car event timestamp property.
+
+If a class wants to listen to `CarAction`, the class must implement `IActionListener`, and register itself through `CarAction`s
+`addCreatedListener` method.
+
+If a class wants to listen to delayed `CarAction`s, the class must implement `IStreamListener`, and register itself through `IDataStreamer`s
+`addStreamListener` method.
 
 ### CarAction
 
