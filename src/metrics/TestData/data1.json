@@ -1,0 +1,9 @@
+{"name":"vehicle_speed","value":0,"timestamp":1406361724.729}
+{"name":"torque_at_transmission","value":-3,"timestamp":1406361724.729}
+{"name":"fuel_consumed_since_restart","value":0.049525,"timestamp":1406361724.731}
+{"name":"accelerator_pedal_position","value":0,"timestamp":1406361724.734}
+{"name":"engine_speed","value":919,"timestamp":1406361724.76}
+{"name":"latitude","value":28.61899311666667,"timestamp":1406361724.776}
+{"name":"longitude","value":77.13644806666666,"timestamp":1406361724.778}
+{"name":"odometer","value":0,"timestamp":1406361724.788}
+{"name":"vehicle_speed","value":0,"timestamp":1406361724.816}
