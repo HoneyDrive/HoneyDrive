@@ -70,7 +70,7 @@ CarAction.addCreatedListener(this::newAction, CarActionsFilter.all);
 ```
 somewhere in your code. The first parameter decides what method that will process the data. The second parameter decides what data you will get. You can choose between 21 different filters.
 
-Remember to read the [*The CarAction **value** property*](#CarActionValue) below for an explanation about the different values.
+Remember to read the [The CarAction **value** property](#CarActionValue) below for an explanation about the different values.
 
 `CarActionsFilter.all` will give you all data that is recorded.
 
@@ -167,7 +167,7 @@ streamer.addStreamListener(this::newAction);
 ```
 somewhere in your code. The second parameter of `DataStreamSimulator` decides what data you will get. You can choose between 21 different filters.
 
-Remember to read the [*The CarAction **value** property*](#CarActionValue) below for an explanation about the different values.
+Remember to read the [The CarAction **value** property](#CarActionValue) below for an explanation about the different values.
 
 `CarActionsFilter.all` will give you all data that is recorded.
 
