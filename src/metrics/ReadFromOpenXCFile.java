@@ -51,7 +51,17 @@ public class ReadFromOpenXCFile implements IDataReader
 
         String name = (String) jsonObject.get("name");
         Object value = jsonObject.get("value");
-        Double timestamp = (Double) jsonObject.get("timestamp");
+
+        Double timestamp;
+        Object timestampobj = jsonObject.get("timestamp");
+        if (timestampobj instanceof Long)
+        {
+            timestamp = ((Long)timestampobj).doubleValue();
+        }
+        else
+        {
+            timestamp = (Double) timestampobj;
+        }
 
         // If no one is listening, this object will be removed by GC.
         // If someones listening, this object will be passed to that instance by the CarAction class itself.
