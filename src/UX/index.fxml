@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
+   <left>
+      <Pane prefHeight="331.0" prefWidth="60.0" style="-fx-background-color: #262626;" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <Pane prefHeight="90.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <Pane prefHeight="60.0" prefWidth="800.0" style="-fx-background-color: #262626;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <Pane prefHeight="331.0" prefWidth="60.0" style="-fx-background-color: #262626;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <Pane prefHeight="331.0" prefWidth="600.0" style="-fx-background-color: #F5CB5C;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="35.0" layoutY="49.0" style="-fx-opacity: 70%;" text="Total distance driven:">
+               <font>
+                  <Font name="Helvetica Neue Light" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalDistanceDrivenLabel" layoutX="266.0" layoutY="46.0" text="266 km">
+               <font>
+                  <Font name="Helvetica Neue Light" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="108.0" style="-fx-opacity: 70%;">
+               <font>
+                  <Font name="Helvetica Neue Light" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
