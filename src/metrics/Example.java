@@ -8,7 +8,6 @@ public class Example
     {
         Example test = new Example();
         test.startWithDelay();
-
     }
 
     public void startWithDelay()
