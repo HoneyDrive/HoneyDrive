@@ -1,7 +1,7 @@
 package trips;
 
 import java.util.EnumSet;
-
+import metrics.*;
 public class Trip {
 	
 	private double totalDistance; 
@@ -9,6 +9,7 @@ public class Trip {
 	private double commutingDistance;
 	private boolean isCommuting;
 	IDataStreamer streamer; 
+	private int insuranceDistance
 	
 	public Trip(){
 		start();

@@ -7,7 +7,11 @@ public class DrivingHistory {
 	List<Trip> history = new ArrayList<Trip>();
 	private double distanceThisYear; 
 	private double commutingDistanceThisYear; 
-
+	private int insuranceDistance;
+	List<Double> previousCommutingDistances = new ArrayList<Double>();
+	List<Double> previousTotalDistances = new ArrayList<Double>();
+	
+	
 
 	public DrivingHistory(){
 		
@@ -17,14 +21,23 @@ public class DrivingHistory {
 		history.add(trip);
 		distanceThisYear+= trip.getTotalDistance();
 		commutingDistanceThisYear+=trip.getCommutingDistance();
+		if(distanceThisYear>insuranceDistance){
+			sendWarning();
+		}
 	}
 	
 	public double getDistanceThisYear(){
 		return distanceThisYear;
 	}
 	
+	public void sendWarning(){
+		
+	}
+	
 	public void newYear(){
 		//Ta vare på disse i en variabel, beste måten å lagre de på? 
+		previousCommutingDistances.add(commutingDistanceThisYear);
+		previousTotalDistances.add(distanceThisYear);
 		distanceThisYear = 0 ;
 		commutingDistanceThisYear=0;
 	}
