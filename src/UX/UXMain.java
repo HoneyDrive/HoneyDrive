@@ -25,6 +25,7 @@ public class UXMain extends Application {
         primaryStage.setWidth(800);
         primaryStage.setHeight(500);
         primaryStage.setResizable(false);
+
         try {
             Parent page = FXMLLoader.load(getClass().getResource("view.fxml"));
             mainScene = new Scene(page);

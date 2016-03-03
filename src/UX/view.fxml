@@ -29,7 +29,7 @@
                               <Image url="@images/speedometer.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="90.0" layoutY="210.0" text="km/t">
+                        <Label layoutX="88.0" layoutY="210.0" text="km/t">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
@@ -45,7 +45,7 @@
                               <Image url="@images/road-with-broken-line.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="TOP_CENTER" layoutX="210.0" layoutY="160.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="12858" textFill="#333533">
+                        <Label fx:id="totalDistanceDrivenLabel" alignment="TOP_CENTER" layoutX="210.0" layoutY="160.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="12858" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
@@ -55,7 +55,7 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="257.0" layoutY="210.0" text="km this year">
+                        <Label layoutX="258.0" layoutY="210.0" text="km this year">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
@@ -76,7 +76,7 @@
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="482.0" layoutY="210.0" text="L/10km">
+                        <Label layoutX="481.0" layoutY="210.0" text="L/10km">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
