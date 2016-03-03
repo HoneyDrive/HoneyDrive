@@ -9,7 +9,7 @@ public class Trip {
 	private double commutingDistance;
 	private boolean isCommuting;
 	IDataStreamer streamer; 
-	private int insuranceDistance
+	private int insuranceDistance;
 	
 	public Trip(){
 		start();
@@ -41,8 +41,7 @@ public class Trip {
 	        }
 	    }
 	 public void stop(){
-		 streamer.stopStreaming();
-	 }
+		}
 	 
 	 public void setCommuting(boolean c){
 		 isCommuting = c; 
