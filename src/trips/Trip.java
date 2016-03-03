@@ -13,7 +13,8 @@ public class Trip {
 	private double lastOdometerCount; 
 	private double commutingDistance;
 	private boolean isCommuting;
-	IDataStreamer streamer; 
+
+	IDataStreamer streamer;
 	private int insuranceDistance;
 
 	public Trip(){
