@@ -19,7 +19,7 @@ public class Trip {
 	public Trip(){
 		start();
 		totalDistance=0;
-		isCommuting = false; 
+		isCommuting = true;
 		commutingDistance=0;
 	}
 	
