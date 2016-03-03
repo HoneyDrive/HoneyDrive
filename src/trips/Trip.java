@@ -1,5 +1,10 @@
 package trips;
 
+import metrics.CarAction;
+import metrics.CarActionsFilter;
+import metrics.DataStreamSimulator;
+import metrics.IDataStreamer;
+
 import java.util.EnumSet;
 import metrics.*;
 public class Trip {
@@ -8,16 +13,18 @@ public class Trip {
 	private double lastOdometerCount; 
 	private double commutingDistance;
 	private boolean isCommuting;
+<<<<<<< HEAD
 	IDataStreamer streamer; 
 	private int insuranceDistance
+=======
+	IDataStreamer streamer;
+>>>>>>> 9f65dfbeb79dfd4ad1155abce6029f52c716b59a
 	
 	public Trip(){
 		start();
 		totalDistance=0;
 		isCommuting = false; 
 		commutingDistance=0;
-		
-		
 	}
 	
 	 public void start()
@@ -29,10 +36,10 @@ public class Trip {
 	 
 	 public void newAction(CarAction action) {
 	        if(totalDistance==0){
-	        	lastOdometerCount=action.getValue();
+	        	lastOdometerCount= (double) action.getValue();
 	        }
 	        else{
-	        	double value = action.getValue();
+	        	double value = (double) action.getValue();
 	        	totalDistance+= value-lastOdometerCount;
 	        	if(isCommuting){
 	        		commutingDistance+=value-lastOdometerCount; 
@@ -40,9 +47,10 @@ public class Trip {
 	        	lastOdometerCount=value;
 	        }
 	    }
-	 public void stop(){
-		 streamer.stopStreaming();
-	 }
+
+//	 public void stop(){
+//		 streamer.stopStreaming();
+//	 }
 	 
 	 public void setCommuting(boolean c){
 		 isCommuting = c; 
