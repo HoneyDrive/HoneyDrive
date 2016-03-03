@@ -13,16 +13,9 @@ public class Trip {
 	private double lastOdometerCount; 
 	private double commutingDistance;
 	private boolean isCommuting;
-<<<<<<< HEAD
 	IDataStreamer streamer; 
-<<<<<<< HEAD
 	private int insuranceDistance;
-=======
-	private int insuranceDistance
-=======
-	IDataStreamer streamer;
->>>>>>> 9f65dfbeb79dfd4ad1155abce6029f52c716b59a
->>>>>>> master
+
 	
 	public Trip(){
 		start();
@@ -51,15 +44,9 @@ public class Trip {
 	        	lastOdometerCount=value;
 	        }
 	    }
-<<<<<<< HEAD
+
 	 public void stop(){
 		}
-=======
-
-//	 public void stop(){
-//		 streamer.stopStreaming();
-//	 }
->>>>>>> master
 	 
 	 public void setCommuting(boolean c){
 		 isCommuting = c; 
