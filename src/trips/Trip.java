@@ -16,7 +16,6 @@ public class Trip {
 	IDataStreamer streamer; 
 	private int insuranceDistance;
 
-	
 	public Trip(){
 		start();
 		totalDistance=0;
