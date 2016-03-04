@@ -5,15 +5,13 @@ import metrics.CarActionsFilter;
 import metrics.DataStreamSimulator;
 import metrics.IDataStreamer;
 
-import java.util.EnumSet;
-import metrics.*;
 public class Trip {
 	
 	private long totalDistance;
 	private long lastOdometerCount;
 	private long commutingDistance;
 	private boolean isCommuting;
-	IDataStreamer streamer; 
+	private IDataStreamer streamer;
 	private long insuranceDistance;
 
 	
@@ -38,7 +36,7 @@ public class Trip {
 
     public void newAction(CarAction action){
         System.out.println(action.getValue());
-        if(totalDistance==0 && lastOdometerCount== 0) {
+        if(totalDistance==0 && lastOdometerCount== 0) { //TODO: Dette gir bug hvis første odometer i streamen er 0!
             lastOdometerCount = (long) action.getValue();
         }else{
             long value = (long) action.getValue();

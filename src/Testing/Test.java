@@ -19,8 +19,6 @@ public class Test extends TestCase {
     public void testAddCommutingDistance() {
         Trip newTrip = new Trip(); newTrip.setCommuting(true);
         newTrip.start("src/metrics/TestData/odometer_data.json", CarActionsFilter.odometer);
-        drivingHistory.addTrip(newTrip);
-
         System.out.println(newTrip.getTotalDistance());
         //assertTrue(newTrip.getCommutingDistance()==1669);
         //assertTrue(newTrip.getTotalDistance()==1669);
@@ -32,7 +30,6 @@ public class Test extends TestCase {
         Test test = new Test();
         test.testAddCommutingDistance();
     }
-
 
 
 }
