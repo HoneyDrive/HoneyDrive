@@ -9,12 +9,12 @@ import java.util.EnumSet;
 import metrics.*;
 public class Trip {
 	
-	private double totalDistance; 
-	private double lastOdometerCount; 
-	private double commutingDistance;
+	private long totalDistance;
+	private long lastOdometerCount;
+	private long commutingDistance;
 	private boolean isCommuting;
 	IDataStreamer streamer; 
-	private int insuranceDistance;
+	private long insuranceDistance;
 
 	
 	public Trip(){
@@ -35,21 +35,19 @@ public class Trip {
         streamer.addStreamListener(this::newAction);
         streamer.startStreaming();
     }
-	 
-	 public void newAction(CarAction action) {
-	        if(totalDistance==0){
-	        	lastOdometerCount= (Long) action.getValue();
-	        }
-	        else{
-	        	double value = (Long) action.getValue();
-	        	totalDistance+= value-lastOdometerCount;
-	        	if(isCommuting){
-	        		commutingDistance+=value-lastOdometerCount; 
-	        	}
-	        	lastOdometerCount=value;
-	        }
-	    }
 
+    public void newAction(CarAction action){
+        if(totalDistance==0 && lastOdometerCount== 0) {
+            lastOdometerCount = (long) action.getValue();
+        }else{
+            long value = (long) action.getValue();
+            totalDistance+= value-lastOdometerCount;
+            if(isCommuting){
+                commutingDistance+=value-lastOdometerCount;
+            }
+            lastOdometerCount=value;
+        }
+    }
 	 public void stop(){
 		}
 	 
