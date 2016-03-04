@@ -33,6 +33,9 @@ public class DrivingHistory {
 	public void sendWarning(){
 		
 	}
+	public Trip getTrip(int index){
+		return history.get(index);
+	}
 	
 	public void newYear(){
 		//Ta vare på disse i en variabel, beste måten å lagre de på? 

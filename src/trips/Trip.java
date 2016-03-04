@@ -1,9 +1,6 @@
 package trips;
 
-import metrics.CarAction;
-import metrics.CarActionsFilter;
-import metrics.DataStreamSimulator;
-import metrics.IDataStreamer;
+import metrics.*;
 
 public class Trip {
 	
@@ -16,7 +13,6 @@ public class Trip {
 
 	
 	public Trip(){
-		start();
 		totalDistance=0;
 		isCommuting = false; 
 		commutingDistance=0;
@@ -33,10 +29,14 @@ public class Trip {
         streamer.addStreamListener(this::newAction);
         streamer.startStreaming();
     }
+    public void startWithoutDelay(String filepath,CarActionsFilter filter){
+        CarAction.addCreatedListener(this::newAction, filter);
+        IDataReader reader = new ReadFromOpenXCFile(filepath);
+        reader.startReading();
+    }
 
     public void newAction(CarAction action){
-        System.out.println(action.getValue());
-        if(totalDistance==0 && lastOdometerCount== 0) { //TODO: Dette gir bug hvis første odometer i streamen er 0!
+        if(totalDistance==0 && lastOdometerCount== 0) { //TODO: Dette gir bug. Hvis odometer=0 i første vil den ikke telles med. Også bug når den ikke er 0. Fix og sjekk at stemmer med test.
             lastOdometerCount = (long) action.getValue();
         }else{
             long value = (long) action.getValue();
