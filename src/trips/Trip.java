@@ -1,24 +1,18 @@
 package trips;
 
-import metrics.CarAction;
-import metrics.CarActionsFilter;
-import metrics.DataStreamSimulator;
-import metrics.IDataStreamer;
-
-import java.util.EnumSet;
 import metrics.*;
+
 public class Trip {
 	
-	private double totalDistance; 
-	private double lastOdometerCount; 
-	private double commutingDistance;
+	private long totalDistance;
+	private long lastOdometerCount;
+	private long commutingDistance;
 	private boolean isCommuting;
-	IDataStreamer streamer; 
-	private int insuranceDistance;
+	private IDataStreamer streamer;
+	private long insuranceDistance;
 
 	
 	public Trip(){
-		start();
 		totalDistance=0;
 		isCommuting = false; 
 		commutingDistance=0;
@@ -30,21 +24,29 @@ public class Trip {
 	        streamer.addStreamListener(this::newAction);
 	        streamer.startStreaming();
 	    }
-	 
-	 public void newAction(CarAction action) {
-	        if(totalDistance==0){
-	        	lastOdometerCount= (double) action.getValue();
-	        }
-	        else{
-	        	double value = (double) action.getValue();
-	        	totalDistance+= value-lastOdometerCount;
-	        	if(isCommuting){
-	        		commutingDistance+=value-lastOdometerCount; 
-	        	}
-	        	lastOdometerCount=value;
-	        }
-	    }
+	public void start(String filepath,CarActionsFilter filter){
+        streamer = new DataStreamSimulator(filepath,filter);
+        streamer.addStreamListener(this::newAction);
+        streamer.startStreaming();
+    }
+    public void startWithoutDelay(String filepath,CarActionsFilter filter){
+        CarAction.addCreatedListener(this::newAction, filter);
+        IDataReader reader = new ReadFromOpenXCFile(filepath);
+        reader.startReading();
+    }
 
+    public void newAction(CarAction action){
+        if(totalDistance==0 && lastOdometerCount== 0) { //TODO: Dette gir bug. Hvis odometer=0 i første vil den ikke telles med. Også bug når den ikke er 0. Fix og sjekk at stemmer med test.
+            lastOdometerCount = (long) action.getValue();
+        }else{
+            long value = (long) action.getValue();
+            totalDistance+= value-lastOdometerCount;
+            if(isCommuting){
+                commutingDistance+=value-lastOdometerCount;
+            }
+            lastOdometerCount=value;
+        }
+    }
 	 public void stop(){
 		}
 	 

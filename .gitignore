@@ -3,4 +3,9 @@
 /.project
 /HoneyDrive.iml
 /.idea
+<<<<<<< HEAD
 /target/
+=======
+/out
+/PU.iml
+>>>>>>> master
