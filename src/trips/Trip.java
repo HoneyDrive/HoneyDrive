@@ -30,13 +30,18 @@ public class Trip {
 	        streamer.addStreamListener(this::newAction);
 	        streamer.startStreaming();
 	    }
+	public void start(String filepath,CarActionsFilter filter){
+        streamer = new DataStreamSimulator(filepath,filter);
+        streamer.addStreamListener(this::newAction);
+        streamer.startStreaming();
+    }
 	 
 	 public void newAction(CarAction action) {
 	        if(totalDistance==0){
-	        	lastOdometerCount= (double) action.getValue();
+	        	lastOdometerCount= (Long) action.getValue();
 	        }
 	        else{
-	        	double value = (double) action.getValue();
+	        	double value = (Long) action.getValue();
 	        	totalDistance+= value-lastOdometerCount;
 	        	if(isCommuting){
 	        		commutingDistance+=value-lastOdometerCount; 
