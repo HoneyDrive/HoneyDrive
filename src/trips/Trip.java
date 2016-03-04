@@ -37,6 +37,7 @@ public class Trip {
     }
 
     public void newAction(CarAction action){
+        System.out.println(action.getValue());
         if(totalDistance==0 && lastOdometerCount== 0) {
             lastOdometerCount = (long) action.getValue();
         }else{
