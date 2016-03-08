@@ -1,5 +1,7 @@
 package trips;
 
+import java.util.Date;
+
 import metrics.*;
 
 public class Trip {
@@ -10,6 +12,7 @@ public class Trip {
 	private boolean isCommuting;
 	private IDataStreamer streamer;
 	private long insuranceDistance;
+	private Date date;
 
 	
 	public Trip(){
@@ -50,6 +53,9 @@ public class Trip {
 	 public void stop(){
 		}
 	 
+	 public Date getDate(){
+		 return date;
+	 }
 	 public void setCommuting(boolean c){
 		 isCommuting = c; 
 	 }
