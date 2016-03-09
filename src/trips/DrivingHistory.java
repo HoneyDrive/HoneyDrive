@@ -8,8 +8,8 @@ public class DrivingHistory {
 	private long distanceThisYear;
 	private long commutingDistanceThisYear;
 	private long insuranceDistance;
-	List<Long> previousCommutingDistances = new ArrayList<>();
-	List<Long> previousTotalDistances = new ArrayList<>();
+	List<Long> previousCommutingDistances = new ArrayList<Long>();
+	List<Long> previousTotalDistances = new ArrayList<Long>();
 	
 	
 

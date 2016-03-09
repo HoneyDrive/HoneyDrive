@@ -16,6 +16,7 @@ public class Trip {
 		totalDistance=0;
 		isCommuting = false; 
 		commutingDistance=0;
+		lastOdometerCount=0;
 	}
 	
 	 public void start()
