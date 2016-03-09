@@ -41,9 +41,9 @@ public class Trip {
 
     public void newAction(CarAction action){
         if(totalDistance==0 && lastOdometerCount== 0) { //TODO: Dette gir bug. Hvis odometer=0 i første vil den ikke telles med. Også bug når den ikke er 0. Fix og sjekk at stemmer med test.
-            lastOdometerCount = (long) action.getValue();
+            lastOdometerCount = (Long) action.getValue();
         }else{
-            long value = (long) action.getValue();
+            long value = (Long) action.getValue();
             totalDistance+= value-lastOdometerCount;
             if(isCommuting){
                 commutingDistance+=value-lastOdometerCount;
