@@ -23,7 +23,7 @@ public class UXController {
         //TODO: Set all labels for current trips=0
     }
     public void upDateFuelUsedLabel(){
-        fuelConsumedLabel.setText(String.valueOf(trip.getFuelUsed()));
+        fuelConsumedLabel.setText(String.valueOf(trip.getFuelBurntPerKm()));
     }
 
     public void updateTotalDistanceDrivenLabel() {
