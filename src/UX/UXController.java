@@ -10,6 +10,7 @@ public class UXController {
 
     @FXML private Label totalDistanceDrivenLabel;
     @FXML private Label fuelConsumedLabel;
+    @FXML private Label speedLabel;
     private Trip trip;
     private DrivingHistory drivingHistory;
 
@@ -22,8 +23,11 @@ public class UXController {
         this.trip=trip;
         //TODO: Set all labels for current trips=0
     }
-    public void upDateFuelUsedLabel(){
+    public void updateFuelUsedLabel(){
         fuelConsumedLabel.setText(String.valueOf(trip.getFuelBurntPerKm()));
+    }
+    public void updateSpeedLabel(){
+        speedLabel.setText(String.valueOf(trip.getSpeed()));
     }
 
     public void updateTotalDistanceDrivenLabel() {

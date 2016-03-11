@@ -14,6 +14,8 @@ public class Trip {
     private long insuranceDistance;
     private Date date;
     private long fuelUsed ;
+    IDataReader reader;
+    private long speed ;
 
 
     public Trip(){
@@ -32,14 +34,14 @@ public class Trip {
         streamer.startStreaming();
     }
     public void start(String filepath,CarActionsFilter filter){
-    streamer = new DataStreamSimulator(filepath,filter);
-    streamer.addStreamListener(this::newAction);
-    streamer.startStreaming();
+        streamer = new DataStreamSimulator(filepath,filter);
+        streamer.addStreamListener(this::newAction);
+        streamer.startStreaming();
     }
     public void startWithoutDelay(String filepath,CarActionsFilter filter){
-    CarAction.addCreatedListener(this::newAction, filter);
-    IDataReader reader = new ReadFromOpenXCFile(filepath);
-    reader.startReading();
+        CarAction.addCreatedListener(this::newAction, filter);
+        reader = new ReadFromOpenXCFile(filepath);
+        reader.startReading();
     }
 
 
@@ -47,6 +49,9 @@ public class Trip {
     public void newAction(CarAction action){
         if(action.getName().equals("fuel_consumed_since_restart")){
             fuelUsed += (Long) action.getValue();
+        }
+        else if (action.getName().equals("vehicle_speed")){
+            speed = (long) action.getValue();
         }
         else{
             if(lastOdometerCount==0){
@@ -88,6 +93,7 @@ public class Trip {
     public long getFuelBurntPerKm(){
         return getTotalDistance()/getFuelUsed();
     }
+    public long getSpeed(){return speed; }
 
 
 }

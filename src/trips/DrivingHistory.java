@@ -44,6 +44,9 @@ public class DrivingHistory {
 		distanceThisYear = 0 ;
 		commutingDistanceThisYear=0;
 	}
+	public void setInsuranceDistance(long insuranceDistance){
+		this.insuranceDistance=insuranceDistance;
+	}
 	public double getAverageDistance(){
 		return distanceThisYear/history.size();
 	}
