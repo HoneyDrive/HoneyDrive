@@ -29,6 +29,19 @@ public class DrivingHistory {
 	public double getDistanceThisYear(){
 		return distanceThisYear;
 	}
+
+
+   public double getFuelConsumptionAvg() {
+       double avg = 0;
+       for (Trip trip:history){
+           avg += trip.getFuelBurntPerKm();
+       }
+       avg /= history.size();
+       return avg;
+
+   }
+
+
 	
 	public void sendWarning(){
 		
