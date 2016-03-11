@@ -5,11 +5,11 @@ import java.util.List;
 
 public class DrivingHistory {
 	List<Trip> history = new ArrayList<Trip>();
-	private double distanceThisYear; 
-	private double commutingDistanceThisYear; 
-	private int insuranceDistance;
-	List<Double> previousCommutingDistances = new ArrayList<Double>();
-	List<Double> previousTotalDistances = new ArrayList<Double>();
+	private long distanceThisYear;
+	private long commutingDistanceThisYear;
+	private long insuranceDistance;
+	List<Long> previousCommutingDistances = new ArrayList<>();
+	List<Long> previousTotalDistances = new ArrayList<>();
 	
 	
 
@@ -32,6 +32,9 @@ public class DrivingHistory {
 	
 	public void sendWarning(){
 		
+	}
+	public Trip getTrip(int index){
+		return history.get(index);
 	}
 	
 	public void newYear(){

@@ -75,13 +75,7 @@ public class Tester
     }
 
 
-    public void startMultipleFilterWithoutDelayTesting()
-    {
-        System.out.println("\n\n---------Multiple Filter Without Delay---------");
-
-        List<String> openXCFileList = new ArrayList<>();
-        Map<String, Set<String>> typeOfData = new HashMap<>();
-
+    private void getFilePaths(List<String> openXCFileList){
         try
         {
             Files.walk(Paths.get("src/metrics/TestData")).forEach(filePath ->
@@ -96,6 +90,14 @@ public class Tester
         {
             e.printStackTrace();
         }
+    }
+    public void startMultipleFilterWithoutDelayTesting()
+    {
+        System.out.println("\n\n---------Multiple Filter Without Delay---------");
+
+        List<String> openXCFileList = new ArrayList<>();
+        Map<String, Set<String>> typeOfData = new HashMap<>();
+        getFilePaths(openXCFileList);
 
         for (String filepath : openXCFileList)
         {
@@ -132,21 +134,7 @@ public class Tester
 
         List<String> openXCFileList = new ArrayList<>();
         Map<String, Set<String>> typeOfData = new HashMap<>();
-
-        try
-        {
-            Files.walk(Paths.get("src/metrics/TestData")).forEach(filePath ->
-            {
-                if (Files.isRegularFile(filePath))
-                {
-                    openXCFileList.add(filePath.toString());
-                }
-            });
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        getFilePaths(openXCFileList);
 
         for (String filepath : openXCFileList)
         {
