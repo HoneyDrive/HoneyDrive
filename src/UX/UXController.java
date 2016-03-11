@@ -1,7 +1,9 @@
 package UX;
 
+import com.sun.corba.se.spi.logging.CORBALogDomains;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import trips.DrivingHistory;
 import trips.Trip;
 
@@ -34,4 +36,17 @@ public class UXController {
         drivingHistory = new DrivingHistory();
         totalDistanceDrivenLabel.setText(String.valueOf(drivingHistory.getCommutingDistanceThisYear()));
     }
+
+    public void fuelConsumptionWarning(){
+        drivingHistory = new DrivingHistory();
+        if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg()) {
+            fuelConsumedLabel.setTextFill(Color.RED);
+        }
+
+    }
+
+
+
+
+
 }
