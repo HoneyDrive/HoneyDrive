@@ -13,15 +13,17 @@ public class Trip {
 	private IDataStreamer streamer;
 	private long insuranceDistance;
 	private Date date;
+	private long fuelUsed ;
 
-	
+
 	public Trip(){
 		totalDistance=0;
-		isCommuting = false; 
+		isCommuting = false;
 		commutingDistance=0;
 		lastOdometerCount=0;
+		fuelUsed = 0 ;
 	}
-	
+
 	 public void start()
 	    {
 	        streamer = new DataStreamSimulator("src/metrics/TestData/data3.json",  CarActionsFilter.odometer);
@@ -39,18 +41,24 @@ public class Trip {
         reader.startReading();
     }
 
-    public void newAction(CarAction action){
+
+
+	public void newAction(CarAction action){
+		if(action.getName().equals("fuel_consumed_since_restart")){
+			fuelUsed += (long) action.getValue();
+		}
+		else{
         if(totalDistance==0 && lastOdometerCount== 0) { //TODO: Dette gir bug. Hvis odometer=0 i første vil den ikke telles med. Også bug når den ikke er 0. Fix og sjekk at stemmer med test.
-            lastOdometerCount = (Long) action.getValue();
+            lastOdometerCount = (long) action.getValue();
         }else{
-            long value = (Long) action.getValue();
+            long value = (long) action.getValue();
             totalDistance+= value-lastOdometerCount;
             if(isCommuting){
                 commutingDistance+=value-lastOdometerCount;
             }
             lastOdometerCount=value;
         }
-    }
+    }}
 	 public void stop(){
 		}
 	 
@@ -66,4 +74,6 @@ public class Trip {
 	 public double getCommutingDistance(){
 		 return commutingDistance; 
 	 }
+	public long getFuelUsed() {return fuelUsed;}
+
 }

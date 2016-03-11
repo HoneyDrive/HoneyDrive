@@ -16,7 +16,7 @@ public class Test extends TestCase {
 
     private DrivingHistory drivingHistory = new DrivingHistory();
 
-    private void testAddCommutingDistance() {
+    public void testAddCommutingDistance() {
         Trip newTrip = new Trip(); newTrip.setCommuting(true);
         newTrip.startWithoutDelay("src/metrics/TestData/odometer_data.json", CarActionsFilter.odometer);
         try {
@@ -24,9 +24,11 @@ public class Test extends TestCase {
         }catch (Exception e){e.printStackTrace();}
         assertTrue(newTrip.getCommutingDistance()==1669);
         assertTrue(newTrip.getTotalDistance()==1669);
-        assertTrue(newTrip.getCommutingDistance()==newTrip.getTotalDistance());
+        System.out.println(newTrip.getCommutingDistance());
+        System.out.println(newTrip.getTotalDistance());
+        assertTrue(newTrip.getCommutingDistance() == newTrip.getTotalDistance());
     }
-    private void testAddNotCommutingDistance(){
+    public void testAddNotCommutingDistance(){
         Trip newTrip = new Trip(); newTrip.setCommuting(false);
         newTrip.startWithoutDelay("src/metrics/TestData/odometer_data2.json",CarActionsFilter.odometer);
         try{
@@ -36,7 +38,7 @@ public class Test extends TestCase {
         assertTrue(newTrip.getTotalDistance()==1337);
     }
 
-    private void testTripMakingAndDrivingHistory(){
+    public void testTripMakingAndDrivingHistory(){
         testAddCommutingDistance();
         assertTrue(drivingHistory.getCommutingDistanceThisYear()==drivingHistory.getTrip(0).getCommutingDistance());
         assertTrue(drivingHistory.getDistanceThisYear()==drivingHistory.getTrip(0).getTotalDistance());

@@ -71,7 +71,7 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_CENTER" layoutX="415.0" layoutY="160.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="0.61" textFill="#333533">
+                        <Label fx:id="fuelConsumedLabel" alignment="TOP_CENTER" layoutX="415.0" layoutY="160.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="0.61" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
