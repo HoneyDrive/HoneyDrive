@@ -20,7 +20,7 @@ public class Trip {
     totalDistance=0;
     isCommuting = false;
     commutingDistance=0;
-    lastOdometerCount=0;
+    lastOdometerCount=-1;
     fuelUsed = 0 ;
     date = new Date();
     }
@@ -45,21 +45,30 @@ public class Trip {
 
 
     public void newAction(CarAction action){
-    if(action.getName().equals("fuel_consumed_since_restart")){
-        fuelUsed += (Long) action.getValue();
-    }
-    else{
-    if(totalDistance==0 && lastOdometerCount== 0) { //TODO: Dette gir bug. Hvis odometer=0 i første vil den ikke telles med. Også bug når den ikke er 0. Fix og sjekk at stemmer med test.
-        lastOdometerCount = (Long) action.getValue();
-    }else{
-        long value = (Long) action.getValue();
-        totalDistance+= value-lastOdometerCount;
-        if(isCommuting){
-            commutingDistance+=value-lastOdometerCount;
+        if(action.getName().equals("fuel_consumed_since_restart")){
+            fuelUsed += (Long) action.getValue();
         }
-        lastOdometerCount=value;
-    }
-    }}
+        else{
+            if(lastOdometerCount==0){
+                lastOdometerCount = (Long) action.getValue();
+                totalDistance+= lastOdometerCount;
+                if(isCommuting){
+                    commutingDistance+= lastOdometerCount;
+                }
+            }
+
+            else if(totalDistance==0 && lastOdometerCount==-1) { //TODO: Dette gir bug. Hvis odometer=0 i første vil den ikke telles med. Også bug når den ikke er 0. Fix og sjekk at stemmer med test.
+                lastOdometerCount = (Long) action.getValue();
+
+            }else{
+                long value = (Long) action.getValue();
+                totalDistance+= value-lastOdometerCount;
+                if(isCommuting){
+                    commutingDistance+=value-lastOdometerCount;
+                }
+                lastOdometerCount=value;
+            }
+        }}
     public void stop(){
     }
 

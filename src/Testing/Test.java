@@ -22,11 +22,12 @@ public class Test extends TestCase {
         try {
             Thread.sleep(1000);
         }catch (Exception e){e.printStackTrace();}
-        assertTrue(newTrip.getCommutingDistance()==1669);
-        assertTrue(newTrip.getTotalDistance()==1669);
-        System.out.println(newTrip.getCommutingDistance());
-        System.out.println(newTrip.getTotalDistance());
+
+        assertTrue(newTrip.getCommutingDistance() == 1669);
+        assertTrue(newTrip.getTotalDistance() == 1669);
+
         assertTrue(newTrip.getCommutingDistance() == newTrip.getTotalDistance());
+        drivingHistory.addTrip(newTrip);
     }
     public void testAddNotCommutingDistance(){
         Trip newTrip = new Trip(); newTrip.setCommuting(false);
@@ -36,15 +37,21 @@ public class Test extends TestCase {
         }catch (Exception e){e.printStackTrace();}
         assertTrue(newTrip.getCommutingDistance()==0);
         assertTrue(newTrip.getTotalDistance()==1337);
+        drivingHistory.addTrip(newTrip);
     }
 
     public void testTripMakingAndDrivingHistory(){
         testAddCommutingDistance();
-        assertTrue(drivingHistory.getCommutingDistanceThisYear()==drivingHistory.getTrip(0).getCommutingDistance());
-        assertTrue(drivingHistory.getDistanceThisYear()==drivingHistory.getTrip(0).getTotalDistance());
-        assertTrue(drivingHistory.getAverageDistance()==drivingHistory.getTrip(0).getTotalDistance());
+        assertTrue(drivingHistory.getCommutingDistanceThisYear() == drivingHistory.getTrip(0).getCommutingDistance());
+        System.out.println(drivingHistory.getTrip(0).getCommutingDistance());
+        System.out.println(drivingHistory.getCommutingDistanceThisYear());
+        assertTrue(drivingHistory.getDistanceThisYear() == drivingHistory.getTrip(0).getTotalDistance());
+        assertTrue(drivingHistory.getAverageDistance() == drivingHistory.getTrip(0).getTotalDistance());
         testAddNotCommutingDistance();
-        assertTrue(drivingHistory.getCommutingDistanceThisYear()==drivingHistory.getTrip(0).getCommutingDistance());
+        System.out.println(drivingHistory.getCommutingDistanceThisYear());
+        System.out.println(drivingHistory.getTrip(0).getCommutingDistance());
+        System.out.println(drivingHistory.getTrip(1).getCommutingDistance());
+        assertTrue(drivingHistory.getCommutingDistanceThisYear() == drivingHistory.getTrip(0).getCommutingDistance());
         assertTrue(drivingHistory.getDistanceThisYear()==drivingHistory.getTrip(0).getTotalDistance()+drivingHistory.getTrip(1).getTotalDistance());
         assertTrue(drivingHistory.getAverageDistance()==(drivingHistory.getTrip(0).getTotalDistance()+drivingHistory.getTrip(1).getTotalDistance())/2);
     }
@@ -56,7 +63,7 @@ public class Test extends TestCase {
 
     public static void main(String[] args){
         Test test = new Test();
-        test.testAddCommutingDistance();
+        test.testTripMakingAndDrivingHistory();
     }
 
 }
