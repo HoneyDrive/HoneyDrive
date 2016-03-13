@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import trips.DrivingHistory;
 import trips.Trip;
 
-
 public class UXController {
 
     @FXML private Label totalDistanceDrivenLabel;
@@ -14,8 +13,6 @@ public class UXController {
     private DrivingHistory drivingHistory;
 
     public void initialize() {
-        
-
     }
 
     public void updateTotalDistanceDrivenLabel() {
