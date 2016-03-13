@@ -1,6 +1,6 @@
 package trips;
 
-import java.util.Date;
+import java.util.*;
 
 import metrics.*;
 
@@ -15,7 +15,11 @@ public class Trip {
     private Date date;
     private long fuelUsed ;
     IDataReader reader;
-    private long speed ;
+    private double speed ;
+    private double timestamp ;
+    private List<List<Double>> speedData = new ArrayList<>();
+    private int speedCounter ;
+    private int maxSpeedData=30;
 
 
     public Trip(){
@@ -51,7 +55,13 @@ public class Trip {
             fuelUsed += (Long) action.getValue();
         }
         else if (action.getName().equals("vehicle_speed")){
-            speed = (long) action.getValue();
+            speed = (double) action.getValue();
+            timestamp = action.getTimestamp();
+            speedData.add(speedCounter, new ArrayList<>(Arrays.asList(speed, timestamp)));
+            speedCounter++;
+            if (speedCounter==maxSpeedData){
+                speedCounter=0;
+            }
         }
         else{
             if(lastOdometerCount==0){
@@ -93,7 +103,7 @@ public class Trip {
     public long getFuelBurntPerKm(){
         return getTotalDistance()/getFuelUsed();
     }
-    public long getSpeed(){return speed; }
+    public double    getSpeed(){return speed; }
 
 
 }
