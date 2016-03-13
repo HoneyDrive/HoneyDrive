@@ -62,7 +62,7 @@ public class Trip {
                 }
             }
 
-            else if(totalDistance==0 && lastOdometerCount==-1) { //TODO: Dette gir bug. Hvis odometer=0 i første vil den ikke telles med. Også bug når den ikke er 0. Fix og sjekk at stemmer med test.
+            else if(totalDistance==0 && lastOdometerCount==-1) { 
                 lastOdometerCount = (Long) action.getValue();
 
             }else{
