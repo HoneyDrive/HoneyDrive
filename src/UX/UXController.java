@@ -92,7 +92,7 @@ public class UXController {
     }
 
     public void insuranceLimitWarning() {
-        if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance()) {
+        if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L) {
             totalDistanceDrivenLabel.setTextFill(Color.RED);
             warningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
         }
