@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -12,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
    <children>
-      <TabPane prefHeight="499.0" prefWidth="800.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="499.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab id="tab-1" closable="false" text="Driver">
             <content>
@@ -131,9 +132,25 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
-            <Tab id="tab-4" closable="false" text="Settings">
+            <Tab id="tab-4" closable="false" text="Preferences">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Your preferences for HoneyDrive">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" width="5.0" />
+                           </effect>
+                           <font>
+                              <Font name="Avenir Roman" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="64.0" text="Insurance Options">
+                           <font>
+                              <Font name="Avenir Heavy" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="6.0" layoutY="103.0" text="Label" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
