@@ -2,9 +2,11 @@ package UX;
 
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import trips.DrivingHistory;
 import trips.Trip;
@@ -19,6 +21,8 @@ public class UXController {
     @FXML private Label tripEarnedBeesLabel;
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea warningsTextArea;
+
+    @FXML private AnchorPane driverTab;
 
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
     private final String fuelConsumptionIsAboveAverageWarning = "Fuel consumption \nis above average!";
@@ -72,6 +76,12 @@ public class UXController {
 
     public void setInsuranceLimit(Long number) {
         drivingHistory.setInsuranceDistance(number);
+    }
+
+    public void disableDriverTabIfCommuting() {
+        if (this.trip.getIsCommuting()) {
+            driverTab.setDisable(true);
+        }
     }
 
     public void fuelConsumptionWarning() {

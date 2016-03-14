@@ -96,6 +96,7 @@ public class Trip {
         return getTotalDistance()/getFuelUsed();
     }
     public long getSpeed(){return speed; }
-
-
+    public boolean getIsCommuting() {
+        return isCommuting;
+    }
 }
