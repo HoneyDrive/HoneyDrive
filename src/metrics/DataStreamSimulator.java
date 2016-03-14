@@ -6,30 +6,41 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
 {
     private IDataReader reader;
     private List<IStreamListener> streamListeners = new ArrayList<>();
+    private boolean streaming;
+
     private Queue<CarAction> actions = new ArrayDeque<>();
 
     public DataStreamSimulator(String filePath, CarActionsFilter carActionsFilter)
     {
         reader = new ReadFromOpenXCFile(filePath);
         CarAction.addCreatedListener(this, carActionsFilter);
+        readData();
     }
 
     public DataStreamSimulator(IDataReader reader, CarActionsFilter carActionsFilter)
     {
         this.reader = reader;
         CarAction.addCreatedListener(this, carActionsFilter);
+        readData();
     }
 
     public DataStreamSimulator(String filePath, Set<CarActionsFilter> carActionsFilters)
     {
         reader = new ReadFromOpenXCFile(filePath);
         CarAction.addCreatedListener(this, carActionsFilters);
+        readData();
     }
 
     public DataStreamSimulator(IDataReader reader, Set<CarActionsFilter> carActionsFilters)
     {
         this.reader = reader;
         CarAction.addCreatedListener(this, carActionsFilters);
+        readData();
+    }
+
+    private void readData()
+    {
+        reader.startReading();
     }
 
     @Override
@@ -41,14 +52,19 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
     @Override
     public void startStreaming()
     {
+        streaming = true;
         Thread thread = new Thread(this::startStreamingLogic);
         thread.start();
     }
 
+    @Override
+    public void stopStreaming()
+    {
+        streaming = false;
+    }
+
     private void startStreamingLogic()
     {
-        reader.startReading();
-
         long startTime = System.currentTimeMillis();
         CarAction action = actions.poll();
         if (action == null)
@@ -58,7 +74,7 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
         long drivingStartTime = Math.round(action.getTimestamp() * 1000); // in ms
         notifyListeners(action);
 
-        while ((action = actions.poll()) != null)
+        while ((action = actions.poll()) != null && streaming)
         {
             long systemTimePassedSinceStart = System.currentTimeMillis() - startTime;
             long carTimePassedSinceStart = Math.round(action.getTimestamp() * 1000) - drivingStartTime;
@@ -75,7 +91,6 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
                     e.printStackTrace();
                 }
             }
-
             notifyListeners(action);
         }
 
@@ -94,4 +109,5 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
     {
         streamListeners.add(streamListener);
     }
+
 }
