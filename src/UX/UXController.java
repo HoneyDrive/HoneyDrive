@@ -3,6 +3,7 @@ package UX;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import trips.DrivingHistory;
@@ -13,20 +14,29 @@ public class UXController {
     @FXML private Label totalDistanceDrivenLabel;
     @FXML private Label fuelConsumedLabel;
     @FXML private Label speedLabel;
-    @FXML private Label warningsLabel;
     @FXML private Label preferencesWarningLabel;
+    @FXML private Label weeklyEarnedBeesLabel;
+    @FXML private Label tripEarnedBeesLabel;
     @FXML private TextField insuranceLimitInput;
+    @FXML private TextArea warningsTextArea;
+
+    private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
+    private final String fuelConsumptionIsAboveAverageWarning = "Fuel consumption \nis above average!";
+    private final String numberValidationWarning = "Please only add numbers, you know that ;)";
+    private final String validInsuraceLimitNumber = "Please enter a valid insurance limit between 0 and 500.000";
 
     private Trip trip;
     private DrivingHistory drivingHistory;
 
     public void initialize() {
+        drivingHistory = new DrivingHistory();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
+        warningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
     }
 
     public void newTrip(Trip trip){
-        this.trip=trip;
+        this.trip = trip;
         //TODO: Set all labels for current trips=0
     }
 
@@ -41,23 +51,40 @@ public class UXController {
     }
 
     public void updateWarningsLabel(String warning) {
-        warningsLabel.setText(warning);
+        warningsTextArea.setText(warning);
     }
 
     public void updateTotalDistanceDrivenLabel() {
-        drivingHistory = new DrivingHistory();
         totalDistanceDrivenLabel.setText(String.valueOf(drivingHistory.getCommutingDistanceThisYear()));
+    }
+
+    public void updateTripEarnedBeesLabel() {
+//        tripEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
+    }
+
+    public void updateWeeklyEarnedBeesLabel() {
+//        weeklyEarnedBeesLabel.setText(); //TODO: Legg til bier i WeeklyTripLabel
     }
 
     public void setInsuranceLimit() {
         drivingHistory.setInsuranceDistance(Long.parseLong(insuranceLimitInput.getText()));
     }
 
-    public void fuelConsumptionWarning(){
-        drivingHistory = new DrivingHistory();
+    public void setInsuranceLimit(Long number) {
+        drivingHistory.setInsuranceDistance(number);
+    }
+
+    public void fuelConsumptionWarning() {
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg()) {
-            fuelConsumedLabel.setTextFill(Color.color(217, 4, 41));
-            warningsLabel.setText("Fuel consumption is above average!");
+            fuelConsumedLabel.setTextFill(Color.RED);
+            warningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
+        }
+    }
+
+    public void insuranceLimitWarning() {
+        if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance()) {
+            totalDistanceDrivenLabel.setTextFill(Color.RED);
+            warningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
         }
     }
 
@@ -65,12 +92,14 @@ public class UXController {
 
     private ChangeListener<? super String> insuranceLimitInputListener = ((observable, oldValue, newValue) -> {
         if (!newValue.matches("\\d+") && !newValue.equals("")) {
-            writeWarning("Please only add numbers, you know that ;)");
+            writeWarning(numberValidationWarning);
         } else if (newValue.equals("")) {
             msgLabelPreferencesLooksGood();
+            setInsuranceLimit(0L);
         } else if (!isInsuranceLimitValid(insuranceLimitInput.getText())) {
-            writeWarning("Please enter a valid insurance limit between 0 and 500000");
+            writeWarning(validInsuraceLimitNumber);
         } else {
+            setInsuranceLimit();
             msgLabelPreferencesLooksGood();
         }
     });

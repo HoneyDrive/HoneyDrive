@@ -66,4 +66,7 @@ public class DrivingHistory {
 	public double getCommutingDistanceThisYear() {
 		return commutingDistanceThisYear;
 	}
+	public long getInsuranceDistance() {
+		return this.insuranceDistance;
+	}
 }

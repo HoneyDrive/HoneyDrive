@@ -83,7 +83,7 @@
                            </font>
                         </Label>
                         <TilePane layoutX="620.0" layoutY="5.0" prefHeight="155.0" prefWidth="175.0" style="-fx-background-color: #FF9B42;" />
-                        <Label alignment="TOP_CENTER" layoutX="620.0" layoutY="160.0" prefHeight="90.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="13" textFill="#333533">
+                        <Label fx:id="tripEarnedBeesLabel" alignment="TOP_CENTER" layoutX="620.0" layoutY="160.0" prefHeight="90.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="13" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
@@ -104,11 +104,6 @@
                            </font>
                         </Label>
                         <TilePane layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #AB4642;" />
-                        <Label fx:id="warningsLabel" alignment="CENTER" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="No warnings" textFill="#333533">
-                           <font>
-                              <Font name="Avenir Roman" size="16.0" />
-                           </font>
-                        </Label>
                         <ImageView fitHeight="101.0" fitWidth="101.0" layoutX="658.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/signs.png" />
@@ -119,6 +114,11 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
+                        <TextArea fx:id="warningsTextArea" editable="false" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" stylesheets="@assets/textarea.css" text="No warnings">
+                           <font>
+                              <Font name="Avenir Roman" size="16.0" />
+                           </font>
+                        </TextArea>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -129,7 +129,30 @@
           </Tab>
             <Tab id="tab-3" closable="false" text="Statistics">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+                     <children>
+                        <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="175.0" style="-fx-background-color: #FF9B42;" />
+                        <Label fx:id="weeklyEarnedBeesLabel" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="90.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="54" textFill="#333533">
+                           <font>
+                              <Font name="Avenir Roman" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="53.0" layoutY="210.0" text="this week">
+                           <font>
+                              <Font name="Avenir Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="110.0" fitWidth="108.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/bee-insect-outline.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="6.0" layoutY="138.0" text="BEES EARNED" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Roman" size="15.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab id="tab-4" closable="false" text="Preferences">
@@ -149,7 +172,7 @@
                               <Font name="Avenir Heavy" size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="102.0" layoutY="103.0" text="km is the limit I can drive for one year">
+                        <Label layoutX="102.0" layoutY="103.0" text="km is the limit I can drive for one year.">
                            <font>
                               <Font name="Avenir Heavy" size="15.0" />
                            </font>
