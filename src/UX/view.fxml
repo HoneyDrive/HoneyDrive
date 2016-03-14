@@ -82,11 +82,6 @@
                            </font>
                         </Label>
                         <TilePane layoutX="620.0" layoutY="5.0" prefHeight="155.0" prefWidth="175.0" style="-fx-background-color: #FF9B42;" />
-                        <Label layoutX="593.0" layoutY="500.0" text="L/10km">
-                           <font>
-                              <Font name="Avenir Roman" size="20.0" />
-                           </font>
-                        </Label>
                         <Label alignment="TOP_CENTER" layoutX="620.0" layoutY="160.0" prefHeight="90.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="13" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
@@ -105,6 +100,22 @@
                         <Label layoutX="665.0" layoutY="210.0" text="on this trip">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <TilePane layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #D90429;" />
+                        <Label fx:id="warningsLabel" alignment="CENTER" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="No warnings" textFill="#333533">
+                           <font>
+                              <Font name="Avenir Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="101.0" fitWidth="101.0" layoutX="658.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/signs.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="622.0" layoutY="362.0" text="WARNINGS" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
                      </children></AnchorPane>

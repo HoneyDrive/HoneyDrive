@@ -12,6 +12,8 @@ public class UXController {
     @FXML private Label totalDistanceDrivenLabel;
     @FXML private Label fuelConsumedLabel;
     @FXML private Label speedLabel;
+    @FXML private Label warningsLabel;
+
     private Trip trip;
     private DrivingHistory drivingHistory;
 
@@ -22,11 +24,17 @@ public class UXController {
         this.trip=trip;
         //TODO: Set all labels for current trips=0
     }
+
     public void updateFuelUsedLabel(){
         fuelConsumedLabel.setText(String.valueOf(trip.getFuelBurntPerKm()));
     }
+
     public void updateSpeedLabel(){
         speedLabel.setText(String.valueOf(trip.getSpeed()));
+    }
+
+    public void updateWarningsLabel(String warning) {
+        warningsLabel.setText(warning);
     }
 
     public void updateTotalDistanceDrivenLabel() {
@@ -37,13 +45,8 @@ public class UXController {
     public void fuelConsumptionWarning(){
         drivingHistory = new DrivingHistory();
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg()) {
-            fuelConsumedLabel.setTextFill(Color.RED);
+            fuelConsumedLabel.setTextFill(Color.color(217, 4, 41));
+            warningsLabel.setText("Fuel consumption is above average!");
         }
-
     }
-
-
-
-
-
 }
