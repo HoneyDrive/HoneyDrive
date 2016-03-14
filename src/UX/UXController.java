@@ -64,7 +64,11 @@ public class UXController {
     // ---------------------------------------------Listeners---------------------------------------------
 
     private ChangeListener<? super String> insuranceLimitInputListener = ((observable, oldValue, newValue) -> {
-        if (!isInsuranceLimitValid(insuranceLimitInput.getText())) {
+        if (!newValue.matches("\\d+") && !newValue.equals("")) {
+            writeWarning("Please only add numbers, you know that ;)");
+        } else if (newValue.equals("")) {
+            msgLabelPreferencesLooksGood();
+        } else if (!isInsuranceLimitValid(insuranceLimitInput.getText())) {
             writeWarning("Please enter a valid insurance limit between 0 and 500000");
         } else {
             msgLabelPreferencesLooksGood();
@@ -79,12 +83,12 @@ public class UXController {
     }
 
     private void writeWarning(String msg) {
-        preferencesWarningLabel.setStyle("-fx-text-fill:  #ab4642");
+        preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill:  #ab4642");
         preferencesWarningLabel.setText(msg);
     }
 
     private void msgLabelPreferencesLooksGood() {
-        preferencesWarningLabel.setStyle("-fx-text-fill: #a1b56c");
+        preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill: #a1b56c");
         preferencesWarningLabel.setText("Preferences looks good.");
     }
 }

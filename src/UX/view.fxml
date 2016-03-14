@@ -17,7 +17,7 @@
         <tabs>
           <Tab id="tab-1" closable="false" text="Driver">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #E26D5C;" />
                         <Label fx:id="speedLabel" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="166" textFill="#333533">
@@ -103,7 +103,7 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <TilePane layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #D90429;" />
+                        <TilePane layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #AB4642;" />
                         <Label fx:id="warningsLabel" alignment="CENTER" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="No warnings" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="16.0" />
@@ -124,12 +124,12 @@
           </Tab>
           <Tab id="tab-2" closable="false" text="Commuter">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;" />
             </content>
           </Tab>
             <Tab id="tab-3" closable="false" text="Statistics">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;" />
               </content>
             </Tab>
             <Tab id="tab-4" closable="false" text="Preferences">
@@ -149,7 +149,17 @@
                               <Font name="Avenir Heavy" size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="6.0" layoutY="103.0" text="Label" />
+                        <Label layoutX="102.0" layoutY="103.0" text="km is the limit I can drive for one year">
+                           <font>
+                              <Font name="Avenir Heavy" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="insuranceLimitInput" layoutX="12.0" layoutY="100.0" prefHeight="27.0" prefWidth="84.0" promptText="e.g 12000" stylesheets="@assets/textfield.css" />
+                        <Label fx:id="preferencesWarningLabel" alignment="CENTER" layoutY="404.0" prefHeight="30.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Preferences looks good" textFill="#a1b56c">
+                           <font>
+                              <Font name="Avenir Heavy" size="20.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
               </content>
             </Tab>
