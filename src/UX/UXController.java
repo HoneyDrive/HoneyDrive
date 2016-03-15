@@ -2,7 +2,6 @@ package UX;
 
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -27,7 +26,7 @@ public class UXController {
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
     private final String fuelConsumptionIsAboveAverageWarning = "Fuel consumption \nis above average!";
     private final String numberValidationWarning = "Please only add numbers, you know that ;)";
-    private final String validInsuraceLimitNumber = "Please enter a valid insurance limit between 0 and 500.000";
+    private final String validInsuranceLimitNumber = "Please enter a valid insurance limit between 0 and 500.000";
 
     private Trip trip;
     private DrivingHistory drivingHistory;
@@ -106,7 +105,7 @@ public class UXController {
             msgLabelPreferencesLooksGood();
             setInsuranceLimit(0L);
         } else if (!isInsuranceLimitValid(insuranceLimitInput.getText())) {
-            writeWarning(validInsuraceLimitNumber);
+            writeWarning(validInsuranceLimitNumber);
         } else {
             setInsuranceLimit();
             msgLabelPreferencesLooksGood();
