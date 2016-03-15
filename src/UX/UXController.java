@@ -20,7 +20,6 @@ public class UXController {
     @FXML private Label tripEarnedBeesLabel;
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea warningsTextArea;
-
     @FXML private AnchorPane driverTab;
 
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
