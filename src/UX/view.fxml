@@ -124,12 +124,12 @@
           </Tab>
           <Tab id="tab-2" closable="false" text="Commuter">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;" />
+              <AnchorPane fx:id="commuterTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;" />
             </content>
           </Tab>
             <Tab id="tab-3" closable="false" text="Statistics">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+                <AnchorPane fx:id="statisticsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="175.0" style="-fx-background-color: #FF9B42;" />
                         <Label fx:id="weeklyEarnedBeesLabel" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="90.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="52" textFill="#333533">
@@ -157,7 +157,7 @@
             </Tab>
             <Tab id="tab-4" closable="false" text="Preferences">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+                <AnchorPane fx:id="preferencesTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <Label alignment="CENTER" prefHeight="44.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Your preferences for HoneyDrive">
                            <effect>
@@ -183,6 +183,12 @@
                               <Font name="Avenir Heavy" size="20.0" />
                            </font>
                         </Label>
+                        <Label layoutX="10.0" layoutY="139.0" text="Night mode">
+                           <font>
+                              <Font name="Avenir Heavy" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="nightModeButton" layoutX="19.0" layoutY="175.0" mnemonicParsing="false" onAction="#nightModeButtonClicked" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: grey; -fx-text-fill: black;" text="OFF" />
                      </children></AnchorPane>
               </content>
             </Tab>
