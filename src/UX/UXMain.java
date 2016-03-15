@@ -23,8 +23,8 @@ public class UXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(520);
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(500);
         primaryStage.setResizable(false);
 
         try {
