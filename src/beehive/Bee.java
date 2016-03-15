@@ -34,6 +34,7 @@ public class Bee {
 	/*
 	 * Returns: Name of the bee
 	 * TODO: Decide if bees should have names
+	 * TODO: NO! THEY SHOULD NOT..
 	 */
 	public String getName(){
 		return name;

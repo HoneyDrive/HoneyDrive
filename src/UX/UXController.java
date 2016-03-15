@@ -41,7 +41,7 @@ public class UXController {
 
     public void newTrip(Trip trip){
         this.trip = trip;
-        //TODO: Set all labels for current trips=0
+        //TODO: Set all labels for current trips = 0
     }
 
     // ---------------------------------------------Update Methods---------------------------------------------
@@ -63,6 +63,7 @@ public class UXController {
     }
 
     public void updateTripEarnedBeesLabel() {
+
 //        tripEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
     }
 

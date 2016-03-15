@@ -10,8 +10,6 @@ public class DrivingHistory {
 	private long insuranceDistance;
 	List<Long> previousCommutingDistances = new ArrayList<Long>();
 	List<Long> previousTotalDistances = new ArrayList<Long>();
-	
-	
 
 	public DrivingHistory(){
 		
