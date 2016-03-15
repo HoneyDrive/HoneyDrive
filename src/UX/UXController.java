@@ -19,6 +19,7 @@ public class UXController {
     @FXML private Label tripEarnedBeesLabel;
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea warningsTextArea;
+
     @FXML private AnchorPane driverTab;
     @FXML private AnchorPane commuterTab;
     @FXML private AnchorPane statisticsTab;
