@@ -36,7 +36,6 @@ public class UXController {
         drivingHistory = new DrivingHistory();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
-        warningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
     }
 
     public void newTrip(Trip trip){
