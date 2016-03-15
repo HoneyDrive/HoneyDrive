@@ -15,11 +15,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
    <children>
-      <TabPane prefHeight="499.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="499.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab id="tab-1" closable="false" text="Driver">
+          <Tab id="driver" fx:id="driverTab" closable="false" text="Driver">
             <content>
-              <AnchorPane fx:id="driverTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+              <AnchorPane fx:id="driverAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #E26D5C;" />
                         <Label fx:id="speedLabel" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="112" textFill="#333533">
@@ -124,9 +124,9 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab id="tab-2" closable="false" text="Commuter">
+          <Tab id="commuter" fx:id="commuterTab" closable="false" text="Commuter">
             <content>
-              <AnchorPane fx:id="commuterTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+              <AnchorPane fx:id="commuterAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #E26D5C;" />
                         <TilePane layoutX="210.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #C9CBA3;" />
@@ -215,9 +215,9 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab id="tab-3" closable="false" text="Statistics">
+            <Tab id="statistics" closable="false" text="Statistics">
               <content>
-                <AnchorPane fx:id="statisticsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+                <AnchorPane fx:id="statisticsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="175.0" style="-fx-background-color: #FF9B42;" />
                         <Label fx:id="weeklyEarnedBeesLabel" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="95.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="52" textFill="#333533">
@@ -304,9 +304,9 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab id="tab-4" closable="false" text="Preferences">
+            <Tab id="preferences" closable="false" text="Preferences">
               <content>
-                <AnchorPane fx:id="preferencesTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+                <AnchorPane fx:id="preferencesAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <Label alignment="CENTER" prefHeight="44.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Your preferences for HoneyDrive">
                            <effect>

@@ -20,10 +20,14 @@ public class UXController {
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea warningsTextArea;
 
-    @FXML private AnchorPane driverTab;
-    @FXML private AnchorPane commuterTab;
-    @FXML private AnchorPane statisticsTab;
-    @FXML private AnchorPane preferencesTab;
+    @FXML private AnchorPane driverAnchorPane;
+    @FXML private AnchorPane commuterAnchorPane;
+    @FXML private AnchorPane statisticsAnchorPane;
+    @FXML private AnchorPane preferencesAnchorPane;
+
+    @FXML private Tab driverTab;
+    @FXML private Tab commuterTab;
+    @FXML private TabPane tabPane;
 
     @FXML private Button nightModeButton;
     private boolean switchedOn = false;
@@ -84,7 +88,7 @@ public class UXController {
 
     public void disableDriverTabIfCommuting() {
         if (this.trip.getIsCommuting()) {
-            driverTab.setDisable(true);
+            driverAnchorPane.setDisable(true);
         }
     }
 
@@ -137,18 +141,17 @@ public class UXController {
     // ---------------------------------------------Help Methods---------------------------------------------
 
     private void toggleNightModeOn() {
-        driverTab.setStyle("-fx-background-color: grey");
-        commuterTab.setStyle("-fx-background-color: grey");
-        statisticsTab.setStyle("-fx-background-color: grey");
-        preferencesTab.setStyle("-fx-background-color: grey");
-
+        driverAnchorPane.setStyle("-fx-background-color: grey");
+        commuterAnchorPane.setStyle("-fx-background-color: grey");
+        statisticsAnchorPane.setStyle("-fx-background-color: grey");
+        preferencesAnchorPane.setStyle("-fx-background-color: grey");
     }
 
     private void toggleNightModeOff() {
-        driverTab.setStyle("-fx-background-color: #F8F5F3");
-        commuterTab.setStyle("-fx-background-color: #F8F5F3");
-        statisticsTab.setStyle("-fx-background-color: #F8F5F3");
-        preferencesTab.setStyle("-fx-background-color: #F8F5F3");
+        driverAnchorPane.setStyle("-fx-background-color: #F8F5F3");
+        commuterAnchorPane.setStyle("-fx-background-color: #F8F5F3");
+        statisticsAnchorPane.setStyle("-fx-background-color: #F8F5F3");
+        preferencesAnchorPane.setStyle("-fx-background-color: #F8F5F3");
     }
 
     private boolean isInsuranceLimitValid(String limit) {
