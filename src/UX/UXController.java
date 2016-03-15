@@ -1,10 +1,9 @@
 package UX;
 
 import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import trips.DrivingHistory;
@@ -21,6 +20,12 @@ public class UXController {
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea warningsTextArea;
     @FXML private AnchorPane driverTab;
+    @FXML private AnchorPane commuterTab;
+    @FXML private AnchorPane statisticsTab;
+    @FXML private AnchorPane preferencesTab;
+
+    @FXML private Button nightModeButton;
+    private boolean switchedOn = false;
 
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
     private final String fuelConsumptionIsAboveAverageWarning = "Fuel consumption \nis above average!";
@@ -112,7 +117,38 @@ public class UXController {
         }
     });
 
+    @FXML
+    public void nightModeButtonClicked(ActionEvent event) {
+        if (switchedOn) {
+            nightModeButton.setText("OFF");
+            nightModeButton.setStyle("-fx-background-color: grey;-fx-text-fill:black;");
+            switchedOn = !switchedOn;
+            toggleNightModeOff();
+        } else {
+            nightModeButton.setText("ON");
+            nightModeButton.setStyle("-fx-background-color: green;-fx-text-fill:white;");
+            switchedOn = !switchedOn;
+            toggleNightModeOn();
+
+        }
+    }
+
     // ---------------------------------------------Help Methods---------------------------------------------
+
+    private void toggleNightModeOn() {
+        driverTab.setStyle("-fx-background-color: grey");
+        commuterTab.setStyle("-fx-background-color: grey");
+        statisticsTab.setStyle("-fx-background-color: grey");
+        preferencesTab.setStyle("-fx-background-color: grey");
+
+    }
+
+    private void toggleNightModeOff() {
+        driverTab.setStyle("-fx-background-color: #F8F5F3");
+        commuterTab.setStyle("-fx-background-color: #F8F5F3");
+        statisticsTab.setStyle("-fx-background-color: #F8F5F3");
+        preferencesTab.setStyle("-fx-background-color: #F8F5F3");
+    }
 
     private boolean isInsuranceLimitValid(String limit) {
         int limitNumber = Integer.parseInt(limit);
