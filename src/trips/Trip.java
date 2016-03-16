@@ -136,10 +136,10 @@ public class Trip implements IActionListener
     @Override
     public void newCarAction(CarAction action)
     {
-        if (action.getName().equals("fuel_consumed_since_restart"))
+        if (action.getType() == CarActionsFilter.fuel_consumed_since_restart)
         {
             fuelUsed += (Long) action.getValue();
-        } else if (action.getName().equals("vehicle_speed"))
+        } else if (action.getType() == CarActionsFilter.fuel_consumed_since_restart)
         {
             speed = (double) action.getValue();
             timestamp = action.getTimestamp();
