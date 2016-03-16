@@ -45,7 +45,11 @@ public class Test extends TestCase {
     public void testTripMakingAndDrivingHistory(){
         testAddCommutingDistance();
         testAddNotCommutingDistance();
-        System.out.println("Blah");
+        assertTrue(drivingHistory.getCommutingDistanceThisYear()==1669);
+        assertTrue(drivingHistory.getDistanceThisYear()==3006);
+        assertTrue(drivingHistory.getAverageDistance() ==1503);
+        assertTrue(drivingHistory.getTrip(0).getTotalDistance()+drivingHistory.getTrip(1).getTotalDistance() == 3006);
+        assertTrue(drivingHistory.getTrip(0).getCommutingDistance()+drivingHistory.getTrip(1).getCommutingDistance()==1669);
     }
     public void runAllTests(){
         testTripMakingAndDrivingHistory();
