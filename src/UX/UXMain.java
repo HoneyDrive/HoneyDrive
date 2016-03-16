@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import UX.UXController;
+import sun.applet.Main;
 
 import java.io.IOException;
 
@@ -22,8 +23,8 @@ public class UXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(500);
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(500);
         primaryStage.setResizable(false);
 
         try {

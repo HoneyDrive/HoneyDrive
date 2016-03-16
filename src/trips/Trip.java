@@ -6,6 +6,7 @@ import metrics.*;
 
 public class Trip {
 	
+
     private long totalDistance;
     private long lastOdometerCount;
     private long commutingDistance;
@@ -41,12 +42,13 @@ public class Trip {
         streamer = new DataStreamSimulator(filepath,filter);
         streamer.addStreamListener(this::newAction);
         streamer.startStreaming();
-    }
-    public void startWithoutDelay(String filepath,CarActionsFilter filter){
+		}
+    public void startWithoutDelay(String filepath,CarActionsFilter filter)
+		{
         CarAction.addCreatedListener(this::newAction, filter);
         reader = new ReadFromOpenXCFile(filepath);
         reader.startReading();
-    }
+    	}
 
 
 
@@ -103,7 +105,11 @@ public class Trip {
     public long getFuelBurntPerKm(){
         return getTotalDistance()/getFuelUsed();
     }
-    public double    getSpeed(){return speed; }
 
-
+    public double getSpeed(){
+        return speed;
+    }
+    public boolean getIsCommuting() {
+        return isCommuting;
+    }
 }
