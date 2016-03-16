@@ -4,7 +4,7 @@ import java.util.*;
 
 import metrics.*;
 
-public class Trip {
+public class Trip implements IActionListener {
 	
 
     private long totalDistance;
@@ -35,24 +35,24 @@ public class Trip {
     public void start()
     {
         streamer = new DataStreamSimulator("src/metrics/TestData/data3.json",  CarActionsFilter.odometer);
-        streamer.addStreamListener(this::newAction);
+        streamer.addStreamListener(this::newCarAction);
         streamer.startStreaming();
     }
     public void start(String filepath,CarActionsFilter filter){
         streamer = new DataStreamSimulator(filepath,filter);
-        streamer.addStreamListener(this::newAction);
+        streamer.addStreamListener(this::newCarAction);
         streamer.startStreaming();
 		}
     public void startWithoutDelay(String filepath,CarActionsFilter filter)
 		{
-        CarAction.addCreatedListener(this::newAction, filter);
+        CarAction.addCreatedListener(this, filter);
         reader = new ReadFromOpenXCFile(filepath);
         reader.startReading();
     	}
 
 
 
-    public void newAction(CarAction action){
+    public void newCarAction(CarAction action){
         if(action.getName().equals("fuel_consumed_since_restart")){
             fuelUsed += (Long) action.getValue();
         }
@@ -87,6 +87,7 @@ public class Trip {
             }
         }}
     public void stop(){
+        CarAction.removeCreatedListener(this);
     }
 
     public Date getDate(){
@@ -112,4 +113,6 @@ public class Trip {
     public boolean getIsCommuting() {
         return isCommuting;
     }
+
+
 }
