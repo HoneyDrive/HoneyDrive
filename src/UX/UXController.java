@@ -110,12 +110,12 @@ public class UXController {
 
     private ChangeListener<? super String> insuranceLimitInputListener = ((observable, oldValue, newValue) -> {
         if (!newValue.matches("\\d+") && !newValue.equals("")) {
-            writeWarning(numberValidationWarning);
+            writeDriverWarning(numberValidationWarning);
         } else if (newValue.equals("")) {
             msgLabelPreferencesLooksGood();
             setInsuranceLimit(0L);
         } else if (!isInsuranceLimitValid(insuranceLimitInput.getText())) {
-            writeWarning(validInsuranceLimitNumber);
+            writeDriverWarning(validInsuranceLimitNumber);
         } else {
             setInsuranceLimit();
             msgLabelPreferencesLooksGood();
@@ -159,7 +159,7 @@ public class UXController {
         return !(limitNumber < 0 || limitNumber > 500000);
     }
 
-    private void writeWarning(String msg) {
+    private void writeDriverWarning(String msg) {
         preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill:  #ab4642");
         preferencesWarningLabel.setText(msg);
     }
