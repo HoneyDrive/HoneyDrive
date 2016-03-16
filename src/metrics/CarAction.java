@@ -48,6 +48,22 @@ public class CarAction
         }
     }
 
+    public static void removeCreatedListener(IActionListener existingListener)
+    {
+        for (HashMap.Entry<CarActionsFilter, Set<IActionListener>> keyvaluepair : listeners.entrySet())
+        {
+            if (keyvaluepair.getValue().contains(existingListener))
+            {
+                listeners.get(keyvaluepair.getKey()).remove(existingListener);
+            }
+        }
+    }
+
+    public static void removeCreatedListener(IActionListener existingListener, CarActionsFilter filter)
+    {
+        listeners.get(filter).remove(existingListener);
+    }
+
     private void triggerCreatedEvent(CarAction action)
     {
         Set<IActionListener> allSubscribers = listeners.getOrDefault(action.type, new HashSet<>());
