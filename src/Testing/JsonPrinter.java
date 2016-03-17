@@ -6,7 +6,7 @@ public class JsonPrinter implements IActionListener {
 
     public static void main(String[] args) {
         JsonPrinter jsonPrinter = new JsonPrinter();
-        CarAction.addCreatedListener(jsonPrinter, CarActionsFilter.fuel_consumed_since_restart);
+        CarAction.addCreatedListener(jsonPrinter, CarActionsFilter.vehicle_speed);
         IDataReader reader = new ReadFromOpenXCFile("src/metrics/TestData/data3.json");
         reader.startReading();
         try{
