@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import metrics.CarAction;
 import metrics.CarActionsFilter;
 import metrics.IActionListener;
@@ -30,6 +29,7 @@ public class GraphController extends Controller implements Initializable, IActio
         chart.getData().add(speedSeries);
         chart.getData().add(scoreSeries);
         chart.setCreateSymbols(false);
+
     }
 
 
