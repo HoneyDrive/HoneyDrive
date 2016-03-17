@@ -4,7 +4,9 @@ import metrics.CarAction;
 import metrics.CarActionsFilter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Score implements TripListener {
 
@@ -23,6 +25,7 @@ public class Score implements TripListener {
         return scores.stream().mapToDouble(a -> a).sum()/scores.size();
     }
 
+    private Map<Double,Double> scoresMap = new HashMap<>(); // timestamp,score
     private Double firstTimeStamp = -1.0;
     public void newCarAction(CarAction carAction){
         if(firstTimeStamp == -1){
@@ -33,8 +36,10 @@ public class Score implements TripListener {
         }
         if(carAction.getType() == CarActionsFilter.vehicle_speed){
             if(carAction.getTimestamp()-timestamp >= timeInterval){
-                System.out.println("Timestamp: " + Double.toString(carAction.getTimestamp()-firstTimeStamp) + " : " + calculateScore(speedList));
+                Double calcScore = calculateScore(speedList);
+                //System.out.println("Timestamp: " + Double.toString(carAction.getTimestamp()-firstTimeStamp) + " : " + calculateScore(speedList));
                 speedList = new ArrayList<>();
+                scoresMap.put(carAction.getTimestamp()-firstTimeStamp,calcScore);
             }
             else{
                 speedList.add(carAction);
@@ -42,6 +47,9 @@ public class Score implements TripListener {
         }
     }
 
+    public Map<Double,Double> getScoresMap(){
+        return scoresMap;
+    }
 
     public static void main(String[] args) {
         Trip trip = new Trip();
