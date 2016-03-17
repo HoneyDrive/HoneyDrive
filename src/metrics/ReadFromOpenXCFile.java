@@ -3,6 +3,7 @@ package metrics;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,7 +21,7 @@ public class ReadFromOpenXCFile implements IDataReader
             reader = new BufferedReader(new FileReader(filePath));
         } catch (FileNotFoundException e)
         {
-            System.err.println("Could not locate the file");
+            throw new RuntimeException(e);
         }
     }
 
@@ -34,14 +35,9 @@ public class ReadFromOpenXCFile implements IDataReader
             {
                 createData(line);
             }
-        }
-        catch (IOException e)
+        } catch (ParseException | IOException e)
         {
-            System.err.println("Could not read from the file.");
-        }
-        catch (ParseException e)
-        {
-            System.err.println("Something was wrong in the format of the file.");
+            e.printStackTrace();
         }
     }
 
@@ -51,20 +47,15 @@ public class ReadFromOpenXCFile implements IDataReader
 
         String name = (String) jsonObject.get("name");
         Object value = jsonObject.get("value");
-
-        Double timestamp;
-        Object timestampobj = jsonObject.get("timestamp");
-        if (timestampobj instanceof Long)
+        if (value instanceof Number)
         {
-            timestamp = ((Long)timestampobj).doubleValue();
+            value = ((Number) jsonObject.get("value")).doubleValue();
         }
-        else
-        {
-            timestamp = (Double) timestampobj;
-        }
+        double timestamp = ((Number) jsonObject.get("timestamp")).doubleValue();
 
         // If no one is listening, this object will be removed by GC.
         // If someones listening, this object will be passed to that instance by the CarAction class itself.
         new CarAction(name, value, timestamp);
     }
+
 }
