@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import metrics.CarAction;
 import metrics.CarActionsFilter;
 import metrics.IActionListener;
@@ -30,12 +29,6 @@ public class Graph2Controller extends Controller implements Initializable, IActi
         scoreChart.getData().add(scoreSeries);
         scoreChart.setCreateSymbols(false);
         speedChart.setCreateSymbols(false);
-        /*
-        scoreSeries.getData().add(new XYChart.Data<>(0.2,5));
-        scoreSeries.getData().add(new XYChart.Data<>(0.3,7));
-        speedSeries.getData().add(new XYChart.Data<>(1,23));
-*/
-        //speedSeries.getData().addAll(new XYChart.Data(0.1,10));
     }
 
     @Override
@@ -44,6 +37,7 @@ public class Graph2Controller extends Controller implements Initializable, IActi
         speedChart.getData().clear();
         speedChart.getData().add(speedSeries);
         scoreChart.getData().add(scoreSeries);
+
     }
 
 
