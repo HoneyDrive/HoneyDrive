@@ -27,6 +27,7 @@ public class Score implements TripListener {
 
     private Map<Double,Double> scoresMap = new HashMap<>(); // timestamp,score
     private Double firstTimeStamp = -1.0;
+
     public void newCarAction(CarAction carAction){
         if(firstTimeStamp == -1){
             firstTimeStamp = carAction.getTimestamp();
