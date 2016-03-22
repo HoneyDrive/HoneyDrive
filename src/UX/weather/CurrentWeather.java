@@ -8,34 +8,34 @@ import java.util.TimeZone;
 
 
 public class CurrentWeather {
-    private String mIcon;
-    private long mTime;
-    private double mTemperature;
-    private double mHumidity;
-    private double mPrecipChance;
-    private String mSummary;
-    private String mTimeZone;
+    private String icon;
+    private long time;
+    private double temperature;
+    private double humidity;
+    private double precipChance;
+    private String summary;
+    private String timeZone;
 
     public String getTimeZone() {
-        return mTimeZone;
+        return timeZone;
     }
 
     public void setTimeZone(String timeZone) {
-        mTimeZone = timeZone;
+        this.timeZone = timeZone;
     }
 
     public String getIcon() {
-        return mIcon;
+        return icon;
     }
 
     public void setIcon(String icon) {
-        mIcon = icon;
+        this.icon = icon;
     }
 
     public Image getIconId() {
         String iconURL = "images/clear_day.png";
 
-        switch (mIcon) {
+        switch (icon) {
             case "clear-day":
                 iconURL = "images/clear_day.png";
                 break;
@@ -71,7 +71,7 @@ public class CurrentWeather {
     }
 
     public long getTime() {
-        return mTime;
+        return time;
     }
 
     public String getFormattedTime() {
@@ -84,43 +84,38 @@ public class CurrentWeather {
     }
 
     public void setTime(long time) {
-        mTime = time;
+        this.time = time;
     }
 
     public double getTemperature() {
-        return mTemperature;
+        return temperature;
     }
 
     public void setTemperature(double temperature) {
-        mTemperature = temperature;
+        this.temperature = temperature;
     }
 
     public double getHumidity() {
-        return mHumidity;
+        return humidity;
     }
 
     public void setHumidity(double humidity) {
-        mHumidity = humidity;
+        this.humidity = humidity;
     }
 
     public double getPrecipChance() {
-        return mPrecipChance;
+        return precipChance;
     }
 
     public void setPrecipChance(double precipChance) {
-        mPrecipChance = precipChance;
+        this.precipChance = precipChance;
     }
 
     public String getSummary() {
-        return mSummary;
+        return summary;
     }
 
     public void setSummary(String summary) {
-        mSummary = summary;
-    }
-
-    @Override
-    public String toString() {
-        return getFormattedTime();
+        this.summary = summary;
     }
 }
