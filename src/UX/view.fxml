@@ -31,7 +31,7 @@
                      <children>
                         <Group>
                            <children>
-                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #E26D5C;" />
+                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #2D3047;" />
                               <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="46.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/speedometer.png" />
@@ -223,7 +223,7 @@
                      <children>
                         <Group>
                            <children>
-                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #E26D5C;" />
+                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #2D3047;" />
                               <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="46.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/speedometer.png" />
@@ -520,7 +520,10 @@
                               <Font name="Avenir Heavy" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="insuranceLimitInput" layoutX="12.0" layoutY="100.0" prefHeight="27.0" prefWidth="84.0" promptText="e.g 12000" stylesheets="@assets/textfield.css" />
+                        <TextField fx:id="insuranceLimitInput" layoutX="12.0" layoutY="100.0" prefHeight="27.0" prefWidth="84.0" promptText="e.g 12000" stylesheets="@assets/textfield.css">
+                           <font>
+                              <Font name="Avenir Roman" size="14.0" />
+                           </font></TextField>
                         <Label fx:id="preferencesWarningLabel" alignment="CENTER" layoutY="404.0" prefHeight="30.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Preferences looks good" textFill="#a1b56c">
                            <font>
                               <Font name="Avenir Heavy" size="20.0" />
@@ -531,7 +534,10 @@
                            <Font name="Avenir Heavy" size="24.0" />
                         </font>
                         </Label>
-                        <Button fx:id="nightModeButton" layoutX="19.0" layoutY="175.0" mnemonicParsing="false" onAction="#nightModeButtonClicked" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: grey; -fx-text-fill: black;" text="OFF" />
+                        <Button fx:id="nightModeButton" layoutX="19.0" layoutY="175.0" mnemonicParsing="false" onAction="#nightModeButtonClicked" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: grey; -fx-text-fill: black;" text="OFF">
+                           <font>
+                              <Font name="Avenir Roman" size="13.0" />
+                           </font></Button>
                      </children></AnchorPane>
               </content>
             </Tab>
