@@ -195,7 +195,6 @@ public class UXController
     private void updateWeather() {
         try {
             ntnuTrondheim = currentWeatherController.getCurrentDetails();
-
             weatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
             weatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
             weatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
@@ -206,21 +205,6 @@ public class UXController
             weatherIconImageView.setImage(ntnuTrondheim.getIconId());
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void setLocationAndTimeAlignment() {
-        int timeLength = ntnuTrondheim.getFormattedTime().length();
-        if (timeLength == 8) {
-            weatherLocationLabel.setLayoutX(675);
-            weatherLocationLabel.setLayoutY(14);
-            weatherTimeLabel.setLayoutX(655);
-            weatherTimeLabel.setLayoutY(31);
-        } else {
-            weatherLocationLabel.setLayoutX(675);
-            weatherLocationLabel.setLayoutY(14);
-            weatherTimeLabel.setLayoutX(665);
-            weatherTimeLabel.setLayoutY(31);
         }
     }
 }
