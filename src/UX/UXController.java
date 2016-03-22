@@ -16,8 +16,7 @@ import trips.Trip;
 
 import java.io.IOException;
 
-public class UXController
-{
+public class UXController {
     @FXML private Label driverDistanceDrivenLabel;
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
