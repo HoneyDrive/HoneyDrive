@@ -29,5 +29,5 @@ inside the `<project></project>` tag.
 Press *File* and then *Project Structure*.
 Click on *Libraries*, and then *New Project Library* (the small green plus symbol).
 Choose *From Maven* and type
-'com.squareup.okhttp3:okhttp:3.2.0'
+`com.squareup.okhttp3:okhttp:3.2.0`
 into the textbox and click *OK*.
