@@ -184,25 +184,46 @@ public class UXController
     private CurrentWeatherController currentWeatherController = new CurrentWeatherController();
     private CurrentWeather ntnuTrondheim;
 
-    @FXML private Label weatherTimeLabel;
-    @FXML private Label weatherTemperatureLabel;
-    @FXML private Label weatherHumidityLabel;
-    @FXML private Label weatherPrecipChanceLabel;
-    @FXML private Label weatherSummaryLabel;
-    @FXML private Label weatherLocationLabel;
-    @FXML private ImageView weatherIconImageView;
+    // Driver tab
+
+    @FXML private Label driverWeatherTimeLabel;
+    @FXML private Label driverWeatherTemperatureLabel;
+    @FXML private Label driverWeatherSummaryLabel;
+    @FXML private Label driverWeatherHumidityLabel;
+    @FXML private Label driverWeatherPrecipChanceLabel;
+    @FXML private ImageView driverWeatherIconImageView;
+
+    // Commuter tab
+
+    @FXML private Label commuterWeatherTimeLabel;
+    @FXML private Label commuterWeatherTemperatureLabel;
+    @FXML private Label commuterWeatherSummaryLabel;
+    @FXML private Label commuterWeatherHumidityLabel;
+    @FXML private Label commuterWeatherPrecipChanceLabel;
+    @FXML private ImageView commuterWeatherIconImageView;
+
 
     private void updateWeather() {
         try {
             ntnuTrondheim = currentWeatherController.getCurrentDetails();
-            weatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
-            weatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
-            weatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
-            weatherPrecipChanceLabel.setText(String.format("%.0f", ntnuTrondheim.getPrecipChance()) + " %");
-            weatherSummaryLabel.setText(ntnuTrondheim.getSummary());
-            weatherIconImageView.setFitHeight(30);
-            weatherIconImageView.setFitWidth(30);
-            weatherIconImageView.setImage(ntnuTrondheim.getIconId());
+
+            driverWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
+            driverWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
+            driverWeatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
+            driverWeatherPrecipChanceLabel.setText(String.format("%.0f", ntnuTrondheim.getPrecipChance()) + " %");
+            driverWeatherSummaryLabel.setText(ntnuTrondheim.getSummary());
+            driverWeatherIconImageView.setFitHeight(30);
+            driverWeatherIconImageView.setFitWidth(30);
+            driverWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
+
+            commuterWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
+            commuterWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
+            commuterWeatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
+            commuterWeatherPrecipChanceLabel.setText(String.format("%.0f", ntnuTrondheim.getPrecipChance()) + " %");
+            commuterWeatherSummaryLabel.setText(ntnuTrondheim.getSummary());
+            commuterWeatherIconImageView.setFitHeight(30);
+            commuterWeatherIconImageView.setFitWidth(30);
+            commuterWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
