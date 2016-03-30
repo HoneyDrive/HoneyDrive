@@ -23,3 +23,11 @@ Download Maven. In the `pom.xml` file, add the `JSON.simple` dependency by addin
 </dependencies>
 ```
 inside the `<project></project>` tag.
+
+### Please install OkHttp for weather
+
+Press *File* and then *Project Structure*.
+Click on *Libraries*, and then *New Project Library* (the small green plus symbol).
+Choose *From Maven* and type
+`com.squareup.okhttp3:okhttp:3.2.0`
+into the textbox and click *OK*.
