@@ -31,7 +31,7 @@
                      <children>
                         <Group>
                            <children>
-                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #2D3047;" />
+                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #60C9F8;" />
                               <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="46.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/speedometer.png" />
@@ -223,7 +223,7 @@
                      <children>
                         <Group>
                            <children>
-                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #2D3047;" />
+                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #60C9F8;" />
                               <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="46.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/speedometer.png" />
