@@ -14,7 +14,7 @@ public class Score implements TripListener {
     private List<CarAction> speedList = new ArrayList<>();
     private List<Double> scores = new ArrayList<>();
     private Double timestamp;
-    private static final double timeInterval=5;
+    private static final double timeInterval=1;
 
     private double calculateScore(List<CarAction> carActions){
         Double avg = carActions.stream().mapToDouble(a -> ((Number) a.getValue()).doubleValue()).sum()/carActions.size();
