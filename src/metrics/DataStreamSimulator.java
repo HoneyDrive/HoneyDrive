@@ -54,6 +54,7 @@ public class DataStreamSimulator implements IActionListener, IDataStreamer
     {
         streaming = true;
         Thread thread = new Thread(this::startStreamingLogic);
+        thread.setDaemon(true);
         thread.start();
     }
 
