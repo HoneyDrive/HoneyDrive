@@ -225,7 +225,7 @@ public class UXController
 
     public void insuranceLimitWarning()
     {
-        if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
+        if (drivingHistory.getDistanceThisYear() >= drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
             driverWarningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
