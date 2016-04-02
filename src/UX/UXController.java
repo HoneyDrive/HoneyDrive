@@ -43,6 +43,7 @@ public class UXController
     // Statistics tab
 
     @FXML private TilePane driverWarningTilePane;
+    @FXML private TilePane driverCommutingTilePane;
     @FXML private ImageView driverWarningImageView;
 
 
@@ -85,6 +86,7 @@ public class UXController
     public void initialize()
     {
         drivingHistory = new DrivingHistory();
+        drivingHistory.generateMockData();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
         newTrip(new Trip());
@@ -120,8 +122,8 @@ public class UXController
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
-            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
-            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesMonthLabel(""+(drivingHistory.getBeeCount()+10));
+            updateStatisticsEarnedBeesTotalLabel(""+(drivingHistory.getBeeCount()+20));
             updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
         }, 300);
 
@@ -202,12 +204,12 @@ public class UXController
 
     public void updateStatisticsDistanceDrivenMonth (String text)
     {
-        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()+11));
     }
 
     public void updateStatisticsDistanceDrivenYear (String text)
     {
-        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()+50));
     }
 
     public void updateStatisticsCommutingDrivenWeek ()
@@ -217,12 +219,12 @@ public class UXController
 
     public void updateStatisticsCommutingDrivenMonth ()
     {
-        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+10));
     }
 
     public void updateStatisticsCommutingDrivenYear ()
     {
-        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+20));
     }
 
     public void setInsuranceLimit()
@@ -273,7 +275,7 @@ public class UXController
         {
             driverFuelConsumedLabel.setTextFill(Color.BLACK);
 
-            driverWarningsLabel.setText("");
+            driverWarningsLabel.setText("No warnings");
             driverWarningImageView.setImage(okHand);
             driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
@@ -293,7 +295,7 @@ public class UXController
         {
             driverDistanceDrivenLabel.setTextFill(Color.BLACK);
 
-            driverWarningsLabel.setText("");
+            driverWarningsLabel.setText("No warnings");
             driverWarningImageView.setImage(okHand);
             driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
@@ -342,14 +344,16 @@ public class UXController
     {
         if (isCommuting)
         {
+            driverCommutingTilePane.setStyle("-fx-background-color:  #8D99AE");
             isCommutingButton.setText("NO");
-            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
+            isCommutingButton.setStyle("-fx-background-color:  #8D99AE; -fx-text-fill: white;");
             isCommuting = !isCommuting;
             trip.setCommuting(false);
         } else
         {
+            driverCommutingTilePane.setStyle("-fx-background-color:  #2B2D42");
             isCommutingButton.setText("YES");
-            isCommutingButton.setStyle("-fx-background-color: #8D99AE; -fx-text-fill: white;");
+            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
             isCommuting = !isCommuting;
             trip.setCommuting(true);
         }

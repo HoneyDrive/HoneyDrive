@@ -80,5 +80,8 @@ public class DrivingHistory {
 	}
 	public double averageFuelPerTrip(){
 		return (history.stream().mapToDouble(Trip::getFuelBurntPer10Km).sum())/history.size();
+	public void generateMockData(){
+		addTrip(new Trip(new Score(5),50,50,5));
+		addTrip(new Trip(new Score(4),60,30,4));
 	}
 }
