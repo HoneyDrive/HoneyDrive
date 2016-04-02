@@ -236,26 +236,18 @@ public class UXController
         drivingHistory.setInsuranceDistance(number);
     }
 
-    public void disableDriverTabIfCommuting()
-    {
-        if (this.trip.getIsCommuting())
-        {
-            driverAnchorPane.setDisable(true);
-        }
-    }
-
     public void updateSmiley() {
         if (trip.getSmileyStatus() == -1) {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #9BC53D");
-            howAmIDrivingResponsLabel.setText("Awesome!");
+            howAmIDrivingResponsLabel.setText("Efficient");
             howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/smiley.png")));
         } else if (trip.getSmileyStatus() == 0) {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #FDE74C");
-            howAmIDrivingResponsLabel.setText("Do better!");
+            howAmIDrivingResponsLabel.setText("Not so efficient!");
             howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/medium.png")));
         } else {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #E55934");
-            howAmIDrivingResponsLabel.setText("Not good!");
+            howAmIDrivingResponsLabel.setText("Aggressive!");
             howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/sad.png")));
         }
     }
@@ -383,13 +375,15 @@ public class UXController
 
     private void writeDriverWarning(String msg)
     {
-        preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill:  #ab4642");
+        preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill:  #E55934");
+        insuranceLimitInput.setStyle("-fx-text-fill: #E55934");
         preferencesWarningLabel.setText(msg);
     }
 
     private void msgLabelPreferencesLooksGood()
     {
         preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill: #a1b56c");
+        insuranceLimitInput.setStyle("-fx-text-fill: black");
         preferencesWarningLabel.setText("Preferences looks good.");
     }
 
