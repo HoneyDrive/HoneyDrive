@@ -25,7 +25,7 @@
                      <children>
                         <Group>
                            <children>
-                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #60C9F8;" />
+                              <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #0E6F8E;" />
                               <ImageView fitHeight="110.0" fitWidth="138.0" layoutX="47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/transport.png" />
@@ -187,6 +187,14 @@
                         </Group>
                         <Group>
                            <children>
+                              <Label fx:id="driverWarningsLabel" alignment="TOP_LEFT" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="No warnings" textFill="#333533">
+                                 <font>
+                                    <Font name="Avenir Roman" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="2.0" />
+                                 </padding>
+                              </Label>
                               <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #8cff1a;" />
                               <ImageView fx:id="driverWarningImageView" fitHeight="90.0" fitWidth="91.0" layoutX="658.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -201,11 +209,6 @@
                                     <Insets left="2.0" />
                                  </padding>
                               </Label>
-                              <TextArea fx:id="driverWarningsTextArea" editable="false" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" stylesheets="@assets/textarea.css" text="No warnings">
-                                 <font>
-                                    <Font name="Avenir Roman" size="14.0" />
-                                 </font>
-                              </TextArea>
                            </children>
                         </Group>
                         <Group layoutX="205.0">
@@ -230,6 +233,29 @@
                                     <Image url="@images/people.png" />
                                  </image>
                               </ImageView>
+                           </children>
+                        </Group>
+                        <Group layoutX="-206.0">
+                           <children>
+                              <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #9BC53D;" />
+                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/bee-insect-outline.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="210.0" layoutY="361.0" prefWidth="200.0" text="HOW AM I DRIVING?" textFill="WHITE">
+                                 <font>
+                                    <Font name="Avenir Roman" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="2.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="driverBeesEarnedLabel1" alignment="CENTER" layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Awesome" textFill="#333533">
+                                 <font>
+                                    <Font name="Avenir Roman" size="27.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Group>
                      </children></AnchorPane>
