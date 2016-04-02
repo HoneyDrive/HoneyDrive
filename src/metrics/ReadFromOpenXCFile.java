@@ -49,7 +49,7 @@ public class ReadFromOpenXCFile implements IDataReader
         Object value = jsonObject.get("value");
         if (value instanceof Number)
         {
-            value = ((Number) jsonObject.get("value")).doubleValue();
+            value = ((Number) value).doubleValue();
         }
         double timestamp = ((Number) jsonObject.get("timestamp")).doubleValue();
 
