@@ -88,7 +88,7 @@ public class UXController
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
         newTrip(new Trip());
-        trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
+        trip.start("src/metrics/TestData/highway-speeding.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
                 CarActionsFilter.odometer);
         drivingHistory.addTrip(this.trip);
         startUIUpdater();
@@ -111,7 +111,7 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
-            //updateWeeklyEarnedBeesLabel();
+
             insuranceLimitWarning();
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
