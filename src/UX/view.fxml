@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -21,7 +15,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -240,18 +234,18 @@
               <content>
                 <AnchorPane fx:id="statisticsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
-                        <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="175.0" style="-fx-background-color: #FF9B42;" />
-                        <Label fx:id="weeklyEarnedBeesLabel" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="95.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #FF9B42;" />
+                        <Label fx:id="statisticsBeesEarnedWeek" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="53.0" layoutY="210.0" text="this week">
+                        <Label layoutX="51.0" layoutY="210.0" text="this week">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="110.0" fitWidth="108.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="110.0" fitWidth="108.0" layoutX="39.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/bee-insect-outline.png" />
                            </image>
@@ -261,13 +255,13 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <TilePane layoutX="185.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #C9CBA3;" />
-                        <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="223.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                        <TilePane layoutX="190.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #C9CBA3;" />
+                        <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="220.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/road-with-broken-line.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="totalDistanceDrivenLabel1" alignment="TOP_CENTER" layoutX="185.0" layoutY="160.0" prefHeight="95.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsDistanceDrivenWeek" alignment="TOP_CENTER" layoutX="190.0" layoutY="160.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
@@ -277,17 +271,17 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="weeklyEarnedBeesLabel1" alignment="TOP_CENTER" layoutX="5.0" layoutY="254.0" prefHeight="95.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsBeesEarnedMonth" alignment="TOP_CENTER" layoutX="5.0" layoutY="254.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="45.0" layoutY="305.0" text="this month">
+                        <Label layoutX="44.0" layoutY="305.0" text="this month">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="weeklyEarnedBeesLabel11" alignment="TOP_CENTER" layoutX="5.0" layoutY="349.0" prefHeight="95.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsBeesEarnedTotal" alignment="TOP_CENTER" layoutX="5.0" layoutY="349.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
@@ -297,12 +291,12 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalDistanceDrivenLabel11" alignment="TOP_CENTER" layoutX="185.0" layoutY="254.0" prefHeight="95.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsDistanceDrivenMonth" alignment="TOP_CENTER" layoutX="190.0" layoutY="254.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalDistanceDrivenLabel111" alignment="TOP_CENTER" layoutX="185.0" layoutY="349.0" prefHeight="95.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsDistanceDrivenYear" alignment="TOP_CENTER" layoutX="190.0" layoutY="349.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
@@ -312,12 +306,12 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="221.0" layoutY="392.0" text="km this month">
+                        <Label layoutX="231.0" layoutY="392.0" text="km this year">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="189.0" layoutY="138.0" text="DISTANCE DRIVEN" textFill="WHITE">
+                        <Label layoutX="193.0" layoutY="138.0" text="DISTANCE DRIVEN" textFill="WHITE">
                            <font>
                               <Font name="Avenir Roman" size="15.0" />
                            </font>

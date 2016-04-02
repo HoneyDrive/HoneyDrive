@@ -23,8 +23,15 @@ public class UXController
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
     @FXML private Label preferencesWarningLabel;
-    @FXML private Label weeklyEarnedBeesLabel;
-    @FXML private Label driverEarnedBeesLabel;
+
+    @FXML private Label statisticsDistanceDrivenWeek;
+    @FXML private Label statisticsDistanceDrivenMonth;
+    @FXML private Label statisticsDistanceDrivenYear;
+
+    @FXML private Label statisticsBeesEarnedWeek;
+    @FXML private Label statisticsBeesEarnedMonth;
+    @FXML private Label statisticsBeesEarnedTotal;
+
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea driverWarningsTextArea;
 
@@ -124,9 +131,34 @@ public class UXController
 //        driverEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
     }
 
-    public void updateWeeklyEarnedBeesLabel()
+    public void updateStatisticsEarnedBeesWeekLabel(String text)
     {
-//        weeklyEarnedBeesLabel.setText(); //TODO: Legg til bier i WeeklyTripLabel
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsEarnedBeesMonthLabel(String text)
+    {
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsEarnedBeesTotalLabel(String text)
+    {
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsDistanceDrivenWeek (String text)
+    {
+        statisticsDistanceDrivenWeek.setText(text);
+    }
+
+    public void updateStatisticsDistanceDrivenMonth (String text)
+    {
+        statisticsDistanceDrivenWeek.setText(text);
+    }
+
+    public void updateStatisticsDistanceDrivenYear (String text)
+    {
+        statisticsDistanceDrivenWeek.setText(text);
     }
 
     public void setInsuranceLimit()
