@@ -23,8 +23,15 @@ public class UXController
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
     @FXML private Label preferencesWarningLabel;
-    @FXML private Label weeklyEarnedBeesLabel;
-    @FXML private Label driverEarnedBeesLabel;
+
+    @FXML private Label statisticsDistanceDrivenWeek;
+    @FXML private Label statisticsDistanceDrivenMonth;
+    @FXML private Label statisticsDistanceDrivenYear;
+
+    @FXML private Label statisticsBeesEarnedWeek;
+    @FXML private Label statisticsBeesEarnedMonth;
+    @FXML private Label statisticsBeesEarnedTotal;
+
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea driverWarningsTextArea;
 
@@ -53,12 +60,21 @@ public class UXController
         drivingHistory = new DrivingHistory();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
-
         newTrip(new Trip());
         trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
                 CarActionsFilter.odometer);
-
+        drivingHistory.addTrip(this.trip);
         startUIUpdater();
+    }
+
+    public Trip getTrip()
+    {
+        return this.trip;
+    }
+
+    public DrivingHistory getDrivingHistory()
+    {
+        return this.drivingHistory;
     }
 
     private void startUIUpdater()
@@ -68,7 +84,12 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
-            updateWeeklyEarnedBeesLabel();
+            //updateWeeklyEarnedBeesLabel();
+            insuranceLimitWarning();
+            updateStatisticsDistanceDrivenYear("");
+            updateStatisticsDistanceDrivenMonth("");
+            updateStatisticsDistanceDrivenWeek("");
+
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -113,7 +134,7 @@ public class UXController
 
     public void updateTotalDistanceDrivenLabel()
     {
-        driverDistanceDrivenLabel.setText(String.format("%.1f", drivingHistory.getDistanceThisYear() + trip.getTotalDistance()));
+        driverDistanceDrivenLabel.setText(String.format("%.1f", trip.getTotalDistance()));
     }
 
     public void updateWarningsLabel(String warning)
@@ -126,9 +147,34 @@ public class UXController
 //        driverEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
     }
 
-    public void updateWeeklyEarnedBeesLabel()
+    public void updateStatisticsEarnedBeesWeekLabel(String text)
     {
-//        weeklyEarnedBeesLabel.setText(); //TODO: Legg til bier i WeeklyTripLabel
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsEarnedBeesMonthLabel(String text)
+    {
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsEarnedBeesTotalLabel(String text)
+    {
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsDistanceDrivenWeek (String text)
+    {
+        statisticsDistanceDrivenWeek.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+    }
+
+    public void updateStatisticsDistanceDrivenMonth (String text)
+    {
+        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+    }
+
+    public void updateStatisticsDistanceDrivenYear (String text)
+    {
+        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
     public void setInsuranceLimit()
