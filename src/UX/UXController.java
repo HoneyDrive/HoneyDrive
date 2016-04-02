@@ -221,6 +221,7 @@ public class UXController
             driverFuelConsumedLabel.setTextFill(Color.RED);
             driverWarningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
             driverWarningImageView.setImage(warningSign);
+            driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
     }
 
@@ -230,6 +231,13 @@ public class UXController
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
             driverWarningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
+        }
+        else
+        {
+            driverDistanceDrivenLabel.setTextFill(Color.BLACK);
+            driverWarningsTextArea.setText("");
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
+            driverWarningImageView.setImage(okHand);
         }
     }
 
