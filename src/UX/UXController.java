@@ -118,6 +118,9 @@ public class UXController
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
+            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
