@@ -127,13 +127,13 @@ public class UXController
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
-            updateStatisticsEarnedBeesMonthLabel(""+(drivingHistory.getBeeCount()+10));
-            updateStatisticsEarnedBeesTotalLabel(""+(drivingHistory.getBeeCount()+20));
-            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
-            updateStatisticsAverages();
+            updateStatisticsEarnedBeesMonthLabel("" + (drivingHistory.getBeeCount() + 10));
+            updateStatisticsEarnedBeesTotalLabel("" + (drivingHistory.getBeeCount() + 20));
+            updateStatisticsEarnedBeesWeekLabel("" + drivingHistory.getBeeCount());
+
         }, 300);
 
-        startThread(() -> updateWeather(), 1000 * 30);
+        startThread(() -> {updateWeather(); updateStatisticsAverages();}, 1000 * 30);
     }
 
     private void startThread(Runnable runnable, long millis)
@@ -225,17 +225,17 @@ public class UXController
 
     public void updateStatisticsCommutingDrivenMonth ()
     {
-        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+10));
+        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear() + 10));
     }
 
     public void updateStatisticsCommutingDrivenYear ()
     {
         statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+20));
     }
-    public void updateStatisticsAverages(){
-        statisticsAverageBees.setText(""+drivingHistory.averageBeePerTrip());
-        statisticsAverageFuel.setText(""+drivingHistory.averageFuelPerTrip());
-        statisticsAverageKm.setText(""+drivingHistory.averageKmPerTrip());
+    public void updateStatisticsAverages() {
+        statisticsAverageBees.setText("" + drivingHistory.averageBeePerTrip());
+        statisticsAverageFuel.setText("" + drivingHistory.averageFuelPerTrip());
+        statisticsAverageKm.setText("" + drivingHistory.averageKmPerTrip());
     }
 
     public void setInsuranceLimit()

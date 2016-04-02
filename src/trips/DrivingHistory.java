@@ -79,8 +79,7 @@ public class DrivingHistory {
 		return ((int) history.stream().mapToDouble(Trip::getTotalDistance).sum())/history.size();
 	}
 	public double averageFuelPerTrip() {
-		List<Trip> temp = history.subList(0, history.size()-2);
-		return (temp.stream().mapToDouble(Trip::getFuelBurntPer10Km).sum()) / temp.size();
+		return (history.stream().mapToDouble(Trip::getFuelBurntPer10Km).sum()) / history.size();
 	}
 	public void generateMockData(){
 		addTrip(new Trip(new Score(5),50,50,5));
