@@ -58,12 +58,21 @@ public class UXController
         drivingHistory = new DrivingHistory();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
-
         newTrip(new Trip());
         trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
                 CarActionsFilter.odometer);
-
+        drivingHistory.addTrip(this.trip);
         startUIUpdater();
+    }
+
+    public Trip getTrip()
+    {
+        return this.trip;
+    }
+
+    public DrivingHistory getDrivingHistory()
+    {
+        return this.drivingHistory;
     }
 
     private void startUIUpdater()
@@ -73,6 +82,11 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
+            //updateWeeklyEarnedBeesLabel();
+            insuranceLimitWarning();
+            updateStatisticsDistanceDrivenYear("");
+            updateStatisticsDistanceDrivenMonth("");
+            updateStatisticsDistanceDrivenWeek("");
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -117,7 +131,7 @@ public class UXController
 
     public void updateTotalDistanceDrivenLabel()
     {
-        driverDistanceDrivenLabel.setText(String.format("%.1f", drivingHistory.getDistanceThisYear() + trip.getTotalDistance()));
+        driverDistanceDrivenLabel.setText(String.format("%.1f", trip.getTotalDistance()));
     }
 
     public void updateWarningsLabel(String warning)
@@ -147,17 +161,17 @@ public class UXController
 
     public void updateStatisticsDistanceDrivenWeek (String text)
     {
-        statisticsDistanceDrivenWeek.setText(text);
+        statisticsDistanceDrivenWeek.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
     public void updateStatisticsDistanceDrivenMonth (String text)
     {
-        statisticsDistanceDrivenMonth.setText(text);
+        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
     public void updateStatisticsDistanceDrivenYear (String text)
     {
-        statisticsDistanceDrivenWeek.setText(text);
+        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
     public void setInsuranceLimit()
