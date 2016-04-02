@@ -113,7 +113,7 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
-            //updateWeeklyEarnedBeesLabel();
+
             insuranceLimitWarning();
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
