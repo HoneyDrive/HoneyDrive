@@ -70,4 +70,15 @@ public class DrivingHistory {
 		return history.stream().mapToInt(a -> a.getBeeCount()).sum();
 	}
 
+
+	public int averageBeePerTrip(){
+		return (history.stream().mapToInt(Trip::getBeeCount).sum())/history.size();
+	}
+
+	public int averageKmPerTrip(){
+		return ((int) history.stream().mapToDouble(Trip::getTotalDistance).sum())/history.size();
+	}
+	public double averageFuelPerTrip(){
+		return (history.stream().mapToDouble(Trip::getFuelBurntPer10Km).sum())/history.size();
+	}
 }
