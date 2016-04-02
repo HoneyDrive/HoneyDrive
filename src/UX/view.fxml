@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -14,7 +22,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -264,7 +272,7 @@
               <content>
                 <AnchorPane fx:id="statisticsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
-                        <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="193.0" style="-fx-background-color: #FF9B42;" />
+                        <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="193.0" style="-fx-background-color: #EC9F05;" />
                         <Label fx:id="statisticsBeesEarnedWeek" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="95.0" prefWidth="193.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
@@ -275,7 +283,7 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="110.0" fitWidth="108.0" layoutX="47.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/bee-insect-outline.png" />
                            </image>
@@ -286,7 +294,7 @@
                            </font>
                         </Label>
                         <TilePane layoutX="203.0" layoutY="5.0" prefHeight="155.0" prefWidth="194.0" style="-fx-background-color: #C9CBA3;" />
-                        <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="241.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="241.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/road-with-broken-line.png" />
                            </image>
@@ -382,7 +390,7 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="446.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="433.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/people.png" />
                            </image>
@@ -423,7 +431,7 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="645.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="643.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/head.png" />
                            </image>
