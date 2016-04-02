@@ -29,8 +29,8 @@ public class UXController
     @FXML private TilePane driverWarningTilePane;
     @FXML private ImageView driverWarningImageView;
 
-    Image okHand = new Image(UXController.class.getResourceAsStream("images/okHand"));
-    Image warningSign = new Image(UXController.class.getResourceAsStream("images/signs"));
+    Image warningSign = new Image(UXController.class.getResourceAsStream("images/okHand.png"));
+//    Image okHand = new Image(CurrentWeather.class.getResourceAsStream("images/okHand.png"));
 
     @FXML private Label statisticsDistanceDrivenWeek;
     @FXML private Label statisticsDistanceDrivenMonth;
@@ -206,7 +206,7 @@ public class UXController
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
             driverWarningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
-            driverWarningImageView.setImage(okHand);
+            driverWarningImageView.setImage(warningSign);
         }
     }
 
