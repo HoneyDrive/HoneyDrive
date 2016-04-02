@@ -29,7 +29,7 @@ public class UXController
     @FXML private Label driverSpeedLabel;
     @FXML private Label driverBeesEarnedLabel;
 
-    @FXML private TextArea driverWarningsTextArea;
+    @FXML private Label driverWarningsLabel;
 
     @FXML private Button isCommutingButton;
     private boolean isCommuting = false;
@@ -157,7 +157,7 @@ public class UXController
 
     public void updateWarningsLabel(String warning)
     {
-        driverWarningsTextArea.setText(warning);
+        driverWarningsLabel.setText(warning);
     }
 
     public void updateTripEarnedBeesLabel()
@@ -218,7 +218,7 @@ public class UXController
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg())
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
-            driverWarningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
             driverWarningImageView.setImage(okHand);
         }
     }
@@ -228,7 +228,7 @@ public class UXController
         if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
-            driverWarningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
+            driverWarningsLabel.setText(totalDistanceIsAboveInsuranceLimitWarning);
         }
     }
 
