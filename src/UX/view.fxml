@@ -168,8 +168,12 @@
                         <Group>
                            <children>
                               <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #FF9B42;" />
+<<<<<<< HEAD
 
                               <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="264.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+=======
+                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> master
 
                                  <image>
                                     <Image url="@images/bee-insect-outline.png" />
