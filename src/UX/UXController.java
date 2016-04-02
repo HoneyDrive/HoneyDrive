@@ -7,8 +7,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import metrics.CarActionsFilter;
 import org.json.JSONException;
@@ -19,33 +21,51 @@ import java.io.IOException;
 
 public class UXController
 {
+
+    // Driver tab
+
     @FXML private Label driverDistanceDrivenLabel;
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
-    @FXML private Label preferencesWarningLabel;
+    @FXML private Label driverBeesEarnedLabel;
+
+    @FXML private Label driverWarningsLabel;
+
+    @FXML private Button isCommutingButton;
+    private boolean isCommuting = false;
+
+    @FXML private AnchorPane driverAnchorPane;
+
+    // Statistics tab
+
+    @FXML private TilePane driverWarningTilePane;
+    @FXML private ImageView driverWarningImageView;
+
+
+    Image okHand = new Image(UXController.class.getResourceAsStream("images/okHand.png"));
+    Image warningSign = new Image(UXController.class.getResourceAsStream("images/signs.png"));
 
     @FXML private Label statisticsDistanceDrivenWeek;
     @FXML private Label statisticsDistanceDrivenMonth;
     @FXML private Label statisticsDistanceDrivenYear;
-
     @FXML private Label statisticsBeesEarnedWeek;
     @FXML private Label statisticsBeesEarnedMonth;
     @FXML private Label statisticsBeesEarnedTotal;
 
-    @FXML private TextField insuranceLimitInput;
-    @FXML private TextArea driverWarningsTextArea;
-
-    @FXML private AnchorPane driverAnchorPane;
-    @FXML private AnchorPane commuterAnchorPane;
     @FXML private AnchorPane statisticsAnchorPane;
-    @FXML private AnchorPane preferencesAnchorPane;
 
-    @FXML private Tab driverTab;
-    @FXML private Tab commuterTab;
-    @FXML private TabPane tabPane;
+    // Preferences tab
+
+    @FXML private Label preferencesWarningLabel;
+
+    @FXML private TextField insuranceLimitInput;
+
+    @FXML private AnchorPane preferencesAnchorPane;
 
     @FXML private Button nightModeButton;
     private boolean switchedOn = false;
+
+    // Warnings
 
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
     private final String fuelConsumptionIsAboveAverageWarning = "Fuel consumption \nis above average!";
@@ -89,7 +109,6 @@ public class UXController
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
             updateStatisticsDistanceDrivenWeek("");
-
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -139,12 +158,12 @@ public class UXController
 
     public void updateWarningsLabel(String warning)
     {
-        driverWarningsTextArea.setText(warning);
+        driverWarningsLabel.setText(warning);
     }
 
     public void updateTripEarnedBeesLabel()
     {
-//        driverEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
+        driverBeesEarnedLabel.setText("TEST"); //TODO: Legg til bier i TripLabel
     }
 
     public void updateStatisticsEarnedBeesWeekLabel(String text)
@@ -200,16 +219,26 @@ public class UXController
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg())
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
-            driverWarningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningImageView.setImage(okHand);
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningImageView.setImage(warningSign);
+            driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
     }
 
     public void insuranceLimitWarning()
     {
-        if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
+        if (drivingHistory.getDistanceThisYear() >= drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
-            driverWarningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
+            driverWarningsLabel.setText(totalDistanceIsAboveInsuranceLimitWarning);
+        }
+        else
+        {
+            driverDistanceDrivenLabel.setTextFill(Color.BLACK);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
+            driverWarningImageView.setImage(okHand);
         }
     }
 
@@ -251,12 +280,29 @@ public class UXController
         }
     }
 
+    @FXML
+    public void isCommutingButtonClicked(ActionEvent event)
+    {
+        if (isCommuting)
+        {
+            isCommutingButton.setText("NO");
+            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
+            isCommuting = !isCommuting;
+            trip.setCommuting(false);
+        } else
+        {
+            isCommutingButton.setText("YES");
+            isCommutingButton.setStyle("-fx-background-color: #8D99AE; -fx-text-fill: white;");
+            isCommuting = !isCommuting;
+            trip.setCommuting(true);
+        }
+    }
+
     // ---------------------------------------------Help Methods---------------------------------------------
 
     private void toggleNightModeOn()
     {
         driverAnchorPane.setStyle("-fx-background-color: grey");
-        commuterAnchorPane.setStyle("-fx-background-color: grey");
         statisticsAnchorPane.setStyle("-fx-background-color: grey");
         preferencesAnchorPane.setStyle("-fx-background-color: grey");
     }
@@ -264,7 +310,6 @@ public class UXController
     private void toggleNightModeOff()
     {
         driverAnchorPane.setStyle("-fx-background-color: #F8F5F3");
-        commuterAnchorPane.setStyle("-fx-background-color: #F8F5F3");
         statisticsAnchorPane.setStyle("-fx-background-color: #F8F5F3");
         preferencesAnchorPane.setStyle("-fx-background-color: #F8F5F3");
     }
@@ -291,7 +336,6 @@ public class UXController
     // ---------------------------------------------Weather---------------------------------------------
 
     private CurrentWeatherController currentWeatherController = new CurrentWeatherController();
-    private CurrentWeather ntnuTrondheim;
 
     // Driver tab
 
@@ -302,21 +346,11 @@ public class UXController
     @FXML private Label driverWeatherPrecipChanceLabel;
     @FXML private ImageView driverWeatherIconImageView;
 
-    // Commuter tab
-
-    @FXML private Label commuterWeatherTimeLabel;
-    @FXML private Label commuterWeatherTemperatureLabel;
-    @FXML private Label commuterWeatherSummaryLabel;
-    @FXML private Label commuterWeatherHumidityLabel;
-    @FXML private Label commuterWeatherPrecipChanceLabel;
-    @FXML private ImageView commuterWeatherIconImageView;
-
-
     private void updateWeather()
     {
         try
         {
-            ntnuTrondheim = currentWeatherController.getCurrentDetails();
+            CurrentWeather ntnuTrondheim = currentWeatherController.getCurrentDetails();
 
             driverWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
             driverWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
@@ -326,15 +360,6 @@ public class UXController
             driverWeatherIconImageView.setFitHeight(30);
             driverWeatherIconImageView.setFitWidth(30);
             driverWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
-
-            commuterWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
-            commuterWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
-            commuterWeatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
-            commuterWeatherPrecipChanceLabel.setText(String.format("%.0f", ntnuTrondheim.getPrecipChance()) + " %");
-            commuterWeatherSummaryLabel.setText(ntnuTrondheim.getSummary());
-            commuterWeatherIconImageView.setFitHeight(30);
-            commuterWeatherIconImageView.setFitWidth(30);
-            commuterWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
         } catch (IOException | JSONException e)
         {
             e.printStackTrace();
