@@ -89,7 +89,7 @@ public class UXController
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
         newTrip(new Trip());
-        trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
+        trip.start("src/metrics/TestData/aggressive_driving.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
                 CarActionsFilter.odometer);
         drivingHistory.addTrip(this.trip);
         startUIUpdater();
@@ -248,15 +248,15 @@ public class UXController
         if (trip.getSmileyStatus() == -1) {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #9BC53D");
             howAmIDrivingResponsLabel.setText("Awesome!");
-            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Happy-bee.png")));
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/smiley.png")));
         } else if (trip.getSmileyStatus() == 0) {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #FDE74C");
             howAmIDrivingResponsLabel.setText("Do better!");
-            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Medium-bee.png")));
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/medium.png")));
         } else {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #E55934");
             howAmIDrivingResponsLabel.setText("Not good!");
-            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Sad-bee.png")));
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/sad.png")));
         }
     }
 
