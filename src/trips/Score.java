@@ -3,10 +3,7 @@ package trips;
 import metrics.CarAction;
 import metrics.CarActionsFilter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Score implements TripListener {
 
@@ -15,6 +12,7 @@ public class Score implements TripListener {
     private List<Double> scores = new ArrayList<>();
     private Double timestamp;
     private static final double timeInterval=1;
+    private int beeCount;
 
     private double calculateScore(List<CarAction> carActions){
         Double avg = carActions.stream().mapToDouble(a -> ((Number) a.getValue()).doubleValue()).sum()/carActions.size();
@@ -36,16 +34,59 @@ public class Score implements TripListener {
             timestamp = carAction.getTimestamp();
         }
         if(carAction.getType() == CarActionsFilter.vehicle_speed){
+            speedList.add(carAction);
             if(carAction.getTimestamp()-timestamp >= timeInterval){
-                Double calcScore = calculateScore(speedList);
-                //System.out.println("Timestamp: " + Double.toString(carAction.getTimestamp()-firstTimeStamp) + " : " + calculateScore(speedList));
-                speedList = new ArrayList<>();
-                scoresMap.put(carAction.getTimestamp()-firstTimeStamp,calcScore);
-            }
-            else{
-                speedList.add(carAction);
+                addScore(carAction);
             }
         }
+    }
+    private Double lastScore = -1.0;
+    private Double stopTimeStamp;
+    private static final Double idlingTimeInterval = 30.0;
+    private void addScore(CarAction carAction){
+        Double calcScore;
+        if(getSumOfSpeedList() < 1){
+            if(lastScore == -1.0){
+                stopTimeStamp = carAction.getTimestamp();
+                lastScore = 1.0;
+            }
+            if(carAction.getTimestamp()-stopTimeStamp  > idlingTimeInterval ){
+                lastScore += 0.1;
+                calcScore = lastScore;
+                addScore(calcScore,carAction);
+
+            }
+        }else{
+            calcScore = calculateScore(speedList);
+            lastScore = -1.0;
+            addScore(calcScore,carAction);
+        }
+        speedList = new ArrayList<>();
+    }
+
+    private void addScore(Double calcScore,CarAction carAction){
+        calcScore *= 1 + (getSumOfSpeedList()/200);
+        scoresMap.put(carAction.getTimestamp()-firstTimeStamp,calcScore);
+        scores.add(calcScore);
+        checkBeeUpdate(carAction,calcScore);
+        System.out.println("Score:  " + calcScore + " timestamp" + (carAction.getTimestamp()-firstTimeStamp) );
+    }
+
+    private Double beeStartTime;
+    private static final Double scoreThreshold = 10.0;
+    private static final Double beeInterval = 30.0;
+    private void checkBeeUpdate(CarAction carAction,Double score){
+        if(beeStartTime == null || beeStartTime == -1 || score >scoreThreshold){
+            beeStartTime = carAction.getTimestamp();
+        }
+        if(score <= scoreThreshold &&carAction.getTimestamp() - beeStartTime > beeInterval ){
+            System.out.println("BEE!!!!" + (carAction.getTimestamp() - firstTimeStamp));
+            beeCount++;
+            beeStartTime = -1.0;
+        }
+    }
+    private Double getSumOfSpeedList(){
+        return speedList.stream().mapToDouble(a-> (Double) a.getValue()).sum();
     }
 
     public Map<Double,Double> getScoresMap(){
@@ -55,5 +96,9 @@ public class Score implements TripListener {
     public static void main(String[] args) {
         Trip trip = new Trip();
         trip.startWithoutDelay("src/metrics/TestData/data3.json",CarActionsFilter.all);
+    }
+
+    public int getBeeCount() {
+        return beeCount;
     }
 }
