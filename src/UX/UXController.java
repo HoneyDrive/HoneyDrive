@@ -21,10 +21,22 @@ import java.io.IOException;
 
 public class UXController
 {
+
+    // Driver tab
+
     @FXML private Label driverDistanceDrivenLabel;
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
-    @FXML private Label preferencesWarningLabel;
+    @FXML private Label driverBeesEarnedLabel;
+
+    @FXML private TextArea driverWarningsTextArea;
+
+    @FXML private Button isCommutingButton;
+    private boolean isCommuting = false;
+
+    @FXML private AnchorPane driverAnchorPane;
+
+    // Statistics tab
 
     @FXML private TilePane driverWarningTilePane;
     @FXML private ImageView driverWarningImageView;
@@ -35,23 +47,24 @@ public class UXController
     @FXML private Label statisticsDistanceDrivenWeek;
     @FXML private Label statisticsDistanceDrivenMonth;
     @FXML private Label statisticsDistanceDrivenYear;
-
     @FXML private Label statisticsBeesEarnedWeek;
     @FXML private Label statisticsBeesEarnedMonth;
     @FXML private Label statisticsBeesEarnedTotal;
 
-    @FXML private TextField insuranceLimitInput;
-    @FXML private TextArea driverWarningsTextArea;
-
-    @FXML private AnchorPane driverAnchorPane;
     @FXML private AnchorPane statisticsAnchorPane;
+
+    // Preferences tab
+
+    @FXML private Label preferencesWarningLabel;
+
+    @FXML private TextField insuranceLimitInput;
+
     @FXML private AnchorPane preferencesAnchorPane;
 
     @FXML private Button nightModeButton;
     private boolean switchedOn = false;
 
-    @FXML private Button isCommutingButton;
-    private boolean isCommuting = false;
+    // Warnings
 
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
     private final String fuelConsumptionIsAboveAverageWarning = "Fuel consumption \nis above average!";
@@ -149,7 +162,7 @@ public class UXController
 
     public void updateTripEarnedBeesLabel()
     {
-//        driverEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
+        driverBeesEarnedLabel.setText("TEST"); //TODO: Legg til bier i TripLabel
     }
 
     public void updateStatisticsEarnedBeesWeekLabel(String text)

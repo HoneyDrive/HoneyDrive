@@ -118,7 +118,7 @@
                         <Group>
                            <children>
                               <TilePane layoutX="620.0" layoutY="5.0" prefHeight="245.0" prefWidth="175.0" style="-fx-background-color: #A8DADC;" />
-                              <Label fx:id="weatherLocationLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="620.0" layoutY="14.0" prefWidth="175.0" text="Trondheim" textFill="WHITE">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="620.0" layoutY="14.0" prefWidth="175.0" text="Trondheim" textFill="WHITE">
                                  <font>
                                     <Font name="Avenir Roman" size="14.0" />
                                  </font>
@@ -185,7 +185,7 @@
                                     <Insets left="2.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="driverEarnedBeesLabel" alignment="TOP_CENTER" layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                              <Label fx:id="driverBeesEarnedLabel" alignment="TOP_CENTER" layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                                  <font>
                                     <Font name="Avenir Roman" size="27.0" />
                                  </font>
