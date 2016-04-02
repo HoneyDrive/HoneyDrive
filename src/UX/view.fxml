@@ -501,9 +501,9 @@
                               <Font name="Avenir Roman" size="12.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="543.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -10;">
+                        <ImageView fitHeight="216.0" fitWidth="271.0" layoutX="472.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 0;">
                            <image>
-                              <Image url="@images/Happy-bee.png" />
+                              <Image url="@images/beesafe.png" />
                            </image>
                         </ImageView>
                      </children></AnchorPane>
