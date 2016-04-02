@@ -21,7 +21,7 @@ public class GraphMain extends Application {
         IDataReader reader;
 
         primaryStage.show();
-        reader = new ReadFromOpenXCFile("src/metrics/TestData/generated/aggressive.json");
+        reader = new ReadFromOpenXCFile("src/metrics/TestData/data3.json");
         reader.startReading();
     }
 }

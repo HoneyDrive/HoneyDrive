@@ -51,6 +51,9 @@ public class UXController
     @FXML private Label statisticsBeesEarnedWeek;
     @FXML private Label statisticsBeesEarnedMonth;
     @FXML private Label statisticsBeesEarnedTotal;
+    @FXML private Label statisticsCommutingDistanceWeek;
+    @FXML private Label statisticsCommutingDistanceMonth;
+    @FXML private Label statisticsCommutingDistanceYear;
 
     @FXML private AnchorPane statisticsAnchorPane;
 
@@ -109,6 +112,15 @@ public class UXController
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
             updateStatisticsDistanceDrivenWeek("");
+            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesMonthLabel("" + drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesTotalLabel("" + drivingHistory.getBeeCount());
+            updateStatisticsCommutingDrivenMonth();
+            updateStatisticsCommutingDrivenWeek();
+            updateStatisticsCommutingDrivenYear();
+            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -163,7 +175,7 @@ public class UXController
 
     public void updateTripEarnedBeesLabel()
     {
-        driverBeesEarnedLabel.setText("TEST"); //TODO: Legg til bier i TripLabel
+        driverBeesEarnedLabel.setText("" + trip.getBeeCount());
     }
 
     public void updateStatisticsEarnedBeesWeekLabel(String text)
@@ -173,12 +185,12 @@ public class UXController
 
     public void updateStatisticsEarnedBeesMonthLabel(String text)
     {
-        statisticsBeesEarnedWeek.setText(text);
+        statisticsBeesEarnedMonth.setText(text);
     }
 
     public void updateStatisticsEarnedBeesTotalLabel(String text)
     {
-        statisticsBeesEarnedWeek.setText(text);
+        statisticsBeesEarnedTotal.setText(text);
     }
 
     public void updateStatisticsDistanceDrivenWeek (String text)
@@ -194,6 +206,21 @@ public class UXController
     public void updateStatisticsDistanceDrivenYear (String text)
     {
         statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+    }
+
+    public void updateStatisticsCommutingDrivenWeek ()
+    {
+        statisticsCommutingDistanceWeek.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+    }
+
+    public void updateStatisticsCommutingDrivenMonth ()
+    {
+        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+    }
+
+    public void updateStatisticsCommutingDrivenYear ()
+    {
+        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
     }
 
     public void setInsuranceLimit()
@@ -220,8 +247,7 @@ public class UXController
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
             driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
-            driverWarningImageView.setImage(okHand);
-            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
+
             driverWarningImageView.setImage(warningSign);
             driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
