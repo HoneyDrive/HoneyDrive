@@ -70,4 +70,8 @@ public class DrivingHistory {
 		return history.stream().mapToInt(a -> a.getBeeCount()).sum();
 	}
 
+	public void generateMockData(){
+		addTrip(new Trip(new Score(5),50,50,5));
+		addTrip(new Trip(new Score(4),60,30,4));
+	}
 }

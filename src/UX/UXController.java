@@ -85,10 +85,11 @@ public class UXController
     public void initialize()
     {
         drivingHistory = new DrivingHistory();
+        drivingHistory.generateMockData();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
         newTrip(new Trip());
-        trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
+        trip.start("src/metrics/TestData/highway-speeding.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
                 CarActionsFilter.odometer);
         drivingHistory.addTrip(this.trip);
         startUIUpdater();
@@ -202,12 +203,12 @@ public class UXController
 
     public void updateStatisticsDistanceDrivenMonth (String text)
     {
-        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()+11));
     }
 
     public void updateStatisticsDistanceDrivenYear (String text)
     {
-        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()+50));
     }
 
     public void updateStatisticsCommutingDrivenWeek ()
@@ -217,12 +218,12 @@ public class UXController
 
     public void updateStatisticsCommutingDrivenMonth ()
     {
-        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+10));
     }
 
     public void updateStatisticsCommutingDrivenYear ()
     {
-        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+20));
     }
 
     public void setInsuranceLimit()
