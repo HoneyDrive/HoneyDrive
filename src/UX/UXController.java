@@ -41,8 +41,8 @@ public class UXController
     @FXML private TilePane driverWarningTilePane;
     @FXML private ImageView driverWarningImageView;
 
-    Image okHand = new Image(UXController.class.getResourceAsStream("images/okHand"));
-    Image warningSign = new Image(UXController.class.getResourceAsStream("images/signs"));
+    Image okHand = new Image(UXController.class.getResourceAsStream("images/okHand.png"));
+    Image warningSign = new Image(UXController.class.getResourceAsStream("images/signs.png"));
 
     @FXML private Label statisticsDistanceDrivenWeek;
     @FXML private Label statisticsDistanceDrivenMonth;
