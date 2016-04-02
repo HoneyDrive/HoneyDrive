@@ -77,7 +77,6 @@ public class Score implements TripListener {
         scores.add(calcScore);
         checkBeeUpdate(carAction,calcScore);
         setSmileyStatus(calcScore);
-        System.out.println("Score:  " + calcScore + " timestamp" + (carAction.getTimestamp()-firstTimeStamp) );
     }
 
     private void setSmileyStatus(Double score){
@@ -100,7 +99,6 @@ public class Score implements TripListener {
             beeStartTime = carAction.getTimestamp();
         }
         if(score <= scoreThreshold &&carAction.getTimestamp() - beeStartTime > beeInterval ){
-            System.out.println("BEE!!!!" + (carAction.getTimestamp() - firstTimeStamp));
             beeCount++;
             beeStartTime = -1.0;
         }

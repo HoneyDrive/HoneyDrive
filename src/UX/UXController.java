@@ -28,13 +28,17 @@ public class UXController
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
     @FXML private Label driverBeesEarnedLabel;
-
+    @FXML private Label howAmIDrivingResponsLabel;
     @FXML private Label driverWarningsLabel;
 
     @FXML private Button isCommutingButton;
     private boolean isCommuting = false;
 
     @FXML private AnchorPane driverAnchorPane;
+
+    @FXML private TilePane howAmIDrivingTilePane;
+
+    @FXML private ImageView howAmIDrivingImageView;
 
     // Statistics tab
 
@@ -51,6 +55,9 @@ public class UXController
     @FXML private Label statisticsBeesEarnedWeek;
     @FXML private Label statisticsBeesEarnedMonth;
     @FXML private Label statisticsBeesEarnedTotal;
+    @FXML private Label statisticsCommutingDistanceWeek;
+    @FXML private Label statisticsCommutingDistanceMonth;
+    @FXML private Label statisticsCommutingDistanceYear;
 
     @FXML private AnchorPane statisticsAnchorPane;
 
@@ -109,6 +116,13 @@ public class UXController
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
             updateStatisticsDistanceDrivenWeek("");
+            updateSmiley();
+            updateStatisticsCommutingDrivenMonth();
+            updateStatisticsCommutingDrivenWeek();
+            updateStatisticsCommutingDrivenYear();
+            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -163,7 +177,7 @@ public class UXController
 
     public void updateTripEarnedBeesLabel()
     {
-        driverBeesEarnedLabel.setText("TEST"); //TODO: Legg til bier i TripLabel
+        driverBeesEarnedLabel.setText("" + trip.getBeeCount());
     }
 
     public void updateStatisticsEarnedBeesWeekLabel(String text)
@@ -173,12 +187,12 @@ public class UXController
 
     public void updateStatisticsEarnedBeesMonthLabel(String text)
     {
-        statisticsBeesEarnedWeek.setText(text);
+        statisticsBeesEarnedMonth.setText(text);
     }
 
     public void updateStatisticsEarnedBeesTotalLabel(String text)
     {
-        statisticsBeesEarnedWeek.setText(text);
+        statisticsBeesEarnedTotal.setText(text);
     }
 
     public void updateStatisticsDistanceDrivenWeek (String text)
@@ -196,6 +210,21 @@ public class UXController
         statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
+    public void updateStatisticsCommutingDrivenWeek ()
+    {
+        statisticsCommutingDistanceWeek.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+    }
+
+    public void updateStatisticsCommutingDrivenMonth ()
+    {
+        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+    }
+
+    public void updateStatisticsCommutingDrivenYear ()
+    {
+        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+    }
+
     public void setInsuranceLimit()
     {
         drivingHistory.setInsuranceDistance(Long.parseLong(insuranceLimitInput.getText()));
@@ -211,6 +240,22 @@ public class UXController
         if (this.trip.getIsCommuting())
         {
             driverAnchorPane.setDisable(true);
+        }
+    }
+
+    public void updateSmiley() {
+        if (trip.getSmileyStatus() == -1) {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #9BC53D");
+            howAmIDrivingResponsLabel.setText("Awesome!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Happy-bee.png")));
+        } else if (trip.getSmileyStatus() == 0) {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #FDE74C");
+            howAmIDrivingResponsLabel.setText("Do better!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Medium-bee.png")));
+        } else {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #E55934");
+            howAmIDrivingResponsLabel.setText("Not good!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Sad-bee.png")));
         }
     }
 
