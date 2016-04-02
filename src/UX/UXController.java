@@ -219,25 +219,38 @@ public class UXController
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg())
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
-            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
 
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
             driverWarningImageView.setImage(warningSign);
             driverWarningTilePane.setStyle("-fx-background-color:#e55934");
+        }
+        else
+        {
+            driverFuelConsumedLabel.setTextFill(Color.BLACK);
+
+            driverWarningsLabel.setText("");
+            driverWarningImageView.setImage(okHand);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
     }
 
     public void insuranceLimitWarning()
     {
-        if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
+        if (drivingHistory.getDistanceThisYear() >= drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
+
             driverWarningsLabel.setText(totalDistanceIsAboveInsuranceLimitWarning);
+            driverWarningImageView.setImage(warningSign);
+            driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
         else
         {
             driverDistanceDrivenLabel.setTextFill(Color.BLACK);
-            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
+
+            driverWarningsLabel.setText("");
             driverWarningImageView.setImage(okHand);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
     }
 
