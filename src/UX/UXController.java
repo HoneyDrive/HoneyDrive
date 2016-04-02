@@ -1,52 +1,43 @@
 package UX;
 
+import UX.weather.CurrentWeather;
+import UX.weather.CurrentWeatherController;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import metrics.CarActionsFilter;
+import org.json.JSONException;
 import trips.DrivingHistory;
 import trips.Trip;
 
+import java.io.IOException;
+
 public class UXController
 {
-    @FXML
-    private Label totalDistanceDrivenLabel;
-    @FXML
-    private Label fuelConsumedLabel;
-    @FXML
-    private Label speedLabel;
-    @FXML
-    private Label preferencesWarningLabel;
-    @FXML
-    private Label weeklyEarnedBeesLabel;
-    @FXML
-    private Label tripEarnedBeesLabel;
-    @FXML
-    private TextField insuranceLimitInput;
-    @FXML
-    private TextArea warningsTextArea;
+    @FXML private Label driverDistanceDrivenLabel;
+    @FXML private Label driverFuelConsumedLabel;
+    @FXML private Label driverSpeedLabel;
+    @FXML private Label preferencesWarningLabel;
+    @FXML private Label weeklyEarnedBeesLabel;
+    @FXML private Label driverEarnedBeesLabel;
+    @FXML private TextField insuranceLimitInput;
+    @FXML private TextArea driverWarningsTextArea;
 
-    @FXML
-    private AnchorPane driverAnchorPane;
-    @FXML
-    private AnchorPane commuterAnchorPane;
-    @FXML
-    private AnchorPane statisticsAnchorPane;
-    @FXML
-    private AnchorPane preferencesAnchorPane;
+    @FXML private AnchorPane driverAnchorPane;
+    @FXML private AnchorPane commuterAnchorPane;
+    @FXML private AnchorPane statisticsAnchorPane;
+    @FXML private AnchorPane preferencesAnchorPane;
 
-    @FXML
-    private Tab driverTab;
-    @FXML
-    private Tab commuterTab;
-    @FXML
-    private TabPane tabPane;
+    @FXML private Tab driverTab;
+    @FXML private Tab commuterTab;
+    @FXML private TabPane tabPane;
 
-    @FXML
-    private Button nightModeButton;
+    @FXML private Button nightModeButton;
     private boolean switchedOn = false;
 
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
@@ -63,9 +54,43 @@ public class UXController
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
 
-        newTrip(new Trip(this));
+        newTrip(new Trip());
         trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
                 CarActionsFilter.odometer);
+
+        startUIUpdater();
+    }
+
+    private void startUIUpdater()
+    {
+        startThread(() -> {
+            updateFuelUsedLabel();
+            updateSpeedLabel();
+            updateTotalDistanceDrivenLabel();
+            updateTripEarnedBeesLabel();
+            updateWeeklyEarnedBeesLabel();
+        }, 300);
+
+        startThread(() -> updateWeather(), 1000 * 30);
+    }
+
+    private void startThread(Runnable runnable, long millis)
+    {
+        Thread thread = new Thread(() -> {
+            while (true)
+            {
+                Platform.runLater(runnable);
+                try
+                {
+                    Thread.sleep(millis);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public void newTrip(Trip trip)
@@ -78,28 +103,27 @@ public class UXController
 
     public void updateFuelUsedLabel()
     {
-        fuelConsumedLabel.setText(String.format("%.1f", trip.getFuelBurntPer10Km()));
+        driverFuelConsumedLabel.setText(String.format("%.1f", trip.getFuelBurntPer10Km()));
     }
 
     public void updateSpeedLabel()
     {
-        speedLabel.setText(String.format("%.1f", trip.getSpeed()));
+        driverSpeedLabel.setText(String.format("%.1f", trip.getSpeed()));
     }
 
     public void updateTotalDistanceDrivenLabel()
     {
-        totalDistanceDrivenLabel.setText(String.format("%.1f", drivingHistory.getDistanceThisYear() + trip.getTotalDistance()));
+        driverDistanceDrivenLabel.setText(String.format("%.1f", drivingHistory.getDistanceThisYear() + trip.getTotalDistance()));
     }
 
     public void updateWarningsLabel(String warning)
     {
-        warningsTextArea.setText(warning);
+        driverWarningsTextArea.setText(warning);
     }
 
     public void updateTripEarnedBeesLabel()
     {
-
-//        tripEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
+//        driverEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
     }
 
     public void updateWeeklyEarnedBeesLabel()
@@ -129,8 +153,8 @@ public class UXController
     {
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg())
         {
-            fuelConsumedLabel.setTextFill(Color.RED);
-            warningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
+            driverFuelConsumedLabel.setTextFill(Color.RED);
+            driverWarningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
         }
     }
 
@@ -138,8 +162,8 @@ public class UXController
     {
         if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
-            totalDistanceDrivenLabel.setTextFill(Color.RED);
-            warningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
+            driverDistanceDrivenLabel.setTextFill(Color.RED);
+            driverWarningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
         }
     }
 
@@ -148,14 +172,14 @@ public class UXController
     private ChangeListener<? super String> insuranceLimitInputListener = ((observable, oldValue, newValue) -> {
         if (!newValue.matches("\\d+") && !newValue.equals(""))
         {
-            writeWarning(numberValidationWarning);
+            writeDriverWarning(numberValidationWarning);
         } else if (newValue.equals(""))
         {
             msgLabelPreferencesLooksGood();
             setInsuranceLimit(0L);
         } else if (!isInsuranceLimitValid(insuranceLimitInput.getText()))
         {
-            writeWarning(validInsuranceLimitNumber);
+            writeDriverWarning(validInsuranceLimitNumber);
         } else
         {
             setInsuranceLimit();
@@ -178,7 +202,6 @@ public class UXController
             nightModeButton.setStyle("-fx-background-color: green;-fx-text-fill:white;");
             switchedOn = !switchedOn;
             toggleNightModeOn();
-
         }
     }
 
@@ -206,7 +229,8 @@ public class UXController
         return !(limitNumber < 0 || limitNumber > 500000);
     }
 
-    private void writeWarning(String msg)
+
+    private void writeDriverWarning(String msg)
     {
         preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill:  #ab4642");
         preferencesWarningLabel.setText(msg);
@@ -216,5 +240,58 @@ public class UXController
     {
         preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill: #a1b56c");
         preferencesWarningLabel.setText("Preferences looks good.");
+    }
+
+    // ---------------------------------------------Weather---------------------------------------------
+
+    private CurrentWeatherController currentWeatherController = new CurrentWeatherController();
+    private CurrentWeather ntnuTrondheim;
+
+    // Driver tab
+
+    @FXML private Label driverWeatherTimeLabel;
+    @FXML private Label driverWeatherTemperatureLabel;
+    @FXML private Label driverWeatherSummaryLabel;
+    @FXML private Label driverWeatherHumidityLabel;
+    @FXML private Label driverWeatherPrecipChanceLabel;
+    @FXML private ImageView driverWeatherIconImageView;
+
+    // Commuter tab
+
+    @FXML private Label commuterWeatherTimeLabel;
+    @FXML private Label commuterWeatherTemperatureLabel;
+    @FXML private Label commuterWeatherSummaryLabel;
+    @FXML private Label commuterWeatherHumidityLabel;
+    @FXML private Label commuterWeatherPrecipChanceLabel;
+    @FXML private ImageView commuterWeatherIconImageView;
+
+
+    private void updateWeather()
+    {
+        try
+        {
+            ntnuTrondheim = currentWeatherController.getCurrentDetails();
+
+            driverWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
+            driverWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
+            driverWeatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
+            driverWeatherPrecipChanceLabel.setText(String.format("%.0f", ntnuTrondheim.getPrecipChance()) + " %");
+            driverWeatherSummaryLabel.setText(ntnuTrondheim.getSummary());
+            driverWeatherIconImageView.setFitHeight(30);
+            driverWeatherIconImageView.setFitWidth(30);
+            driverWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
+
+            commuterWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
+            commuterWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
+            commuterWeatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
+            commuterWeatherPrecipChanceLabel.setText(String.format("%.0f", ntnuTrondheim.getPrecipChance()) + " %");
+            commuterWeatherSummaryLabel.setText(ntnuTrondheim.getSummary());
+            commuterWeatherIconImageView.setFitHeight(30);
+            commuterWeatherIconImageView.setFitWidth(30);
+            commuterWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
+        } catch (IOException | JSONException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

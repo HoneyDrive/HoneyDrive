@@ -1,7 +1,5 @@
 package trips;
 
-import UX.UXController;
-import javafx.application.Platform;
 import metrics.*;
 
 import java.util.*;
@@ -10,7 +8,7 @@ public class Trip implements IActionListener
 {
     private static final int MAX_SPEED_DATA = 30;
 
-    private UXController controller;
+    private Score score;
 
     private IDataStreamer streamer;
     private IDataReader reader;
@@ -44,12 +42,7 @@ public class Trip implements IActionListener
         timestamp = 0;
         speedCounter = 0;
         speedData = new ArrayList<>();
-    }
-
-    public Trip(UXController controller)
-    {
-        this();
-        this.controller = controller;
+        score = new Score();
     }
 
     public void start(String filepath, CarActionsFilter... filter)
@@ -88,10 +81,10 @@ public class Trip implements IActionListener
         switch (action.getType())
         {
             case fuel_consumed_since_restart:
-                fuelUsed = ((Number) action.getValue()).doubleValue();
+                fuelUsed = (double) action.getValue();
                 break;
             case vehicle_speed:
-                speed = ((Number) action.getValue()).doubleValue();
+                speed = (double) action.getValue();
                 timestamp = action.getTimestamp();
                 speedData.add(speedCounter, new ArrayList<>(Arrays.asList(speed, timestamp)));
                 speedCounter++;
@@ -103,10 +96,11 @@ public class Trip implements IActionListener
             case odometer:
                 if (lastOdometerCount == -1) // First value
                 {
-                    lastOdometerCount = ((Number) action.getValue()).doubleValue();
+                    lastOdometerCount = (double) action.getValue();
                 } else
                 {
-                    double value = ((Number) action.getValue()).doubleValue();
+                    double value = (double) action.getValue();
+
                     totalDistance += value - lastOdometerCount;
                     if (isCommuting)
                     {
@@ -119,28 +113,19 @@ public class Trip implements IActionListener
                 // Do nothing
                 break;
         }
-
-        // Update GUI every 0.25s
-        long time = System.currentTimeMillis();
-        if (time - lastUpdate > 250)
-        {
-            lastUpdate = time;
-            Platform.runLater(() -> {
-                controller.updateSpeedLabel();
-                controller.updateTotalDistanceDrivenLabel();
-                controller.updateFuelUsedLabel();
-            });
-        }
     }
 
     @Override
     public void newCarAction(CarAction action)
     {
+        score.newCarAction(action);
+
         if (action.getType() == CarActionsFilter.fuel_consumed_since_restart)
         {
-            fuelUsed += (Long) action.getValue();
+            fuelUsed += (Double) action.getValue();
         } else if (action.getType() == CarActionsFilter.fuel_consumed_since_restart)
         {
+
             speed = (double) action.getValue();
             timestamp = action.getTimestamp();
             speedData.add(speedCounter, new ArrayList<>(Arrays.asList(speed, timestamp)));
@@ -149,11 +134,12 @@ public class Trip implements IActionListener
             {
                 speedCounter = 0;
             }
-        } else
+        } else if (action.getType() == CarActionsFilter.odometer)
         {
             if (lastOdometerCount == 0)
             {
-                lastOdometerCount = (Long) action.getValue();
+                lastOdometerCount = (double) action.getValue();
+
                 totalDistance += lastOdometerCount;
                 if (isCommuting)
                 {
@@ -161,11 +147,12 @@ public class Trip implements IActionListener
                 }
             } else if (totalDistance == 0 && lastOdometerCount == -1)
             {
-                lastOdometerCount = (Long) action.getValue();
+                lastOdometerCount = (double) action.getValue();
 
             } else
             {
-                long value = (Long) action.getValue();
+                double value = (double) action.getValue();
+
                 totalDistance += value - lastOdometerCount;
                 if (isCommuting)
                 {
