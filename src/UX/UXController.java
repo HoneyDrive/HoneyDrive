@@ -152,7 +152,7 @@ public class UXController
 
     public void updateStatisticsDistanceDrivenMonth (String text)
     {
-        statisticsDistanceDrivenWeek.setText(text);
+        statisticsDistanceDrivenMonth.setText(text);
     }
 
     public void updateStatisticsDistanceDrivenYear (String text)
