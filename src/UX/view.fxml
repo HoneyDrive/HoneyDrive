@@ -373,7 +373,7 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="412.0" layoutY="392.0" text="km this year">
+                        <Label layoutX="660.0" layoutY="394.0" text="L/10 km ">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
