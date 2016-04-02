@@ -69,6 +69,13 @@ public class UXController
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
             updateWeeklyEarnedBeesLabel();
+            if (trip.getSpeed() > 30)
+            {
+                updateWarningsLabel("Slow Down!!!");
+            } else
+            {
+                updateWarningsLabel("No warnings!");
+            }
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
