@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -14,7 +23,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -188,13 +197,13 @@
                            <children>
                               <Label fx:id="driverWarningsLabel" alignment="TOP_LEFT" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="No warnings" textFill="#333533">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="Avenir Roman" size="15.0" />
                                  </font>
                                  <padding>
                                     <Insets left="2.0" />
                                  </padding>
                               </Label>
-                              <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #9bc53d;" />
+                              <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #8cff1a;" />
                               <ImageView fx:id="driverWarningImageView" fitHeight="90.0" fitWidth="91.0" layoutX="658.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/okHand.png" />
@@ -239,7 +248,7 @@
                               <TilePane fx:id="howAmIDrivingTilePane" layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #9BC53D;" />
                               <ImageView fx:id="howAmIDrivingImageView" fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/bee-insect-outline.png" />
+                                    <Image url="@images/Happy-bee.png" />
                                  </image>
                               </ImageView>
                               <Label layoutX="210.0" layoutY="361.0" prefWidth="200.0" text="HOW AM I DRIVING?" textFill="WHITE">
@@ -346,7 +355,7 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <TilePane layoutX="376.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #8D99AE;" />
+                        <TilePane layoutX="376.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #C9CBA3;" />
                         <Label fx:id="statisticsCommutingDistanceWeek" alignment="TOP_CENTER" layoutX="376.0" layoutY="161.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
@@ -382,11 +391,6 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="112.0" fitWidth="106.0" layoutX="412.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/people.png" />
-                           </image>
-                        </ImageView>
                      </children></AnchorPane>
               </content>
             </Tab>
