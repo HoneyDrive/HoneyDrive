@@ -112,9 +112,6 @@ public class UXController
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
             updateStatisticsDistanceDrivenWeek("");
-            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
-            updateStatisticsEarnedBeesMonthLabel("" + drivingHistory.getBeeCount());
-            updateStatisticsEarnedBeesTotalLabel("" + drivingHistory.getBeeCount());
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
