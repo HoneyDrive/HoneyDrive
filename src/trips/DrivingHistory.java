@@ -24,8 +24,8 @@ public class DrivingHistory {
 		}
 	}
 	
-	public double getDistanceThisYear(){
-		return distanceThisYear;
+	public long getDistanceThisYear(){
+		return (long) (history.stream().mapToDouble(Trip::getTotalDistance).sum());
 	}
 
 
@@ -59,10 +59,10 @@ public class DrivingHistory {
 		this.insuranceDistance=insuranceDistance;
 	}
 	public double getAverageDistance(){
-		return distanceThisYear/history.size();
+		return getDistanceThisYear()/history.size();
 	}
-	public double getCommutingDistanceThisYear() {
-		return commutingDistanceThisYear;
+	public long getCommutingDistanceThisYear() {
+		return (long) history.stream().mapToDouble(Trip::getCommutingDistance).sum();
 	}
 	public long getInsuranceDistance() {
 		return this.insuranceDistance;

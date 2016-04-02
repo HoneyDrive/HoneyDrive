@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -15,20 +23,20 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab id="driver" closable="false" text="Driver">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
+              <AnchorPane fx:id="driverAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <Group>
                            <children>
                               <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #60C9F8;" />
-                              <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="46.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="110.0" fitWidth="138.0" layoutX="47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/speedometer.png" />
+                                    <Image url="@images/transport.png" />
                                  </image>
                               </ImageView>
                               <Label layoutX="5.0" layoutY="130.0" prefWidth="200.0" text="SPEED" textFill="WHITE">
@@ -54,7 +62,7 @@
                         <Group>
                            <children>
                               <TilePane layoutX="210.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #C9CBA3;" />
-                              <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="253.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="253.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/road-with-broken-line.png" />
                                  </image>
@@ -160,7 +168,11 @@
                         <Group>
                            <children>
                               <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #FF9B42;" />
+<<<<<<< HEAD
                               <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+=======
+                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="264.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> 9e25761a25e30d495f605b11b1b110d1e829fb0f
                                  <image>
                                     <Image url="@images/bee-insect-outline.png" />
                                  </image>
@@ -193,7 +205,7 @@
                                     <Image url="@images/okHand.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="620.0" layoutY="361.0" prefWidth="200.0" text="WARNINGS" textFill="WHITE">
+                              <Label layoutX="620.0" layoutY="361.0" prefWidth="175.0" text="WARNINGS" textFill="WHITE">
                                  <font>
                                     <Font name="Avenir Roman" size="15.0" />
                                  </font>
@@ -220,11 +232,16 @@
                                  </padding>
                               </Label>
                               <TilePane layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: FFFFFF;" />
-                              <Button fx:id="isCommutingButton" layoutX="249.0" layoutY="398.0" mnemonicParsing="false" onAction="#isCommutingButtonClicked" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: #2B2D42;" text="NO" textFill="WHITE">
+                              <Button fx:id="isCommutingButton" layoutX="250.0" layoutY="398.0" mnemonicParsing="false" onAction="#isCommutingButtonClicked" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: #2B2D42;" text="NO" textFill="WHITE">
                                  <font>
                                     <Font name="Avenir Roman" size="13.0" />
                                  </font>
                               </Button>
+                              <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="255.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/people.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Group>
                      </children></AnchorPane>
@@ -345,7 +362,7 @@
                            <font>
                               <Font name="Avenir Roman" size="14.0" />
                            </font></TextField>
-                        <Label fx:id="preferencesWarningLabel" alignment="CENTER" layoutY="404.0" prefHeight="30.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Preferences looks good" textFill="#a1b56c">
+                        <Label fx:id="preferencesWarningLabel" alignment="CENTER" layoutY="384.0" prefHeight="30.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Preferences looks good" textFill="#a1b56c">
                            <font>
                               <Font name="Avenir Heavy" size="20.0" />
                            </font>
@@ -359,6 +376,16 @@
                            <font>
                               <Font name="Avenir Roman" size="13.0" />
                            </font></Button>
+                        <Label alignment="CENTER" layoutY="417.0" prefWidth="800.0" text="© HoneyDrive 2016">
+                           <font>
+                              <Font name="Avenir Heavy" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="503.0" layoutY="419.0" text="Icons made by freepik.com from flaticon.com. Thanks!">
+                           <font>
+                              <Font name="Avenir Roman" size="12.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
               </content>
             </Tab>
