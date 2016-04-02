@@ -170,7 +170,7 @@ public class UXController
 
     public void updateSpeedLabel()
     {
-        driverSpeedLabel.setText(String.format("%.1f", trip.getSpeed()));
+        driverSpeedLabel.setText(String.format("%.0f", trip.getSpeed()));
     }
 
     public void updateTotalDistanceDrivenLabel()
