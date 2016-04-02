@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -22,7 +14,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.UXController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -421,7 +413,7 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="644.0" layoutY="392.0" text="fuel per trip">
+                        <Label layoutX="639.0" layoutY="392.0" text="fuel L/10 km ">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
