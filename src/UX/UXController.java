@@ -94,11 +94,8 @@ public class UXController
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
         newTrip(new Trip());
-<<<<<<< HEAD
-        trip.start("src/metrics/TestData/aggressive_driving.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
-=======
         trip.start("src/metrics/TestData/highway-speeding.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
->>>>>>> master
+
                 CarActionsFilter.odometer);
         drivingHistory.addTrip(this.trip);
         startUIUpdater();
@@ -133,6 +130,7 @@ public class UXController
             updateStatisticsEarnedBeesMonthLabel(""+(drivingHistory.getBeeCount()+10));
             updateStatisticsEarnedBeesTotalLabel(""+(drivingHistory.getBeeCount()+20));
             updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsAverages();
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -234,8 +232,10 @@ public class UXController
     {
         statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+20));
     }
-    public void upDateStatisticsAverages(){
-        statisticsAverageBees.setText(""); 
+    public void updateStatisticsAverages(){
+        statisticsAverageBees.setText(""+drivingHistory.averageBeePerTrip());
+        statisticsAverageFuel.setText(""+drivingHistory.averageFuelPerTrip());
+        statisticsAverageKm.setText(""+drivingHistory.averageKmPerTrip());
     }
 
     public void setInsuranceLimit()
