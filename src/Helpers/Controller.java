@@ -98,5 +98,6 @@ public abstract class Controller implements Initializable {
         for(Double key:keys){
             scoreSeries.getData().add(new XYChart.Data<>(key,map.get(key)));
         }
+        System.out.println(score.getScore());
     }
 }
