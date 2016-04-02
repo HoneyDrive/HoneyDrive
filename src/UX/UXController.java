@@ -148,17 +148,17 @@ public class UXController
         statisticsBeesEarnedWeek.setText(text);
     }
 
-    public void updateStatisticsDistanceDricenWeek (String text)
+    public void updateStatisticsDistanceDrivenWeek (String text)
     {
         statisticsDistanceDrivenWeek.setText(text);
     }
 
-    public void updateStatisticsDistanceDricenMonth (String text)
+    public void updateStatisticsDistanceDrivenMonth (String text)
     {
         statisticsDistanceDrivenWeek.setText(text);
     }
 
-    public void updateStatisticsDistanceDricenYear (String text)
+    public void updateStatisticsDistanceDrivenYear (String text)
     {
         statisticsDistanceDrivenWeek.setText(text);
     }
