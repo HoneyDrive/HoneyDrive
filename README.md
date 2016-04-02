@@ -2,32 +2,27 @@
 The ultimate repo!
 
 ## Prerequisites
-You're going to need Maven with the `JSON.simple` dependency.
+You're going to need Maven with the `JSON.simple`, `OkHttp` and `Junit` dependencies.
 
-### Using IntelliJ
+If you're not using IntelliJ, you need to add the dependencies through the `pom.xml` file.
+
+### JSON.simple
 Press *File* and then *Project Structure*.
 Click on *Libraries*, and then *New Project Library* (the small green plus symbol).
 Choose *From Maven* and type
 `com.googlecode.json-simple:json-simple:1.1`
 into the textbox and click *OK*.
 
-### General / Other IDEs
-Download Maven. In the `pom.xml` file, add the `JSON.simple` dependency by adding
-```
-<dependencies>
-	<dependency>
-		<groupId>com.googlecode.json-simple</groupId>
-		<artifactId>json-simple</artifactId>
-		<version>1.1</version>
-	</dependency>
-</dependencies>
-```
-inside the `<project></project>` tag.
-
-### Please install OkHttp for weather
-
+### OkHttp
 Press *File* and then *Project Structure*.
 Click on *Libraries*, and then *New Project Library* (the small green plus symbol).
 Choose *From Maven* and type
 `com.squareup.okhttp3:okhttp:3.2.0`
+into the textbox and click *OK*.
+
+### Junit
+Press *File* and then *Project Structure*.
+Click on *Libraries*, and then *New Project Library* (the small green plus symbol).
+Choose *From Maven* and type
+`junit:junit:4.12`
 into the textbox and click *OK*.
