@@ -20,6 +20,12 @@ public class Score implements TripListener {
     }
 
 
+    public Score(int beeCount){
+        this.beeCount = beeCount;
+    }
+    public Score(){
+
+    }
     private double calculateScore(List<CarAction> carActions){
         Double avg = carActions.stream().mapToDouble(a -> ((Number) a.getValue()).doubleValue()).sum()/carActions.size();
         return  (carActions.stream().mapToDouble(a -> Math.pow(((Number) a.getValue()).doubleValue()-avg , 2)).sum())/(speedList.size()-2);

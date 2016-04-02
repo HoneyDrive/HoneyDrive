@@ -45,6 +45,13 @@ public class Trip implements IActionListener
         score = new Score();
     }
 
+    public Trip(Score score, double totalDistance, double commutingDistance, double fuelUsed) {
+        this.score = score;
+        this.totalDistance = totalDistance;
+        this.commutingDistance = commutingDistance;
+        this.fuelUsed = fuelUsed;
+    }
+
     public void start(String filepath, CarActionsFilter... filter)
     {
         Set<CarActionsFilter> filters = new HashSet<>(Arrays.asList(filter));
