@@ -23,22 +23,27 @@ public class UXController
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
     @FXML private Label preferencesWarningLabel;
-    @FXML private Label weeklyEarnedBeesLabel;
-    @FXML private Label driverEarnedBeesLabel;
+
+    @FXML private Label statisticsDistanceDrivenWeek;
+    @FXML private Label statisticsDistanceDrivenMonth;
+    @FXML private Label statisticsDistanceDrivenYear;
+
+    @FXML private Label statisticsBeesEarnedWeek;
+    @FXML private Label statisticsBeesEarnedMonth;
+    @FXML private Label statisticsBeesEarnedTotal;
+
     @FXML private TextField insuranceLimitInput;
     @FXML private TextArea driverWarningsTextArea;
 
     @FXML private AnchorPane driverAnchorPane;
-    @FXML private AnchorPane commuterAnchorPane;
     @FXML private AnchorPane statisticsAnchorPane;
     @FXML private AnchorPane preferencesAnchorPane;
 
-    @FXML private Tab driverTab;
-    @FXML private Tab commuterTab;
-    @FXML private TabPane tabPane;
-
     @FXML private Button nightModeButton;
     private boolean switchedOn = false;
+
+    @FXML private Button isCommutingButton;
+    private boolean isCommuting = false;
 
     private final String totalDistanceIsAboveInsuranceLimitWarning = "Distance this year \nis above insurance \ndistance!";
     private final String fuelConsumptionIsAboveAverageWarning = "Fuel consumption \nis above average!";
@@ -126,9 +131,34 @@ public class UXController
 //        driverEarnedBeesLabel.setText(); //TODO: Legg til bier i TripLabel
     }
 
-    public void updateWeeklyEarnedBeesLabel()
+    public void updateStatisticsEarnedBeesWeekLabel(String text)
     {
-//        weeklyEarnedBeesLabel.setText(); //TODO: Legg til bier i WeeklyTripLabel
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsEarnedBeesMonthLabel(String text)
+    {
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsEarnedBeesTotalLabel(String text)
+    {
+        statisticsBeesEarnedWeek.setText(text);
+    }
+
+    public void updateStatisticsDistanceDrivenWeek (String text)
+    {
+        statisticsDistanceDrivenWeek.setText(text);
+    }
+
+    public void updateStatisticsDistanceDrivenMonth (String text)
+    {
+        statisticsDistanceDrivenWeek.setText(text);
+    }
+
+    public void updateStatisticsDistanceDrivenYear (String text)
+    {
+        statisticsDistanceDrivenWeek.setText(text);
     }
 
     public void setInsuranceLimit()
@@ -205,12 +235,27 @@ public class UXController
         }
     }
 
+    @FXML
+    public void isCommutingButtonClicked(ActionEvent event)
+    {
+        if (isCommuting)
+        {
+            isCommutingButton.setText("NO");
+            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
+            isCommuting = !isCommuting;
+        } else
+        {
+            isCommutingButton.setText("YES");
+            isCommutingButton.setStyle("-fx-background-color: #8D99AE; -fx-text-fill: white;");
+            isCommuting = !isCommuting;
+        }
+    }
+
     // ---------------------------------------------Help Methods---------------------------------------------
 
     private void toggleNightModeOn()
     {
         driverAnchorPane.setStyle("-fx-background-color: grey");
-        commuterAnchorPane.setStyle("-fx-background-color: grey");
         statisticsAnchorPane.setStyle("-fx-background-color: grey");
         preferencesAnchorPane.setStyle("-fx-background-color: grey");
     }
@@ -218,7 +263,6 @@ public class UXController
     private void toggleNightModeOff()
     {
         driverAnchorPane.setStyle("-fx-background-color: #F8F5F3");
-        commuterAnchorPane.setStyle("-fx-background-color: #F8F5F3");
         statisticsAnchorPane.setStyle("-fx-background-color: #F8F5F3");
         preferencesAnchorPane.setStyle("-fx-background-color: #F8F5F3");
     }
@@ -245,7 +289,6 @@ public class UXController
     // ---------------------------------------------Weather---------------------------------------------
 
     private CurrentWeatherController currentWeatherController = new CurrentWeatherController();
-    private CurrentWeather ntnuTrondheim;
 
     // Driver tab
 
@@ -256,21 +299,11 @@ public class UXController
     @FXML private Label driverWeatherPrecipChanceLabel;
     @FXML private ImageView driverWeatherIconImageView;
 
-    // Commuter tab
-
-    @FXML private Label commuterWeatherTimeLabel;
-    @FXML private Label commuterWeatherTemperatureLabel;
-    @FXML private Label commuterWeatherSummaryLabel;
-    @FXML private Label commuterWeatherHumidityLabel;
-    @FXML private Label commuterWeatherPrecipChanceLabel;
-    @FXML private ImageView commuterWeatherIconImageView;
-
-
     private void updateWeather()
     {
         try
         {
-            ntnuTrondheim = currentWeatherController.getCurrentDetails();
+            CurrentWeather ntnuTrondheim = currentWeatherController.getCurrentDetails();
 
             driverWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
             driverWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
@@ -280,15 +313,6 @@ public class UXController
             driverWeatherIconImageView.setFitHeight(30);
             driverWeatherIconImageView.setFitWidth(30);
             driverWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
-
-            commuterWeatherTimeLabel.setText(ntnuTrondheim.getFormattedTime());
-            commuterWeatherTemperatureLabel.setText(String.format("%.1f", ntnuTrondheim.getTemperature()) + " ℃");
-            commuterWeatherHumidityLabel.setText(String.format("%.0f", ntnuTrondheim.getHumidity() * 100) + " %");
-            commuterWeatherPrecipChanceLabel.setText(String.format("%.0f", ntnuTrondheim.getPrecipChance()) + " %");
-            commuterWeatherSummaryLabel.setText(ntnuTrondheim.getSummary());
-            commuterWeatherIconImageView.setFitHeight(30);
-            commuterWeatherIconImageView.setFitWidth(30);
-            commuterWeatherIconImageView.setImage(ntnuTrondheim.getIconId());
         } catch (IOException | JSONException e)
         {
             e.printStackTrace();
