@@ -122,8 +122,8 @@ public class UXController
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
-            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
-            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesMonthLabel(""+(drivingHistory.getBeeCount()+10));
+            updateStatisticsEarnedBeesTotalLabel(""+(drivingHistory.getBeeCount()+20));
             updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
         }, 300);
 
