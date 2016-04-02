@@ -109,6 +109,8 @@ public class UXController
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
             updateStatisticsDistanceDrivenWeek("");
+            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -163,7 +165,7 @@ public class UXController
 
     public void updateTripEarnedBeesLabel()
     {
-        driverBeesEarnedLabel.setText("TEST"); //TODO: Legg til bier i TripLabel
+        driverBeesEarnedLabel.setText(""+trip.getBeeCount());
     }
 
     public void updateStatisticsEarnedBeesWeekLabel(String text)
