@@ -67,6 +67,16 @@ public class UXController
         startUIUpdater();
     }
 
+    public Trip getTrip()
+    {
+        return this.trip;
+    }
+
+    public DrivingHistory getDrivingHistory()
+    {
+        return this.drivingHistory;
+    }
+
     private void startUIUpdater()
     {
         startThread(() -> {
@@ -76,9 +86,10 @@ public class UXController
             updateTripEarnedBeesLabel();
             //updateWeeklyEarnedBeesLabel();
             insuranceLimitWarning();
-            updateStatisticsDistanceDricenYear("");
-            updateStatisticsDistanceDricenMonth("");
-            updateStatisticsDistanceDricenWeek("");
+            updateStatisticsDistanceDrivenYear("");
+            updateStatisticsDistanceDrivenMonth("");
+            updateStatisticsDistanceDrivenWeek("");
+
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -151,17 +162,17 @@ public class UXController
         statisticsBeesEarnedWeek.setText(text);
     }
 
-    public void updateStatisticsDistanceDricenWeek (String text)
+    public void updateStatisticsDistanceDrivenWeek (String text)
     {
         statisticsDistanceDrivenWeek.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
-    public void updateStatisticsDistanceDricenMonth (String text)
+    public void updateStatisticsDistanceDrivenMonth (String text)
     {
         statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
-    public void updateStatisticsDistanceDricenYear (String text)
+    public void updateStatisticsDistanceDrivenYear (String text)
     {
         statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
