@@ -39,8 +39,6 @@ public class DrivingHistory {
 
    }
 
-
-	
 	public void sendWarning(){
 		
 	}
@@ -72,4 +70,19 @@ public class DrivingHistory {
 		return history.stream().mapToInt(a -> a.getBeeCount()).sum();
 	}
 
+
+	public int averageBeePerTrip(){
+		return (history.stream().mapToInt(Trip::getBeeCount).sum())/history.size();
+	}
+
+	public int averageKmPerTrip(){
+		return ((int) history.stream().mapToDouble(Trip::getTotalDistance).sum())/history.size();
+	}
+	public double averageFuelPerTrip() {
+		return (history.stream().mapToDouble(Trip::getFuelBurntPer10Km).sum()) / history.size();
+	}
+	public void generateMockData(){
+		addTrip(new Trip(new Score(5),50,50,5));
+		addTrip(new Trip(new Score(4),60,30,4));
+	}
 }

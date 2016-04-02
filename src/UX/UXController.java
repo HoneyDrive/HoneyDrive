@@ -28,7 +28,7 @@ public class UXController
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
     @FXML private Label driverBeesEarnedLabel;
-
+    @FXML private Label howAmIDrivingResponsLabel;
     @FXML private Label driverWarningsLabel;
 
     @FXML private Button isCommutingButton;
@@ -36,9 +36,14 @@ public class UXController
 
     @FXML private AnchorPane driverAnchorPane;
 
+    @FXML private TilePane howAmIDrivingTilePane;
+
+    @FXML private ImageView howAmIDrivingImageView;
+
     // Statistics tab
 
     @FXML private TilePane driverWarningTilePane;
+    @FXML private TilePane driverCommutingTilePane;
     @FXML private ImageView driverWarningImageView;
 
 
@@ -54,6 +59,10 @@ public class UXController
     @FXML private Label statisticsCommutingDistanceWeek;
     @FXML private Label statisticsCommutingDistanceMonth;
     @FXML private Label statisticsCommutingDistanceYear;
+    @FXML private Label statisticsAverageKm;
+    @FXML private Label statisticsAverageBees;
+    @FXML private Label statisticsAverageFuel;
+
 
     @FXML private AnchorPane statisticsAnchorPane;
 
@@ -81,10 +90,12 @@ public class UXController
     public void initialize()
     {
         drivingHistory = new DrivingHistory();
+        drivingHistory.generateMockData();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
         newTrip(new Trip());
-        trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
+        trip.start("src/metrics/TestData/highway-speeding.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
+
                 CarActionsFilter.odometer);
         drivingHistory.addTrip(this.trip);
         startUIUpdater();
@@ -107,20 +118,22 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
-            //updateWeeklyEarnedBeesLabel();
+
             insuranceLimitWarning();
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
             updateStatisticsDistanceDrivenWeek("");
+            updateSmiley();
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
-            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
-            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
-            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesMonthLabel("" + (drivingHistory.getBeeCount() + 10));
+            updateStatisticsEarnedBeesTotalLabel("" + (drivingHistory.getBeeCount() + 20));
+            updateStatisticsEarnedBeesWeekLabel("" + drivingHistory.getBeeCount());
+
         }, 300);
 
-        startThread(() -> updateWeather(), 1000 * 30);
+        startThread(() -> {updateWeather(); updateStatisticsAverages();}, 1000 * 30);
     }
 
     private void startThread(Runnable runnable, long millis)
@@ -197,12 +210,12 @@ public class UXController
 
     public void updateStatisticsDistanceDrivenMonth (String text)
     {
-        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()+11));
     }
 
     public void updateStatisticsDistanceDrivenYear (String text)
     {
-        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()+50));
     }
 
     public void updateStatisticsCommutingDrivenWeek ()
@@ -212,12 +225,18 @@ public class UXController
 
     public void updateStatisticsCommutingDrivenMonth ()
     {
-        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear() + 10));
     }
 
     public void updateStatisticsCommutingDrivenYear ()
     {
-        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+20));
+    }
+    public void updateStatisticsAverages() {
+        statisticsAverageBees.setText("" + drivingHistory.averageBeePerTrip());
+        statisticsAverageFuel.setText(String.format("%.1f", drivingHistory.averageFuelPerTrip()));
+        statisticsAverageKm.setText("" +drivingHistory.averageKmPerTrip());
+
     }
 
     public void setInsuranceLimit()
@@ -230,11 +249,19 @@ public class UXController
         drivingHistory.setInsuranceDistance(number);
     }
 
-    public void disableDriverTabIfCommuting()
-    {
-        if (this.trip.getIsCommuting())
-        {
-            driverAnchorPane.setDisable(true);
+    public void updateSmiley() {
+        if (trip.getSmileyStatus() == -1) {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #9BC53D");
+            howAmIDrivingResponsLabel.setText("Efficient!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/smiley.png")));
+        } else if (trip.getSmileyStatus() == 0) {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #FDE74C");
+            howAmIDrivingResponsLabel.setText("Not so efficient!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/medium.png")));
+        } else {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #E55934");
+            howAmIDrivingResponsLabel.setText("Aggressive!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/sad.png")));
         }
     }
 
@@ -243,10 +270,18 @@ public class UXController
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg())
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
-            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
 
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
             driverWarningImageView.setImage(warningSign);
             driverWarningTilePane.setStyle("-fx-background-color:#e55934");
+        }
+        else
+        {
+            driverFuelConsumedLabel.setTextFill(Color.BLACK);
+
+            driverWarningsLabel.setText("No warnings");
+            driverWarningImageView.setImage(okHand);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
     }
 
@@ -255,13 +290,18 @@ public class UXController
         if (drivingHistory.getDistanceThisYear() >= drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
+
             driverWarningsLabel.setText(totalDistanceIsAboveInsuranceLimitWarning);
+            driverWarningImageView.setImage(warningSign);
+            driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
         else
         {
             driverDistanceDrivenLabel.setTextFill(Color.BLACK);
-            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
+
+            driverWarningsLabel.setText("No warnings");
             driverWarningImageView.setImage(okHand);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
     }
 
@@ -308,14 +348,16 @@ public class UXController
     {
         if (isCommuting)
         {
+            driverCommutingTilePane.setStyle("-fx-background-color:  #8D99AE");
             isCommutingButton.setText("NO");
-            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
+            isCommutingButton.setStyle("-fx-background-color:  #8D99AE; -fx-text-fill: white;");
             isCommuting = !isCommuting;
             trip.setCommuting(false);
         } else
         {
+            driverCommutingTilePane.setStyle("-fx-background-color:  #2B2D42");
             isCommutingButton.setText("YES");
-            isCommutingButton.setStyle("-fx-background-color: #8D99AE; -fx-text-fill: white;");
+            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
             isCommuting = !isCommuting;
             trip.setCommuting(true);
         }
@@ -346,13 +388,15 @@ public class UXController
 
     private void writeDriverWarning(String msg)
     {
-        preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill:  #ab4642");
+        preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill:  #E55934");
+        insuranceLimitInput.setStyle("-fx-text-fill: #E55934");
         preferencesWarningLabel.setText(msg);
     }
 
     private void msgLabelPreferencesLooksGood()
     {
         preferencesWarningLabel.setStyle("-fx-background-color: #FFFFFF; -fx-text-fill: #a1b56c");
+        insuranceLimitInput.setStyle("-fx-text-fill: black");
         preferencesWarningLabel.setText("Preferences looks good.");
     }
 

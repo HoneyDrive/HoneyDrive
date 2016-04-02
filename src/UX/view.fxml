@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -19,14 +18,14 @@
    <children>
       <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@assets/style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab id="driver" closable="false" text="Driver">
+          <Tab id="driver" closable="false" text="My Trip">
             <content>
               <AnchorPane fx:id="driverAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
                         <Group>
                            <children>
                               <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #0E6F8E;" />
-                              <ImageView fitHeight="110.0" fitWidth="138.0" layoutX="47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/transport.png" />
                                  </image>
@@ -54,7 +53,7 @@
                         <Group>
                            <children>
                               <TilePane layoutX="210.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #C9CBA3;" />
-                              <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="253.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="253.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/road-with-broken-line.png" />
                                  </image>
@@ -82,7 +81,7 @@
                         <Group>
                            <children>
                               <TilePane layoutX="415.0" layoutY="5.0" prefHeight="155.0" prefWidth="200.0" style="-fx-background-color: #723D46;" />
-                              <ImageView fitHeight="110.0" fitWidth="108.0" layoutX="459.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="459.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/gasoline-pump.png" />
                                  </image>
@@ -159,8 +158,8 @@
                         </Group>
                         <Group>
                            <children>
-                              <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #FF9B42;" />
-                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                              <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #EC9F05;" />
+                              <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="267.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/bee-insect-outline.png" />
                                  </image>
@@ -189,14 +188,14 @@
                            <children>
                               <Label fx:id="driverWarningsLabel" alignment="TOP_LEFT" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="No warnings" textFill="#333533">
                                  <font>
-                                    <Font name="Avenir Roman" size="15.0" />
+                                    <Font size="14.0" />
                                  </font>
                                  <padding>
                                     <Insets left="2.0" />
                                  </padding>
                               </Label>
-                              <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #8cff1a;" />
-                              <ImageView fx:id="driverWarningImageView" fitHeight="90.0" fitWidth="91.0" layoutX="658.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+                              <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #9BC53D;" />
+                              <ImageView fx:id="driverWarningImageView" fitHeight="90.0" fitWidth="90.0" layoutX="660.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/okHand.png" />
                                  </image>
@@ -213,7 +212,7 @@
                         </Group>
                         <Group layoutX="205.0">
                            <children>
-                              <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #8D99AE;" />
+                              <TilePane fx:id="driverCommutingTilePane" layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #8D99AE;" />
                               <Label layoutX="210.0" layoutY="361.0" prefWidth="200.0" text="IS COMMUTING" textFill="WHITE">
                                  <font>
                                     <Font name="Avenir Roman" size="15.0" />
@@ -223,12 +222,12 @@
                                  </padding>
                               </Label>
                               <TilePane layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: FFFFFF;" />
-                              <Button fx:id="isCommutingButton" layoutX="250.0" layoutY="398.0" mnemonicParsing="false" onAction="#isCommutingButtonClicked" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: #2B2D42;" text="NO" textFill="WHITE">
+                              <Button fx:id="isCommutingButton" layoutX="250.0" layoutY="398.0" mnemonicParsing="false" onAction="#isCommutingButtonClicked" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: #8D99AE;" text="NO" textFill="WHITE">
                                  <font>
                                     <Font name="Avenir Roman" size="13.0" />
                                  </font>
                               </Button>
-                              <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="255.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="264.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/people.png" />
                                  </image>
@@ -237,10 +236,10 @@
                         </Group>
                         <Group layoutX="-206.0">
                            <children>
-                              <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #9BC53D;" />
-                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                              <TilePane fx:id="howAmIDrivingTilePane" layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #9BC53D;" />
+                              <ImageView fx:id="howAmIDrivingImageView" fitHeight="90.0" fitWidth="90.0" layoutX="266.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/bee-insect-outline.png" />
+                                    <Image url="@images/smiley.png" />
                                  </image>
                               </ImageView>
                               <Label layoutX="210.0" layoutY="361.0" prefWidth="200.0" text="HOW AM I DRIVING?" textFill="WHITE">
@@ -251,7 +250,7 @@
                                     <Insets left="2.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="driverBeesEarnedLabel1" alignment="CENTER" layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Awesome" textFill="#333533">
+                              <Label fx:id="howAmIDrivingResponsLabel" alignment="CENTER" layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Awesome!" textFill="#333533">
                                  <font>
                                     <Font name="Avenir Roman" size="27.0" />
                                  </font>
@@ -265,18 +264,18 @@
               <content>
                 <AnchorPane fx:id="statisticsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F8F5F3;">
                      <children>
-                        <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #FF9B42;" />
-                        <Label fx:id="statisticsBeesEarnedWeek" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <TilePane layoutX="5.0" layoutY="5.0" prefHeight="155.0" prefWidth="193.0" style="-fx-background-color: #EC9F05;" />
+                        <Label fx:id="statisticsBeesEarnedWeek" alignment="TOP_CENTER" layoutX="5.0" layoutY="160.0" prefHeight="95.0" prefWidth="193.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="51.0" layoutY="210.0" text="this week">
+                        <Label layoutX="65.0" layoutY="209.0" text="this week">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="110.0" fitWidth="108.0" layoutX="39.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/bee-insect-outline.png" />
                            </image>
@@ -286,89 +285,130 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <TilePane layoutX="190.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #C9CBA3;" />
-                        <ImageView fitHeight="120.0" fitWidth="138.0" layoutX="220.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                        <TilePane layoutX="203.0" layoutY="5.0" prefHeight="155.0" prefWidth="194.0" style="-fx-background-color: #C9CBA3;" />
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="241.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/road-with-broken-line.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="statisticsDistanceDrivenWeek" alignment="TOP_CENTER" layoutX="190.0" layoutY="160.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsDistanceDrivenWeek" alignment="TOP_CENTER" layoutX="203.0" layoutY="160.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="227.0" layoutY="210.0" text="km this week">
+                        <Label layoutX="252.0" layoutY="209.0" text="km this week">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="statisticsBeesEarnedMonth" alignment="TOP_CENTER" layoutX="5.0" layoutY="254.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsBeesEarnedMonth" alignment="TOP_CENTER" layoutX="5.0" layoutY="254.0" prefHeight="95.0" prefWidth="193.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="44.0" layoutY="305.0" text="this month">
+                        <Label layoutX="62.0" layoutY="305.0" text="this month">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="statisticsBeesEarnedTotal" alignment="TOP_CENTER" layoutX="5.0" layoutY="349.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsBeesEarnedTotal" alignment="TOP_CENTER" layoutX="5.0" layoutY="349.0" prefHeight="95.0" prefWidth="193.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="71.0" layoutY="392.0" text="total">
+                        <Label layoutX="81.0" layoutY="392.0" text="total">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="statisticsDistanceDrivenMonth" alignment="TOP_CENTER" layoutX="190.0" layoutY="254.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsDistanceDrivenMonth" alignment="TOP_CENTER" layoutX="203.0" layoutY="254.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label fx:id="statisticsDistanceDrivenYear" alignment="TOP_CENTER" layoutX="190.0" layoutY="349.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsDistanceDrivenYear" alignment="TOP_CENTER" layoutX="203.0" layoutY="348.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="221.0" layoutY="305.0" text="km this month">
+                        <Label layoutX="245.0" layoutY="305.0" text="km this month">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="231.0" layoutY="392.0" text="km this year">
+                        <Label layoutX="248.0" layoutY="394.0" text="km this year">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="193.0" layoutY="138.0" text="DISTANCE DRIVEN" textFill="WHITE">
+                        <Label layoutX="206.0" layoutY="138.0" text="DISTANCE DRIVEN" textFill="WHITE">
                            <font>
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <TilePane layoutX="376.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #C9CBA3;" />
-                        <Label fx:id="statisticsCommutingDistanceWeek" alignment="TOP_CENTER" layoutX="376.0" layoutY="161.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <TilePane layoutX="402.0" layoutY="5.0" prefHeight="155.0" prefWidth="194.0" style="-fx-background-color: #8D99AE;" />
+                        <Label fx:id="statisticsCommutingDistanceWeek" alignment="TOP_CENTER" layoutX="402.0" layoutY="161.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label fx:id="statisticsCommutingDistanceMonth" alignment="TOP_CENTER" layoutX="375.0" layoutY="256.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsCommutingDistanceMonth" alignment="TOP_CENTER" layoutX="402.0" layoutY="256.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label fx:id="statisticsCommutingDistanceYear" alignment="TOP_CENTER" layoutX="375.0" layoutY="351.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                        <Label fx:id="statisticsCommutingDistanceYear" alignment="TOP_CENTER" layoutX="402.0" layoutY="351.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="409.0" layoutY="210.0" text="km this week">
+                        <Label layoutX="442.0" layoutY="209.0" text="km this week">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="401.0" layoutY="305.0" text="km this month">
+                        <Label layoutX="435.0" layoutY="305.0" text="km this month">
+                           <font>
+                              <Font name="Avenir Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="446.0" layoutY="394.0" text="km this year">
+                           <font>
+                              <Font name="Avenir Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="406.0" layoutY="139.0" text="COMMUTING DRIVEN" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Roman" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="433.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/people.png" />
+                           </image>
+                        </ImageView>
+                        <TilePane layoutX="600.0" layoutY="5.0" prefHeight="155.0" prefWidth="194.0" style="-fx-background-color: #33ccff;" />
+                        <Label fx:id="statisticsAverageKm" alignment="TOP_CENTER" layoutX="600.0" layoutY="161.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                           <font>
+                              <Font name="Avenir Roman" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="statisticsAverageBees" alignment="TOP_CENTER" layoutX="600.0" layoutY="256.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                           <font>
+                              <Font name="Avenir Roman" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="statisticsAverageFuel" alignment="TOP_CENTER" layoutX="600.0" layoutY="351.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
+                           <font>
+                              <Font name="Avenir Roman" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="640.0" layoutY="209.0" text="km per trip">
+                           <font>
+                              <Font name="Avenir Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="634.0" layoutY="305.0" text="bees per trip">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
@@ -378,11 +418,16 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="380.0" layoutY="139.0" text="COMMUTING DRIVEN" textFill="WHITE">
+                        <Label layoutX="603.0" layoutY="139.0" text="AVERAGE" textFill="WHITE">
                            <font>
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="110.0" fitWidth="140.0" layoutX="643.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/head.png" />
+                           </image>
+                        </ImageView>
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -412,7 +457,7 @@
                            <font>
                               <Font name="Avenir Roman" size="14.0" />
                            </font></TextField>
-                        <Label fx:id="preferencesWarningLabel" alignment="CENTER" layoutY="384.0" prefHeight="30.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Preferences looks good" textFill="#a1b56c">
+                        <Label fx:id="preferencesWarningLabel" alignment="CENTER" layoutY="390.0" prefHeight="30.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" text="Preferences looks good" textFill="#a1b56c">
                            <font>
                               <Font name="Avenir Heavy" size="20.0" />
                            </font>
@@ -426,12 +471,12 @@
                            <font>
                               <Font name="Avenir Roman" size="13.0" />
                            </font></Button>
-                        <Label alignment="CENTER" layoutY="417.0" prefWidth="800.0" text="© HoneyDrive 2016">
+                        <Label alignment="CENTER" layoutY="422.0" prefWidth="800.0" text="© HoneyDrive 2016">
                            <font>
                               <Font name="Avenir Heavy" size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="503.0" layoutY="419.0" text="Icons made by freepik.com from flaticon.com. Thanks!">
+                        <Label layoutX="503.0" layoutY="424.0" text="Icons made by freepik.com from flaticon.com. Thanks!">
                            <font>
                               <Font name="Avenir Roman" size="12.0" />
                            </font>
