@@ -59,6 +59,9 @@ public class UXController
     @FXML private Label statisticsCommutingDistanceWeek;
     @FXML private Label statisticsCommutingDistanceMonth;
     @FXML private Label statisticsCommutingDistanceYear;
+    @FXML private Label statisticsAverageKm;
+    @FXML private Label statisticsAverageBees;
+    @FXML private Label statisticsAverageFuel;
 
     @FXML private AnchorPane statisticsAnchorPane;
 
