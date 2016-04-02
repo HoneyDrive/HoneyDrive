@@ -67,4 +67,9 @@ public class DrivingHistory {
 	public long getInsuranceDistance() {
 		return this.insuranceDistance;
 	}
+
+	public int getBeeCount(){
+		return history.stream().mapToInt(a -> a.getBeeCount()).sum();
+	}
+
 }

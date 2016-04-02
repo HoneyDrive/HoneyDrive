@@ -1,2 +1,6 @@
 Distance driven this year:
+<<<<<<< HEAD
 0.0795
+=======
+0.0762
+>>>>>>> 39fc3cdc2746dbafa188d0f77242420e21018089

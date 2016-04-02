@@ -213,4 +213,11 @@ public class Trip implements IActionListener
         return isCommuting;
     }
 
+    public int getBeeCount(){
+        return score.getBeeCount();
+    }
+    public int getSmileyStatus(){
+        return score.getSmileyStatus();
+    }
+
 }
