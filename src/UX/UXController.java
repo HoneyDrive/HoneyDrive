@@ -111,6 +111,7 @@ public class UXController
             updateStatisticsDistanceDrivenWeek("");
             updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
             updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -175,12 +176,12 @@ public class UXController
 
     public void updateStatisticsEarnedBeesMonthLabel(String text)
     {
-        statisticsBeesEarnedWeek.setText(text);
+        statisticsBeesEarnedMonth.setText(text);
     }
 
     public void updateStatisticsEarnedBeesTotalLabel(String text)
     {
-        statisticsBeesEarnedWeek.setText(text);
+        statisticsBeesEarnedTotal.setText(text);
     }
 
     public void updateStatisticsDistanceDrivenWeek (String text)
