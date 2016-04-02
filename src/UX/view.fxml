@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -189,13 +188,13 @@
                            <children>
                               <Label fx:id="driverWarningsLabel" alignment="TOP_LEFT" layoutX="620.0" layoutY="384.0" prefHeight="56.0" prefWidth="175.0" style="-fx-background-color: #FFFFFF;" text="No warnings" textFill="#333533">
                                  <font>
-                                    <Font name="Avenir Roman" size="15.0" />
+                                    <Font size="14.0" />
                                  </font>
                                  <padding>
                                     <Insets left="2.0" />
                                  </padding>
                               </Label>
-                              <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #8cff1a;" />
+                              <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #9bc53d;" />
                               <ImageView fx:id="driverWarningImageView" fitHeight="90.0" fitWidth="91.0" layoutX="658.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/okHand.png" />
@@ -237,8 +236,8 @@
                         </Group>
                         <Group layoutX="-206.0">
                            <children>
-                              <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #9BC53D;" />
-                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                              <TilePane fx:id="howAmIDrivingTilePane" layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #9BC53D;" />
+                              <ImageView fx:id="howAmIDrivingImageView" fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/bee-insect-outline.png" />
                                  </image>
@@ -251,7 +250,7 @@
                                     <Insets left="2.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="driverBeesEarnedLabel1" alignment="CENTER" layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Awesome" textFill="#333533">
+                              <Label fx:id="howAmIDrivingResponsLabel" alignment="CENTER" layoutX="210.0" layoutY="384.0" prefHeight="56.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" text="Awesome" textFill="#333533">
                                  <font>
                                     <Font name="Avenir Roman" size="27.0" />
                                  </font>
@@ -347,7 +346,7 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <TilePane layoutX="376.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #C9CBA3;" />
+                        <TilePane layoutX="376.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #8D99AE;" />
                         <Label fx:id="statisticsCommutingDistanceWeek" alignment="TOP_CENTER" layoutX="376.0" layoutY="161.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
@@ -383,6 +382,11 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="112.0" fitWidth="106.0" layoutX="412.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/people.png" />
+                           </image>
+                        </ImageView>
                      </children></AnchorPane>
               </content>
             </Tab>

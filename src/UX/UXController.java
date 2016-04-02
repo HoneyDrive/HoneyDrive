@@ -28,13 +28,17 @@ public class UXController
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
     @FXML private Label driverBeesEarnedLabel;
-
+    @FXML private Label howAmIDrivingResponsLabel;
     @FXML private Label driverWarningsLabel;
 
     @FXML private Button isCommutingButton;
     private boolean isCommuting = false;
 
     @FXML private AnchorPane driverAnchorPane;
+
+    @FXML private TilePane howAmIDrivingTilePane;
+
+    @FXML private ImageView howAmIDrivingImageView;
 
     // Statistics tab
 
@@ -112,6 +116,7 @@ public class UXController
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
             updateStatisticsDistanceDrivenWeek("");
+            updateSmiley();
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
@@ -238,15 +243,39 @@ public class UXController
         }
     }
 
+    public void updateSmiley() {
+        if (trip.getSmileyStatus() == -1) {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #9BC53D");
+            howAmIDrivingResponsLabel.setText("Awesome!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Happy-bee.png")));
+        } else if (trip.getSmileyStatus() == 0) {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #FDE74C");
+            howAmIDrivingResponsLabel.setText("Do better!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Medium-bee.png")));
+        } else {
+            howAmIDrivingTilePane.setStyle("-fx-background-color: #E55934");
+            howAmIDrivingResponsLabel.setText("Not good!");
+            howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/Sad-bee.png")));
+        }
+    }
+
     public void fuelConsumptionWarning()
     {
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg())
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
-            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
 
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
             driverWarningImageView.setImage(warningSign);
             driverWarningTilePane.setStyle("-fx-background-color:#e55934");
+        }
+        else
+        {
+            driverFuelConsumedLabel.setTextFill(Color.BLACK);
+
+            driverWarningsLabel.setText("");
+            driverWarningImageView.setImage(okHand);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
     }
 
@@ -255,13 +284,18 @@ public class UXController
         if (drivingHistory.getDistanceThisYear() >= drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
+
             driverWarningsLabel.setText(totalDistanceIsAboveInsuranceLimitWarning);
+            driverWarningImageView.setImage(warningSign);
+            driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
         else
         {
             driverDistanceDrivenLabel.setTextFill(Color.BLACK);
-            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
+
+            driverWarningsLabel.setText("");
             driverWarningImageView.setImage(okHand);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
     }
 
