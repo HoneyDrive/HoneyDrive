@@ -59,6 +59,10 @@ public class UXController
     @FXML private Label statisticsCommutingDistanceWeek;
     @FXML private Label statisticsCommutingDistanceMonth;
     @FXML private Label statisticsCommutingDistanceYear;
+    @FXML private Label statisticsAverageKm;
+    @FXML private Label statisticsAverageBees;
+    @FXML private Label statisticsAverageFuel;
+
 
     @FXML private AnchorPane statisticsAnchorPane;
 
@@ -86,10 +90,12 @@ public class UXController
     public void initialize()
     {
         drivingHistory = new DrivingHistory();
+        drivingHistory.generateMockData();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
         newTrip(new Trip());
-        trip.start("src/metrics/TestData/aggressive_driving.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
+        trip.start("src/metrics/TestData/highway-speeding.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
+
                 CarActionsFilter.odometer);
         drivingHistory.addTrip(this.trip);
         startUIUpdater();
@@ -112,7 +118,7 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
-            //updateWeeklyEarnedBeesLabel();
+
             insuranceLimitWarning();
             updateStatisticsDistanceDrivenYear("");
             updateStatisticsDistanceDrivenMonth("");
@@ -121,9 +127,10 @@ public class UXController
             updateStatisticsCommutingDrivenMonth();
             updateStatisticsCommutingDrivenWeek();
             updateStatisticsCommutingDrivenYear();
-            updateStatisticsEarnedBeesMonthLabel(""+drivingHistory.getBeeCount());
-            updateStatisticsEarnedBeesTotalLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsEarnedBeesMonthLabel(""+(drivingHistory.getBeeCount()+10));
+            updateStatisticsEarnedBeesTotalLabel(""+(drivingHistory.getBeeCount()+20));
             updateStatisticsEarnedBeesWeekLabel(""+drivingHistory.getBeeCount());
+            updateStatisticsAverages();
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -203,12 +210,12 @@ public class UXController
 
     public void updateStatisticsDistanceDrivenMonth (String text)
     {
-        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()+11));
     }
 
     public void updateStatisticsDistanceDrivenYear (String text)
     {
-        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
+        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()+50));
     }
 
     public void updateStatisticsCommutingDrivenWeek ()
@@ -218,12 +225,17 @@ public class UXController
 
     public void updateStatisticsCommutingDrivenMonth ()
     {
-        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceMonth.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+10));
     }
 
     public void updateStatisticsCommutingDrivenYear ()
     {
-        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+        statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()+20));
+    }
+    public void updateStatisticsAverages(){
+        statisticsAverageBees.setText(""+drivingHistory.averageBeePerTrip());
+        statisticsAverageFuel.setText(""+drivingHistory.averageFuelPerTrip());
+        statisticsAverageKm.setText(""+drivingHistory.averageKmPerTrip());
     }
 
     public void setInsuranceLimit()
