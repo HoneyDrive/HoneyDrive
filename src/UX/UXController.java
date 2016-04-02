@@ -43,6 +43,7 @@ public class UXController
     // Statistics tab
 
     @FXML private TilePane driverWarningTilePane;
+    @FXML private TilePane driverCommutingTilePane;
     @FXML private ImageView driverWarningImageView;
 
 
@@ -274,7 +275,7 @@ public class UXController
         {
             driverFuelConsumedLabel.setTextFill(Color.BLACK);
 
-            driverWarningsLabel.setText("");
+            driverWarningsLabel.setText("No warnings");
             driverWarningImageView.setImage(okHand);
             driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
@@ -294,7 +295,7 @@ public class UXController
         {
             driverDistanceDrivenLabel.setTextFill(Color.BLACK);
 
-            driverWarningsLabel.setText("");
+            driverWarningsLabel.setText("No warnings");
             driverWarningImageView.setImage(okHand);
             driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
         }
@@ -343,14 +344,16 @@ public class UXController
     {
         if (isCommuting)
         {
+            driverCommutingTilePane.setStyle("-fx-background-color:  #8D99AE");
             isCommutingButton.setText("NO");
-            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
+            isCommutingButton.setStyle("-fx-background-color:  #8D99AE; -fx-text-fill: white;");
             isCommuting = !isCommuting;
             trip.setCommuting(false);
         } else
         {
+            driverCommutingTilePane.setStyle("-fx-background-color:  #2B2D42");
             isCommutingButton.setText("YES");
-            isCommutingButton.setStyle("-fx-background-color: #8D99AE; -fx-text-fill: white;");
+            isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
             isCommuting = !isCommuting;
             trip.setCommuting(true);
         }
