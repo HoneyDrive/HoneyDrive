@@ -235,7 +235,7 @@ public class UXController
     public void updateStatisticsAverages() {
         statisticsAverageBees.setText("" + drivingHistory.averageBeePerTrip());
         statisticsAverageFuel.setText("" + drivingHistory.averageFuelPerTrip());
-        statisticsAverageKm.setText("" + drivingHistory.averageKmPerTrip());
+        statisticsAverageKm.setText(String.format("%.2f", drivingHistory.averageKmPerTrip());
     }
 
     public void setInsuranceLimit()
