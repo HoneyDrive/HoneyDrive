@@ -39,8 +39,6 @@ public class DrivingHistory {
 
    }
 
-
-	
 	public void sendWarning(){
 		
 	}
