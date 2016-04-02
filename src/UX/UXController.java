@@ -53,11 +53,10 @@ public class UXController
         drivingHistory = new DrivingHistory();
         msgLabelPreferencesLooksGood();
         insuranceLimitInput.textProperty().addListener(insuranceLimitInputListener);
-
         newTrip(new Trip());
         trip.start("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed, CarActionsFilter.fuel_consumed_since_restart,
                 CarActionsFilter.odometer);
-
+        drivingHistory.addTrip(this.trip);
         startUIUpdater();
     }
 
@@ -69,6 +68,7 @@ public class UXController
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
             updateWeeklyEarnedBeesLabel();
+            insuranceLimitWarning();
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
