@@ -7,8 +7,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import metrics.CarActionsFilter;
 import org.json.JSONException;
@@ -23,6 +25,12 @@ public class UXController
     @FXML private Label driverFuelConsumedLabel;
     @FXML private Label driverSpeedLabel;
     @FXML private Label preferencesWarningLabel;
+
+    @FXML private TilePane driverWarningTilePane;
+    @FXML private ImageView driverWarningImageView;
+
+    Image okHand = new Image(UXController.class.getResourceAsStream("images/okHand"));
+    Image warningSign = new Image(UXController.class.getResourceAsStream("images/signs"));
 
     @FXML private Label statisticsDistanceDrivenWeek;
     @FXML private Label statisticsDistanceDrivenMonth;
@@ -184,6 +192,7 @@ public class UXController
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
             driverWarningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningImageView.setImage(okHand);
         }
     }
 

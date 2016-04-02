@@ -160,7 +160,7 @@
                         <Group>
                            <children>
                               <TilePane layoutX="210.0" layoutY="255.0" prefHeight="129.0" prefWidth="200.0" style="-fx-background-color: #FF9B42;" />
-                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="269.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="99.0" fitWidth="99.0" layoutX="261.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/bee-insect-outline.png" />
                                  </image>
@@ -187,10 +187,10 @@
                         </Group>
                         <Group>
                            <children>
-                              <TilePane layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #AB4642;" />
-                              <ImageView fitHeight="101.0" fitWidth="101.0" layoutX="658.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                              <TilePane fx:id="driverWarningTilePane" layoutX="620.0" layoutY="255.0" prefHeight="129.0" prefWidth="175.0" style="-fx-background-color: #8cff1a;" />
+                              <ImageView fx:id="driverWarningImageView" fitHeight="90.0" fitWidth="91.0" layoutX="658.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/signs.png" />
+                                    <Image url="@images/okHand.png" />
                                  </image>
                               </ImageView>
                               <Label layoutX="620.0" layoutY="361.0" prefWidth="200.0" text="WARNINGS" textFill="WHITE">
