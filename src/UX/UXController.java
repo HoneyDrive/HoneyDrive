@@ -251,7 +251,7 @@ public class UXController
     public void updateSmiley() {
         if (trip.getSmileyStatus() == -1) {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #9BC53D");
-            howAmIDrivingResponsLabel.setText("Efficient");
+            howAmIDrivingResponsLabel.setText("Efficient!");
             howAmIDrivingImageView.setImage(new Image(UXController.class.getResourceAsStream("images/smiley.png")));
         } else if (trip.getSmileyStatus() == 0) {
             howAmIDrivingTilePane.setStyle("-fx-background-color: #FDE74C");
