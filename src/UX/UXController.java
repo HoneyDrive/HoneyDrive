@@ -85,7 +85,6 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
-            updateWeeklyEarnedBeesLabel();
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
