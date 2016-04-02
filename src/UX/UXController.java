@@ -41,6 +41,7 @@ public class UXController
     @FXML private TilePane driverWarningTilePane;
     @FXML private ImageView driverWarningImageView;
 
+
     Image okHand = new Image(UXController.class.getResourceAsStream("images/okHand.png"));
     Image warningSign = new Image(UXController.class.getResourceAsStream("images/signs.png"));
 
@@ -220,6 +221,9 @@ public class UXController
             driverFuelConsumedLabel.setTextFill(Color.RED);
             driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
             driverWarningImageView.setImage(okHand);
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningImageView.setImage(warningSign);
+            driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
     }
 
@@ -229,6 +233,12 @@ public class UXController
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
             driverWarningsLabel.setText(totalDistanceIsAboveInsuranceLimitWarning);
+        }
+        else
+        {
+            driverDistanceDrivenLabel.setTextFill(Color.BLACK);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
+            driverWarningImageView.setImage(okHand);
         }
     }
 
