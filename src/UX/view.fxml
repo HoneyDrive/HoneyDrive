@@ -346,7 +346,7 @@
                               <Font name="Avenir Roman" size="15.0" />
                            </font>
                         </Label>
-                        <TilePane layoutX="376.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #C9CBA3;" />
+                        <TilePane layoutX="376.0" layoutY="5.0" prefHeight="155.0" prefWidth="180.0" style="-fx-background-color: #8D99AE;" />
                         <Label fx:id="statisticsCommutingDistanceWeek" alignment="TOP_CENTER" layoutX="376.0" layoutY="161.0" prefHeight="95.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />

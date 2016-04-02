@@ -1,3 +1,2 @@
 Distance driven this year:
-2.2072950000000002
-
+0.819699
