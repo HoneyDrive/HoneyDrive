@@ -29,7 +29,7 @@ public class UXController
     @FXML private Label driverSpeedLabel;
     @FXML private Label driverBeesEarnedLabel;
 
-    @FXML private TextArea driverWarningsTextArea;
+    @FXML private Label driverWarningsLabel;
 
     @FXML private Button isCommutingButton;
     private boolean isCommuting = false;
@@ -40,6 +40,7 @@ public class UXController
 
     @FXML private TilePane driverWarningTilePane;
     @FXML private ImageView driverWarningImageView;
+
 
     Image okHand = new Image(UXController.class.getResourceAsStream("images/okHand.png"));
     Image warningSign = new Image(UXController.class.getResourceAsStream("images/signs.png"));
@@ -159,7 +160,7 @@ public class UXController
 
     public void updateWarningsLabel(String warning)
     {
-        driverWarningsTextArea.setText(warning);
+        driverWarningsLabel.setText(warning);
     }
 
     public void updateTripEarnedBeesLabel()
@@ -220,17 +221,26 @@ public class UXController
         if (this.trip.getFuelBurntPerKm() > drivingHistory.getFuelConsumptionAvg())
         {
             driverFuelConsumedLabel.setTextFill(Color.RED);
-            driverWarningsTextArea.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
             driverWarningImageView.setImage(okHand);
+            driverWarningsLabel.setText(fuelConsumptionIsAboveAverageWarning);
+            driverWarningImageView.setImage(warningSign);
+            driverWarningTilePane.setStyle("-fx-background-color:#e55934");
         }
     }
 
     public void insuranceLimitWarning()
     {
-        if (drivingHistory.getDistanceThisYear() > drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
+        if (drivingHistory.getDistanceThisYear() >= drivingHistory.getInsuranceDistance() && drivingHistory.getInsuranceDistance() != 0L)
         {
             driverDistanceDrivenLabel.setTextFill(Color.RED);
-            driverWarningsTextArea.setText(totalDistanceIsAboveInsuranceLimitWarning);
+            driverWarningsLabel.setText(totalDistanceIsAboveInsuranceLimitWarning);
+        }
+        else
+        {
+            driverDistanceDrivenLabel.setTextFill(Color.BLACK);
+            driverWarningTilePane.setStyle("-fx-background-color: #9bc53d");
+            driverWarningImageView.setImage(okHand);
         }
     }
 
