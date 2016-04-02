@@ -63,6 +63,7 @@ public class UXController
     @FXML private Label statisticsAverageBees;
     @FXML private Label statisticsAverageFuel;
 
+
     @FXML private AnchorPane statisticsAnchorPane;
 
     // Preferences tab
@@ -227,6 +228,9 @@ public class UXController
     public void updateStatisticsCommutingDrivenYear ()
     {
         statisticsCommutingDistanceYear.setText(Long.toString(drivingHistory.getCommutingDistanceThisYear()));
+    }
+    public void upDateStatisticsAverages(){
+        statisticsAverageBees.setText(""); 
     }
 
     public void setInsuranceLimit()
