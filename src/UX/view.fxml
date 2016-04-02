@@ -405,17 +405,17 @@
                               <Font name="Avenir Roman" size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="640.0" layoutY="209.0" text="Km per trip">
+                        <Label layoutX="640.0" layoutY="209.0" text="km per trip">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="634.0" layoutY="305.0" text="Bees per trip">
+                        <Label layoutX="634.0" layoutY="305.0" text="bees per trip">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="644.0" layoutY="392.0" text="Fuel pr trip">
+                        <Label layoutX="644.0" layoutY="392.0" text="fuel per trip">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
