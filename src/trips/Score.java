@@ -13,6 +13,12 @@ public class Score implements TripListener {
     private Double timestamp;
     private static final double timeInterval=1;
     private int beeCount;
+    private int smileyStatus; // -1 = Happy, 0 = litt happy, 1 = Sint
+
+    public int getSmileyStatus() {
+        return smileyStatus;
+    }
+
 
     private double calculateScore(List<CarAction> carActions){
         Double avg = carActions.stream().mapToDouble(a -> ((Number) a.getValue()).doubleValue()).sum()/carActions.size();
@@ -25,6 +31,7 @@ public class Score implements TripListener {
 
     private Map<Double,Double> scoresMap = new HashMap<>(); // timestamp,score
     private Double firstTimeStamp = -1.0;
+
 
     public void newCarAction(CarAction carAction){
         if(firstTimeStamp == -1){
@@ -69,7 +76,20 @@ public class Score implements TripListener {
         scoresMap.put(carAction.getTimestamp()-firstTimeStamp,calcScore);
         scores.add(calcScore);
         checkBeeUpdate(carAction,calcScore);
+        setSmileyStatus(calcScore);
         System.out.println("Score:  " + calcScore + " timestamp" + (carAction.getTimestamp()-firstTimeStamp) );
+    }
+
+    private void setSmileyStatus(Double score){
+        if(score > scoreThreshold){
+            smileyStatus = 1;
+        }
+        else if(score > 5){
+            smileyStatus = 0;
+        }
+        else{
+            smileyStatus = -1;
+        }
     }
 
     private Double beeStartTime;
@@ -101,4 +121,5 @@ public class Score implements TripListener {
     public int getBeeCount() {
         return beeCount;
     }
+
 }
