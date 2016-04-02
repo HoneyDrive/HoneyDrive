@@ -74,8 +74,11 @@ public class UXController
             updateSpeedLabel();
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
-            updateWeeklyEarnedBeesLabel();
+            //updateWeeklyEarnedBeesLabel();
             insuranceLimitWarning();
+            updateStatisticsDistanceDricenYear("");
+            updateStatisticsDistanceDricenMonth("");
+            updateStatisticsDistanceDricenWeek("");
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
@@ -120,7 +123,7 @@ public class UXController
 
     public void updateTotalDistanceDrivenLabel()
     {
-        driverDistanceDrivenLabel.setText(String.format("%.1f", drivingHistory.getDistanceThisYear() + trip.getTotalDistance()));
+        driverDistanceDrivenLabel.setText(String.format("%.1f", trip.getTotalDistance()));
     }
 
     public void updateWarningsLabel(String warning)
@@ -150,17 +153,17 @@ public class UXController
 
     public void updateStatisticsDistanceDricenWeek (String text)
     {
-        statisticsDistanceDrivenWeek.setText(text);
+        statisticsDistanceDrivenWeek.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
     public void updateStatisticsDistanceDricenMonth (String text)
     {
-        statisticsDistanceDrivenWeek.setText(text);
+        statisticsDistanceDrivenMonth.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
     public void updateStatisticsDistanceDricenYear (String text)
     {
-        statisticsDistanceDrivenWeek.setText(text);
+        statisticsDistanceDrivenYear.setText(Long.toString(drivingHistory.getDistanceThisYear()));
     }
 
     public void setInsuranceLimit()
