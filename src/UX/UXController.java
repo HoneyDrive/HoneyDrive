@@ -242,11 +242,13 @@ public class UXController
             isCommutingButton.setText("NO");
             isCommutingButton.setStyle("-fx-background-color: #2B2D42; -fx-text-fill: white;");
             isCommuting = !isCommuting;
+            trip.setCommuting(false);
         } else
         {
             isCommutingButton.setText("YES");
             isCommutingButton.setStyle("-fx-background-color: #8D99AE; -fx-text-fill: white;");
             isCommuting = !isCommuting;
+            trip.setCommuting(true);
         }
     }
 
