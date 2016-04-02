@@ -61,6 +61,16 @@ public class UXController
         startUIUpdater();
     }
 
+    public Trip getTrip()
+    {
+        return this.trip;
+    }
+
+    public DrivingHistory getDrivingHistory()
+    {
+        return this.drivingHistory;
+    }
+
     private void startUIUpdater()
     {
         startThread(() -> {
@@ -69,13 +79,6 @@ public class UXController
             updateTotalDistanceDrivenLabel();
             updateTripEarnedBeesLabel();
             updateWeeklyEarnedBeesLabel();
-            if (trip.getSpeed() > 30)
-            {
-                updateWarningsLabel("Slow Down!!!");
-            } else
-            {
-                updateWarningsLabel("No warnings!");
-            }
         }, 300);
 
         startThread(() -> updateWeather(), 1000 * 30);
