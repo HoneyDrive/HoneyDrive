@@ -68,6 +68,16 @@ public class UXController
         startUIUpdater();
     }
 
+    public Trip getTrip()
+    {
+        return this.trip;
+    }
+
+    public DrivingHistory getDrivingHistory()
+    {
+        return this.drivingHistory;
+    }
+
     private void startUIUpdater()
     {
         startThread(() -> {
