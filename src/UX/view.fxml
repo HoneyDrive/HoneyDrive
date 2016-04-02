@@ -387,7 +387,7 @@
                               <Image url="@images/people.png" />
                            </image>
                         </ImageView>
-                        <TilePane layoutX="600.0" layoutY="5.0" prefHeight="155.0" prefWidth="194.0" style="-fx-background-color: #8D99AE;" />
+                        <TilePane layoutX="600.0" layoutY="5.0" prefHeight="155.0" prefWidth="194.0" style="-fx-background-color: #33ccff;" />
                         <Label fx:id="statisticsAverageKm" alignment="TOP_CENTER" layoutX="600.0" layoutY="161.0" prefHeight="95.0" prefWidth="194.0" style="-fx-background-color: #FFFFFF;" text="0" textFill="#333533">
                            <font>
                               <Font name="Avenir Roman" size="40.0" />
@@ -413,11 +413,21 @@
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="644.0" layoutY="392.0" text="Fluel pr trip">
+                        <Label layoutX="644.0" layoutY="392.0" text="Fuel pr trip">
                            <font>
                               <Font name="Avenir Roman" size="20.0" />
                            </font>
                         </Label>
+                        <Label layoutX="603.0" layoutY="139.0" text="AVERAGE" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Roman" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="645.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/head.png" />
+                           </image>
+                        </ImageView>
                      </children></AnchorPane>
               </content>
             </Tab>
