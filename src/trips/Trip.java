@@ -158,12 +158,12 @@ public class Trip implements IActionListener
 
     public double getFuelBurntPerKm()
     {
-        return getTotalDistance() == 0 ? 0 : getFuelUsed() / getTotalDistance();
+        return getTotalDistance() < 1 ? 0 : getFuelUsed() / getTotalDistance();
     }
 
     public double getFuelBurntPer10Km()
     {
-        return getTotalDistance() == 0 ? 0 : getFuelUsed() / (getTotalDistance() / 10);
+        return getTotalDistance() < 1 ? 0 : getFuelUsed() / (getTotalDistance() / 10);
     }
 
     public double getSpeed()

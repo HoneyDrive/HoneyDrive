@@ -5,3 +5,4 @@
 {"name":"odometer","value":310,"timestamp":5}
 {"name":"odometer","value":1334,"timestamp":6}
 {"name":"odometer","value":1669,"timestamp":7}
+{"name":"fuel_consumed_since_restart","value":100,"timestamp":7}
