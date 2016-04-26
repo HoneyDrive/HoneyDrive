@@ -31,6 +31,7 @@ public class UXMain extends Application
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(500);
         primaryStage.setResizable(false);
+        primaryStage.setTitle("HoneyDrive");
 
         try
         {

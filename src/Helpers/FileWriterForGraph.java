@@ -46,7 +46,7 @@ public class FileWriterForGraph implements IActionListener {
 
     public static void main(String[] args) {
         FileWriterForGraph trip = new FileWriterForGraph();
-        trip.startWithoutDelay("src/metrics/TestData/data3.json", CarActionsFilter.vehicle_speed);
+        trip.startWithoutDelay("TestData/data3.json", CarActionsFilter.vehicle_speed);
         try{
             Thread.sleep(1000);
         }catch (Exception e){

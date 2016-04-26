@@ -5,9 +5,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class ReadFromOpenXCFile implements IDataReader
 {
@@ -16,13 +15,7 @@ public class ReadFromOpenXCFile implements IDataReader
 
     public ReadFromOpenXCFile(String filePath)
     {
-        try
-        {
-            reader = new BufferedReader(new FileReader(filePath));
-        } catch (FileNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+        reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(filePath)));
     }
 
     @Override

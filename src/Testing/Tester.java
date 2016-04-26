@@ -21,13 +21,13 @@ public class Tester {
 
     public Tester(){
         trip1= new Trip(); trip1.setCommuting(true);
-        trip1.startWithoutDelay("src/metrics/TestData/testData1.json", CarActionsFilter.all);
+        trip1.startWithoutDelay("TestData/testData1.json", CarActionsFilter.all);
         try {
             Thread.sleep(1000);
         }catch (Exception e){e.printStackTrace();}
         trip1.stop();
         trip2 = new Trip(); trip2.setCommuting(false);
-        trip2.startWithoutDelay("src/metrics/TestData/testData2.json",CarActionsFilter.all);
+        trip2.startWithoutDelay("TestData/testData2.json",CarActionsFilter.all);
         try {
             Thread.sleep(1000);
         }catch (Exception e){e.printStackTrace();}
@@ -141,7 +141,7 @@ public class Tester {
 
         Map<String, Set<String>> typeOfData = new HashMap<>();
 
-        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", CarActionsFilter.engine_speed);
+        IDataStreamer streamer = new DataStreamSimulator("TestData/data2.json", CarActionsFilter.engine_speed);
         streamer.addStreamListener(action ->
         {
             Set<String> types = typeOfData.getOrDefault(action.getType().name(), new HashSet<>());
@@ -164,7 +164,7 @@ public class Tester {
 
         Map<String, Set<String>> typeOfData = new HashMap<>();
 
-        IDataStreamer streamer = new DataStreamSimulator("src/metrics/TestData/data2.json", EnumSet.of(CarActionsFilter.latitude, CarActionsFilter.longitude));
+        IDataStreamer streamer = new DataStreamSimulator("TestData/data2.json", EnumSet.of(CarActionsFilter.latitude, CarActionsFilter.longitude));
         streamer.addStreamListener(action ->
         {
             Set<String> types = typeOfData.getOrDefault(action.getType().name(), new HashSet<>());
@@ -189,7 +189,9 @@ public class Tester {
             {
                 if (Files.isRegularFile(filePath))
                 {
-                    openXCFileList.add(filePath.toString());
+                    int index = filePath.toString().indexOf("TestData");
+                    String relativePath = filePath.toString().substring(index);
+                    openXCFileList.add(relativePath);
                 }
             });
         }
