@@ -22,6 +22,7 @@ public class Trip implements IActionListener
     private double commutingDistance;
     private double insuranceDistance;
     private double fuelUsed;
+    private double fuelUsedAtStart;
     private double speed;
     private double timestamp;
 
@@ -38,6 +39,7 @@ public class Trip implements IActionListener
         commutingDistance = 0;
         insuranceDistance = 0;
         fuelUsed = 0;
+        fuelUsedAtStart = -1;
         speed = 0;
         timestamp = 0;
         speedCounter = 0;
@@ -90,7 +92,11 @@ public class Trip implements IActionListener
         switch (action.getType())
         {
             case fuel_consumed_since_restart:
-                fuelUsed = (double) action.getValue();
+                if (fuelUsedAtStart == -1) { // First value
+                    fuelUsedAtStart = (double) action.getValue();
+                } else {
+                    fuelUsed = (double) action.getValue() - fuelUsedAtStart;
+                }
                 break;
             case vehicle_speed:
                 speed = (double) action.getValue();
